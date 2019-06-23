@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC >
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.sign}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/login.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为白色
+				plus.navigator.setStatusBarBackground('#FFFFFF');
+                plus.navigator.setStatusBarStyle('dark');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<!--<ul class="lang">
+			<li class="selectLanguage">简体中文</li>
+			<li class="languageIn">
+				<a style="color: #52a3fc;">简体中文</a>
+				<a style="color: #52a3fc;">繁体中文</a>
+				<a style="color: #52a3fc;">English</a>
+			</li>
+		</ul>-->
+		<img class="logoImg" src="__PUBLIC__/Home/img/icon/logo@2x.png" />
+		<div class="loginInput">
+			<input type="text" id="user_phone" name="user_phone" value="" placeholder="请输入用户名或手机号" />
+			<input type="password" name="user_password" id='user_password' placeholder="{$Think.lang.password}" />
+			<input type="text" placeholder="{$Think.lang.verification}" name="user_code" style="width: 100%;" />
+			<img src="/Home/login/verify" name="" height="35" id="" style="float:right;width:35%;position: absolute;bottom: 0.5rem;right: 0.2rem" onclick="this.src='/Home/login/verify?'+Math.random();">
+
+		</div>
+		<ul class="loginTab flexBetween">			
+			<li class="passwordBtn">{$Think.lang.forgetpassword}</li>
+<!--			 <li class="registerBtn">立即注册</li>-->
+		</ul>
+		<button class="btn">{$Think.lang.sign}</button>
+		
+		<script type="text/javascript">
+			//注册
+			$('.registerBtn').on('tap', function() {
+				location.href = "register.html"
+			})
+			//忘记密码
+			$('.passwordBtn').on('tap', function() {
+				location.href = "forgetPassword.html"
+			})
+		</script>
+		<script type="text/javascript" src="__HOME__/layer/layer.js"></script>
+		<script type="text/javascript">
+			$('.btn').click(function() {
+				var user_code = $("input[name='user_code']").val();
+				$.ajax({
+					url: '/Home/Login/login',
+					data: {
+						user_phone: $('#user_phone').val(),
+						user_password: $('#user_password').val(),
+						user_code: user_code,
+					},
+					type: 'POST',
+					success: function(str) {
+						if(str.status == '1') {
+							layer.msg(str.message, {
+								icon: 6,
+								time: 1000
+							});
+							window.location.href = '/Home/Index/index';
+						} else {
+							layer.msg(str.message, {
+								icon: 5,
+								time: 1000
+							});
+						}
+					},
+				});
+			})
+			var code = {$code} + 1;
+			if(code == 2) {
+				layer.confirm('{$Think.lang.waring1}', {
+					title: ['{$Think.lang.prompt}'],
+					btn: ['{$Think.lang.confirm}'],
+				});
+			};
+			//语言切换
+			var langI = localStorage.getItem('langIndex');
+			langGet(langI);
+
+			function langGet(langI) {
+				$('.selectLanguage').text($('.languageIn a').eq(langI).text());
+				switch(langI) {
+					case 0:
+						location.href = "/Home/Login/start?l=zh-cn";
+						break;
+					case 1:
+						location.href = "/Home/Login/start?l=ft-cn";
+						break;
+					case 2:
+						location.href = "/Home/Login/start?l=en-us";
+						break;
+				}
+			}
+			$('.selectLanguage').on('tap', function() {
+				$('.languageIn').css('display', 'block');
+			})
+			$('.languageIn a').on('tap', function() {
+				var _index = $(this).index();
+				localStorage.setItem('langIndex', _index);
+				$('.languageIn').css('display', 'none');
+				var langIndex = localStorage.getItem('langIndex');
+				langGet(_index);
+			})
+			//获取输入框的值
+			$('#user_phone').val(localStorage.getItem('inputV'));
+			console.log(localStorage.getItem('inputV'));
+			//保存输入框中的值
+			$('#user_phone').blur(function() {
+				console.log($(this).val());
+				localStorage.setItem('inputV', $(this).val());
+			})
+		</script>
+	</body>
+
+</html>

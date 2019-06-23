@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li>
+                    <a href="#">赠送熊猫和熊猫仔</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="formbody">
+
+            <div class="formtitle"><span>基本信息</span></div>
+            <form id="form1" name="form1" method="post" action="/Adminlmcq/Wealth/give">
+                <input name="user_name"  type="hidden" class="dfinput" value="{$userdata['user_name']}" />
+                <ul class="forminfo"><li><label>赠送类型</label><cite>
+                            <input name="type" type="radio" value="fish" checked="checked" />
+                            熊猫
+                            <input name="type" type="radio" value="egg" />
+                            熊猫仔
+                        </cite></li>
+                    <li><label>会员账号</label><input name="user_name" type="text" class="dfinput" id="user" placeholder="请输入会员的手机号" required/>
+                        <i></i></li>
+                    <li><label>数量</label><input name="count" type="text" class="dfinput" id="sl" placeholder="请输入赠送的数量" required/><i></i></li>
+                    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+                </ul>
+            </form>
+
+            <div class="formtitle"><span>赠送记录</span>
+                <span style="padding-left: 100px;">赠送熊猫总数=>【{$tongji['nums1']}】&nbsp;&nbsp;赠送猫仔总数=>【{$tongji['nums2']}】</span>
+            </div>
+            <table class="tablelist">
+                <thead>
+                    <tr>
+                        <th>用户信息<i class="sort"><img src="__PUBLIC__/Admin/sncss/images/px.gif" /></i></th>
+                        <th>交易类型</th>
+                        <th>数量</th>
+                        <th>备注信息</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='v'>
+                        <tr>
+                            <td>{$v.user_name}</td>
+                            <td>
+                                <if condition="$v.type eq 1">开地</if>
+                                <if condition="$v.type eq 2">增养</if>
+                                <if condition="$v.type eq 3">孵化</if>
+                                <if condition="$v.type eq 4">收获</if>
+                                <if condition="$v.type eq 5">打扫</if>
+                                <if condition="$v.type eq 6">收崽</if>
+                                <if condition="$v.type eq 7">交易</if>
+                                <if condition="$v.type eq 8">购买/升级</if>
+                                <if condition="$v.type eq 9">获取</if>
+                                <if condition="$v.type eq 10">赠送</if>
+                                <if condition="$v.type eq 11">推荐注册</if>
+                                <if condition="$v.type eq 12">大转盘</if>
+                                <if condition="$v.type eq 13">大竞猜</if>
+                            </td>
+                            <td>{$v.amount}</td>
+                            <td>{$v.log_note}</td>
+                            <td><?php echo date("Y-m-d H:i:s",$v['change_date']);?></td>
+                        </tr> 
+                    </foreach>
+                </tbody>
+            </table>
+
+
+
+            <style>.pages a,.pages span {
+                    display:inline-block;
+                    padding:2px 5px;
+                    margin:0 1px;
+                    border:1px solid #f0f0f0;
+                    -webkit-border-radius:3px;
+                    -moz-border-radius:3px;
+                    border-radius:3px;
+                }
+                .pages a,.pages li {
+                    display:inline-block;
+                    list-style: none;
+                    text-decoration:none; color:#58A0D3;
+                }
+                .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                    margin:0;
+                }
+                .pages a:hover{
+                    border-color:#50A8E6;
+                }
+                .pages span.current{
+                    background:#50A8E6;
+                    color:#FFF;
+                    font-weight:700;
+                    border-color:#50A8E6;
+                }
+            </style>
+
+            <div class="pages"><br />
+                <div align="right">{$page}</div>
+            </div>
+        </div>
+    </body>
+</html>

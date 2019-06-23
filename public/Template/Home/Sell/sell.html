@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>卖出</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/sell.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Stock/stockright" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">卖出</h1>
+		</header>
+		<div class="Con">
+			<ul class="sell">
+				<li>
+                    <p>当前股权：{$wallet.static_amount}</p>
+					<input type="hidden" id="amount" value="{$wallet.static_amount}">
+				</li>
+				<script type="text/javascript">
+					var thelabel='{$wallettype}';
+					$('#sellSelect option').each(function(){
+						var label1=$(this);
+						var label1val=label1.val();
+						if (label1val==thelabel) {
+							label1.attr('selected','true');
+							if(thelabel==1){
+						 		$('#remarks').text('以100的倍数提现');
+						 	}else{
+						 		$('#remarks').text('以500的倍数提现');
+						 	}
+						}
+					})
+				</script>
+				<li>
+					<p>卖出股权</p>
+					<input type="text"  placeholder="卖出数量" name="num" id="num"/>
+					<h6 class="w_ts"  id="content1" display="display">注：卖出数量必须是200的倍数。</h6>
+				</li>
+                <li>
+                    <p>股权价值</p>
+                    <input type="hidden" id="price" value="{$config.stock_price}">
+                    <input type="text" readonly="readonly"  placeholder="卖出数量" name="money" id="money"/>
+                </li>
+                <li>
+                    <p>收款方式</p>
+                    <p>
+                        <label for=""><input type="radio" name="pay" checked="checked" class="t_romm_ip" />银行卡</label>
+                        <label for=""><input type="radio" name="pay" class="t_romm_ip" />支付宝</label>
+                    </p>
+                </li>
+				<li>
+					<p>资金密码</p>
+					<input type="password"  autocomplete='new-password' placeholder="资金密码" name="tranpass" id="tranpass"/>
+				</li>
+			</ul>
+			<button class="btn">确认卖出</button>
+		</div>
+		<script type="text/javascript">
+            $('#num').keyup(function() {
+                var price = parseFloat($('#price').val());
+                var num = parseFloat($('#num').val());
+                var money = num * price;
+				money = money.toFixed(2)
+                $('#money').val(money)
+            });
+            var lock= false;
+			$('.btn').click(function(){
+				var obj = document.getElementsByName('pay');
+				if(obj[0].checked) {
+					pay = 1;
+				} else {
+					pay = 2;
+				}
+				lock = true;
+				var allmoney=$('#num').val();
+				var thepass=$('#tranpass').val();
+				var amount=$("#amount").val();
+				layer.confirm('确认卖出?',{title:['提示信息'],btn:['确定', '取消'],},function(){
+					if(lock){
+						lock = false;
+						$.ajax({
+							url:'/Home/OrderCenter/saleOrder',
+							data:{allmoney:allmoney,thepass:thepass,pay:pay},
+							dataType:'json',
+							type:'post',
+							success:function(data){
+								if (data.status==0) {
+									layer.msg(data.message,{icon:5,time:3000});
+								}else{
+									layer.msg(data.message,{icon:6,time:3000},function(){
+										location.href="/Home/OrderCenter/buy_matching_list";
+									});
+								}
+							}
+						});
+					}else{
+						console.log('重复点击');
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

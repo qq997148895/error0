@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.personal}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/personal.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<!--
+        	作者：18291958857@163.com
+        	时间：2018-12-12
+        	描述：底部切换
+        -->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="tab-buttom" href="/Home/Index/index">
+				<span class="mui-icon iconfont icon-shouye"></span>
+				<span class="mui-tab-label">{$Think.lang.index}</span>
+			</a>
+			<a class="tab-buttom" href="/Home/OrderCenter/buy_matching_list">
+				<span class="mui-icon iconfont icon-dingdan"></span>
+				<span class="mui-tab-label">{$Think.lang.order}</span>
+			</a>
+			<a class="tab-buttom" href="/Home/Wallet/userWallet">
+				<span class="mui-icon iconfont icon-qianbao"></span>
+				<span class="mui-tab-label">{$Think.lang.wallet}</span>
+			</a>
+			<a class="tab-buttom mui-active" href="/Home/Mymessage/myinfo">
+				<span class="mui-icon iconfont icon-wode"></span>
+				<span class="mui-tab-label">{$Think.lang.my}</span>
+			</a>
+		</nav>
+		<header class="head-bar mui-bar-nav">
+			<a href="/Home/Index/index" class="mui-icon mui-icon-left-nav mui-pull-left" style="position:relative;z-index:100000"></a>
+			<h1 class="mui-title">{$Think.lang.personal}</h1>
+			<ul class="language">
+				<li class="selectLanguage">{$Think.lang.choselang}</li>
+				<li class="languageIn">
+					<div>简体中文</div>
+					<div>繁体中文</div>
+					<div>English</div>
+				</li>
+			</ul>
+			<div class="headerImg">	
+				<div class="userImg">
+					<if condition="$data.user_headimg neq null">					
+						<img id="preview-img" style="border-radius:50%; overflow:hidden;" src="{$data.user_headimg}">
+					<else />
+						<img id="preview-img" style="border-radius:50%; overflow:hidden;" src="__PUBLIC__/Home/img/icon/touxiang@2x.png">
+					</if>
+					<input type="file" value="" id="FILE1" onchange="sc(this.id)" />
+					<input type="hidden" name="erweima" id="erweima" value="">
+				</div>
+				<span id="nickname" onclick="savename()">{$Think.lang.nickname}:{$data.user_name}</span>
+			</div>
+			<div class="flexBetween headBottom">
+				<p>{$Think.lang.vip}：{$userinfo.user_level}</p>
+				<p>
+					<span>{$Think.lang.reputation}：</span>
+					<span>{$data.user_reputation}</span>
+				</p>
+			</div>
+		</header>
+
+		<ul class="personal">
+			<li class="flexStar">
+				<p>
+					<img style="width:0.66rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/xingming@2x.png" />
+				</p>
+				<span>{$Think.lang.truename}:{$data.user_truename}</span>
+			</li>
+			<li class="flexStar">
+				<p>
+					<img style="width:0.4rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/shouji@2x.png" />
+				</p>
+				<span>{$Think.lang.phonenum}:{$data.user_phone}</span>
+			</li>
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/changepassword">
+				<div class="flexStar">					
+					<p>
+						<img style="width:0.56rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/update@2x.png" />
+					</p>
+					<span style="color: #666666;">{$Think.lang.repass}</span>
+
+				</div>
+				</a>
+			</li>
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/changepass">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.45rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/mima@2x.png" />
+					</p>
+					<span style="color: #666666;">{$Think.lang.help_pass}</span>
+				</div>
+				</a>
+			</li>
+			<li class="flexBetween">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.64rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/jihuo@2x.png" />
+					</p>
+					<span>{$Think.lang.activation}</span>
+				</div>
+				<span class="arrowIn"><if condition="$data.is_active eq 1 ">{$Think.lang.activated}<elseif condition="$data.is_active eq 0"/><button  onclick="jihuo()" class="arrowIn">{$Think.lang.not_active}</button></if></span>
+			</li>
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/paystyle">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.64rem;height:0.48rem;" src="__PUBLIC__/Home/img/icon/tixian@2x.png" />
+					</p>
+					<span style="color: #666666;">{$Think.lang.payment}</span>
+				</div>
+				</a>
+			</li>
+			<li class="flexStar">
+				<p>
+					<img style="width:0.5rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/dizhi@2x.png" />
+				</p>
+				<span>{$Think.lang.myaddress}</span>
+			</li>
+		</ul>
+
+		<div class="personalBottom">
+			<div id="aboutus" class="flexStar">
+				<p>
+					<img style="width:0.64rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/guanyu@2x.png" />
+				</p>
+				<span style="color: #333333;">{$Think.lang.about_us}</span>
+			</div>
+			<div class="flexStar">
+				<p>
+					<img style="width:0.64rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/tuichu@2x.png" />
+				</p>
+				<a href="/Home/Login/logout"><span style="color: #333333;">{$Think.lang.safe_exit}</span></a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#aboutus').on('tap',function(){
+				location.href="/Home/Mymessage/response";
+			})
+			//选择语言
+			$('.selectLanguage').on('tap', function() {
+				$('.languageIn').css('display', 'block');
+			})
+			$('.languageIn div').on('tap', function() {
+				var _index = $(this).index();
+				$('.selectLanguage').text($('.languageIn div').eq(_index).text());
+				$('.languageIn').css('display', 'none');
+			})
+
+			function jihuo(){
+				var btnArray = ['{$Think.lang.no}', '{$Think.lang.yes}'];
+		        mui.confirm('{$Think.lang.consume}', '{$Think.lang.tips}', btnArray, function(e) {
+		          if (e.index == 1) {
+		             /*确定激活*/
+		             $.ajax({
+			         url: "/Home/Index/Activation",
+			         dataType: "json",
+			         type: "POST",
+			         success: function(str){
+			             alert(str.message);
+			             window.location.reload();
+			          },
+			          error:function(err){
+			            // console.log(err.statusText);
+			            // console.log('异常');
+			          }
+		        });
+		          } else {
+		              /*取消*/
+		          }
+		        })	
+			}
+			//修改昵称
+			function savename(){
+				//e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+		        var btnArray = ['{$Think.lang.no}', '{$Think.lang.yes}'];
+		        mui.prompt('{$Think.lang.up_nickname}：', '{$Think.lang.enter_nickname}', '{$Think.lang.tips}', btnArray, function(e) {
+		          if (e.index == 1) {
+		            console.log(e.value);
+		            var nickname = e.value;
+			            $.ajax({
+				         url: "/Home/Index/savename",
+				         dataType: "json",
+				         type: "POST",
+				         data:{
+				         	nickname:nickname
+				         },
+				         success: function(str){
+				             if(str.status == 1){
+				             	alert(str.message);
+				             	window.location.reload();
+				             }
+				          },
+				          error:function(err){
+				            // console.log(err.statusText);
+				            // console.log('异常');
+				          }
+				     	})
+		          } else {
+		             /*取消*/
+		          }
+		        })
+			}
+			//上传头像
+			function sc(id){
+			var fileObj = document.getElementById(id).files[0]; // 获取文件对象
+			console.log(fileObj)
+			var FileController = "{:U('Mymessage/upfile')}";                    // 接收上传文件的后台地址 
+			// FormData 对象
+			var form = new FormData();    //存储需要传递的参数
+			// form.append("author", "竹叶科技");       //自定义数据
+			// form.append("id",id);                       // 可以增加表单数据
+			form.append(id, fileObj);                           // 文件对象
+			// XMLHttpRequest 对象
+			var xhr = new XMLHttpRequest();
+			xhr.open("post", FileController, true);
+			xhr.onload = function () {
+			    var posit=this.responseText;
+			    console.log(posit)
+			    document.getElementById('erweima').value=posit;
+			    var show=document.getElementById('preview-img');
+			    show.src=posit;
+			    $.ajax({
+		         url: "{:U('Mymessage/upload')}",
+		         dataType: "json",
+		         type: "POST",
+		         data:{
+		         	file:posit,
+		         },
+		         success: function(str){
+		             if(str.status == 1){
+		             	alert(str.message);
+		             	window.location.reload();
+		             }
+		          },
+		          error:function(err){
+		            // console.log(err.statusText);
+		            // console.log('异常');
+		          }
+		        });
+			};
+			xhr.send(form);
+			var file = $('#FILE1').val();
+			console.log(file);
+		};
+      // document.getElementById("nickname").addEventListener('tap', function(e) {
+      //   e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+      //   var btnArray = ['取消', '确定'];
+      //   mui.prompt('修改昵称：', '输入昵称', '提示', btnArray, function(e) {
+      //     if (e.index == 1) {
+      //       console.log(e.value);
+      //     } else {
+      //        /*取消*/
+      //     }
+      //   })
+      // });
+		</script>
+	</body>
+
+</html>

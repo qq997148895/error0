@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>买入</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/help.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+<style type="text/css">
+	.buy_orderbox{margin: 46px .2rem;}
+	.buy_title ul{display: block;}
+	.buy_title ul li{text-align: center;border: 1px solid #886dee;border-radius: 5px;color: #886dee;font-size: .4rem;height: 1.7rem;line-height: .6rem;padding: .2rem 0;margin: .1rem 1%;width: 48%;float: left;}
+	.buy_title ul li span{font-weight: 600;}
+	.buy_title h5{color: #333;margin: 50px .1rem .1rem;}
+	.gl-color{background:#886dee ;color: #fff!important;}
+	.buy_title p{display: flex;}
+	.buy_title p label{flex: 1;font-size: .38rem;color: #333;margin:0 .1rem;height: 30px;line-height: 30px;}
+	.t_romm_ip[type=radio] {position: relative;width: 20px;height: 1px;margin: 9px 6px;}
+.t_romm_ip[type=radio]::before,
+.t_romm_ip[type=radio]::after {position: absolute;display: block;content: '';transition: .3s all esae;}
+.t_romm_ip[type=radio]::before {top: -10px;left: 0;width: 18px;height: 18px;border: 1px solid #ccc;background: #fff;}
+.t_romm_ip[type=radio]::after {top: -9px;left: 1px;width: 18px;height: 18px;}
+.t_romm_ip[type=radio]:checked::before {border-color:1px solid #fff;}
+.t_romm_ip[type=radio]:checked::after {background:url(__PUBLIC__/Home/img/icon/icon_xuanzhong@2x.png) no-repeat;background-size: 100% 100%; }
+.static_wcenter{margin: .5rem .3rem;}
+	.static_wcenter h5{font-size: .38rem;color: #333;margin-bottom: .15rem;}
+	.w_ts{color: red;margin: .1rem 0rem .2rem;font-size: .35rem;}
+</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Stock/stockright" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">买入</h1>
+		</header>
+		<br>
+		<div class="buy_orderbox">
+<!--			<div class="buy_title">-->
+<!--				<h5>买入级别</h5>-->
+<!--				<ul>-->
+<!--					<li class="header-hover <if condition='$user.user_level eq 普通会员'>gl-color</if>">普通会员<br /><span>2000-5000</span></li>-->
+<!--					<li class="header-hover <if condition='$user.user_level eq T1'>gl-color</if>">T1会员<br /><span>5000-9000</span></li>					-->
+<!--					<li class="header-hover <if condition='$user.user_level eq T2'>gl-color</if>">T2会员<br /><span>9000-15000</span></li>-->
+<!--					<li class="header-hover <if condition='$user.user_level eq T3'>gl-color</if>">T3会员<br /><span>15000-30000</span></li>-->
+<!--					<div style="clear: both;"></div>-->
+<!--				</ul>-->
+<!--			</div>-->
+			<div class="static_wcenter">
+				<h5>买入数量</h5>
+				<input type="number" value="" id="num" name="num" placeholder="请输入买入数量" style="margin-bottom: 0;" />
+				<h6 class="w_ts"  id="content1" display="display">注：激活购买数量必须是200的倍数。</h6>
+				<h6 class="w_ts"  id="content2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp预约购买数量必须是1000的倍数。</h6>
+				<h5>买入股权价值</h5>
+				<input type="hidden" id="price" value="{$config.stock_price}">
+				<input type="number" value="" id="money" name="money" placeholder="买入价格" readonly="readonly" style="margin-bottom: 0;" />
+				<h5 style="margin-top: .2rem;">购买方式</h5>
+				<p>
+					<label for=""><input type="radio" name="buy" checked="checked" class="t_romm_ip" />激活购买</label>
+					<label for=""><input type="radio" name="buy" class="t_romm_ip" />预约购买</label>
+				</p>
+<!--				<h5 style="margin-top: .2rem;">付款方式</h5>-->
+<!--				<p>-->
+<!--					<label for=""><input type="radio" name="pay" checked="checked" class="t_romm_ip" />银行卡支付</label>-->
+<!--					<label for=""><input type="radio" name="pay" class="t_romm_ip" />支付宝支付</label>-->
+<!--				</p>-->
+				<h5>资金密码</h5>
+				<input type="password" value="" name="tranpass" placeholder="请输入资金密码" />
+				<button class="btn">确定买入</button>
+			</div>		
+		</div>
+		<script type="text/javascript">
+			$('#num').keyup(function() {
+				var price = parseFloat($('#price').val());
+				var num = parseFloat($('#num').val());
+				var money = num * price;
+				console.log(num);
+				console.log(price);
+				console.log(money);
+                money = money.toFixed(2)
+                console.log(money);
+				$('#money').val(money)
+			});
+			var lock = true;
+			$('.btn').click(function() {
+				var obj = document.getElementsByName('buy');
+				var buy;
+				if(obj[0].checked) {
+					buy = 1;
+				} else {
+					buy = 2;
+				}
+				lock = false;
+				var allmoney = $("input[name='money']").val();
+				var thepass = $("input[name='tranpass']").val();
+				var num = $('#num').val();
+				layer.confirm('确定买入?', {
+					title: ['提示'],
+					btn: ['确定', '取消'],
+				}, function() {
+				if(!lock){
+					lock = true;
+					$.ajax({
+						url: '/Home/OrderCenter/buyOrder',
+						data: {
+							allmoney: allmoney,
+							thepass: thepass,
+							buy: buy,
+							num:num
+						},
+						dataType: 'json',
+						type: 'post',
+						success: function(data) {
+							if(data.status == 0) {
+								layer.msg(data.message, {
+									icon: 5,
+									time: 3000
+								});
+							} else {
+								layer.msg(data.message, {
+									icon: 6,
+									time: 3000
+								}, function() {
+									location.href = "/Home/OrderCenter/buy_matching_list";
+								});
+							}
+						}
+					});
+				}else{
+					console.log('重复点击');
+				}
+				});
+			})
+		</script>
+	</body>
+
+</html>

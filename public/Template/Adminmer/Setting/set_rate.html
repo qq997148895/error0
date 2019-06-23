@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            无标题文档
+        </title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li>
+                    <a href="#">修改明日jhc币价涨幅率</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tools">
+            <form action="/Adminlmcq/Setting/setrate" method="post">
+                <input type="text" name="min_interest" value="{$data['min_interest']}" placeholder="请输入最低涨幅率" class="dfinput"/>
+                    -
+                <input type="text" name="max_interest" value="{$data['max_interest']}" placeholder="请输入最高涨幅率" class="dfinput"/>
+                <input type="submit" value="提交" class="btn"/>
+            </form>
+        </div>
+    <div>明日币价：{$price}</div>
+    </body>
+</html>

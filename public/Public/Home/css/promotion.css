@@ -1,0 +1,49 @@
+.mui-bar-nav{
+	background-color: #886DEE; 
+}
+.mui-bar .mui-icon{
+	font-size: 35px;
+}
+a{
+	color: #FFFFFF;
+}
+img{
+	margin: auto;
+}
+.imgLOGO{
+	height: 3rem;
+	margin-top: 80px;
+}
+.logo{
+	width: 2rem;
+	height: 1rem;
+	margin-top: -2rem;
+}
+.QRcode{
+	width: 5rem;
+	height: 4.9rem;
+	margin-top: 0.3rem;
+}
+.address{
+	width: 90%;
+	margin:0.5rem auto 0;
+	color: #886DEE;
+}
+.address input{
+	width: 100%;
+	font-size: 0.4rem;
+}
+.bootmLogo{
+	width: 100%;
+	margin-top: 0.8rem;
+}
+.btnT{
+	display: block;
+    width: 80%;
+    margin: 0.5rem auto 0;
+    height: 1rem;
+    line-height: 1rem;
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #886DEE
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.personal}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size: 18px;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header h1{
+				line-height: 44px;
+				text-align:center;
+				font-size: 17px;
+			}
+			/* 底部导航 */
+			.index_bottom{
+				background-color: white;
+				z-index: 99;
+			}
+			/* 循环列表 */
+			.count{
+				padding: 44px 0 50px;
+			}
+			/* 切换按钮 */
+			.count_change{
+				height: 0.8rem;
+				width: 7rem;
+				margin: 0.2rem auto;
+				line-height: 0.8rem;
+				border-radius: 4px;
+				font-size: 0;
+				box-sizing: content-box;
+				position: relative;
+			}
+			.count_change span{
+				display: inline-block;
+				width: 50%;
+				height: 0.8rem;
+				text-align: center;
+				font-size: 0.4rem;
+				border: 1px solid #886DEE;
+			}
+			.count_change span:nth-child(1){
+				border-top-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+			}
+			.count_change span:nth-child(2){
+				border-top-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+			}
+			.count_change span.active{
+				color: white;
+				background-color: #886DEE;
+			}
+			.count_list{
+				padding:1px 0.25rem;
+			}
+			.count_list li {
+				border-radius: 5px;
+				padding: 0.25rem;
+				margin-bottom: 0.25rem;
+				position: relative;
+				box-shadow: 0 3px 10px 3px #CCCCCC;
+			}
+			.count_list li p{
+				height: 0.6rem;
+				line-height: 0.6rem;
+				font-size: 0.4rem;
+				color: #000000;
+			}
+			.count_list li span{
+				position: absolute;
+				top: 0.25rem;
+				right: 0.25rem;
+				font-size: 0.4rem;
+				color: #886DEE;
+			}
+			.selllist{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="index_bottom">
+			<ul>
+				<li>
+					<a href="/Home/Index/index">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_homepage01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Stock/stockright">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_guquan01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mall/shop">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_Shopping01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/OrderCenter/buy_matching_list">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_Order02@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mymessage/myinfo">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_my01@2x.png" alt="" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		
+		<header>
+			<!--<a href="/Home/Index/index" class="mui-icon mui-icon-left-nav mui-pull-left" style="position:relative;z-index:100000"></a>-->
+			<h1 class="title" style="border-bottom: 1px solid #fff;">订单</h1>
+		</header>
+		
+		
+		<div class="count">
+			<div class="count_change">
+				<span class="active">买入订单</span>
+				<span class="">卖出订单</span>
+			</div>
+			<div class="count_list">
+				<!-- 买入订单 -->
+				<ul class="buylist">
+					<foreach name="list1" item="v">
+						<a href="/Home/OrderCenter/buyinfoing/id/{$v['id']}">
+							<li>
+								<p>订单编号 ：{$v.order_number}</p>
+								<p>订单类型 ：激活购买</p>
+								<p>手机号码 ：{$v.user_phone}</p>
+								<p>股权数量 ：{$v.amount}</p>
+	<!--							<p>订单类型 ：预约购买</p>-->
+								<p>下单时间 ：{$v.addtime}</p>
+								<if condition="$v['matching'] eq 0">
+									<span class="status">待买入</span>
+								</if>
+								<if condition="$v['matching'] eq 2">
+									<span class="status">已完成</span>
+								</if>
+								<if condition="$v['matching'] eq 1">
+									<if condition="$v['status'] eq 0">
+										<span style="color:#F00">待支付</span>
+									</if>
+									<if condition="$v['status'] eq 1">
+										<span class="status">已支付</span>
+									</if>
+								</if>
+							</li>
+						</a>
+					</foreach>
+					<foreach name="list2" item="v">
+						<a href="/Home/OrderCenter/buyinfoing/id/{$v['id']}">
+							<li>
+								<p>订单编号 ：{$v.order_number}</p>
+								<p>订单类型 ：预约购买</p>
+								<p>手机号码 ：{$v.user_phone}</p>
+								<p>股权数量 ：{$v.amount}</p>
+								<p>下单时间 ：{$v.addtime}</p>
+								<if condition="$v['matching'] eq 0">
+									<span class="status">待买入</span>
+								</if>
+								<if condition="$v['matching'] eq 2">
+									<span class="status">已完成</span>
+								</if>
+								<if condition="$v['matching'] eq 3">
+									<span class="status">冻结中</span>
+								</if>
+								<if condition="$v['matching'] eq 1">
+									<if condition="$v['status'] eq 0">
+										<span style="color:#F00">待支付</span>
+									</if>
+									<if condition="$v['status'] eq 1">
+										<span class="status">已支付</span>
+									</if>
+								</if>
+							</li>
+						</a>
+					</foreach>
+				</ul>
+				<!-- 卖出订单 -->
+				<ul class="selllist">
+					<foreach name="list3" item="v">
+						<a href="/Home/OrderCenter/saleinfoing/id/{$v['id']}">
+							<li>
+								<p>订单编号 ：{$v.order_number}</p>
+								<p>手机号码 ：{$v.user_phone}</p>
+								<p>股权数量 ：{$v.amount}</p>
+								<!--							<p>订单类型 ：排单购买</p>-->
+								<p>下单时间 ：{$v.addtime}</p>
+								<if condition="$v['matching'] eq 0">
+									<span class="status">待卖出</span>
+								</if>
+								<if condition="$v['matching'] eq 2">
+									<span class="status">已完成</span>
+								</if>
+								<if condition="$v['matching'] eq 1">
+									<if condition="$v['status'] eq 0">
+										<span style="color:#F00">待支付</span>
+									</if>
+									<if condition="$v['status'] eq 1">
+										<span class="status">已支付</span>
+									</if>
+								</if>
+							</li>
+						</a>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".count_change").on("click","span",function () {
+			var thisText = $(this).text();
+			$(this)
+			.addClass("active")
+			.siblings()
+			.removeClass("active");
+			if (thisText=='买入订单') {
+				$(".buylist").css("display","block");
+				$(".selllist").css("display","none");
+			} else{
+				$(".selllist").css("display","block");
+				$(".buylist").css("display","none");
+			}
+		});
+	</script>
+</html>

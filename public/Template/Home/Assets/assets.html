@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>钱包</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../css/assets.css" />
+		<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">钱包</h1>
+		</header>
+		<div class="wallet">
+			  <ul class="walletTop flexStar">
+			  	<li>
+			  		<img src="../../../../public/Public/Home/img/icon/jtzc@2x.png"/>
+			  		<p>静态资产</p>
+			  		<p>2000</p>
+			  		<button class="withdrawBtn">提现</button>
+			  	</li>
+			  	<li>
+			  		<img src="../../../../public/Public/Home/img/icon/dtqb@2x.png"/>
+			  		<p>动态资产</p>
+			  		<p>2000</p>
+			  		<button class="withdrawBtn">提现</button>
+			  	</li>
+			  </ul>
+			  <div class="prompta">
+			  	  <h5>提示</h5>
+			  	  <p>1.静态资产提现为100整数起提，资金无上限。</p>
+			  	  <p>2.动态资产提现为500整数起提，资金有限额。</p>
+			  	  <p><span>VIP1-4</span>动态资产每日最高提现2000</p>
+			  	  <p><span>VIP5</span>动态资产每日最高提现3000</p>
+			  	  <p><span>VIP钻石</span>动态资产每日最高提现5000</p>
+			  	  <p><span>VIP至尊</span>动态资产每日最高提现7000</p>
+			  </div>
+		</div>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

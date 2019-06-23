@@ -1,0 +1,51 @@
+.mui-bar {
+    background-color:#409BFE; 
+}
+a {
+    color: #FFFFFF;
+}
+.mui-bar-tab {
+    background-color: #FFFFFF;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+    border-bottom: 1px solid #52A3FC;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+    border: 0;
+}
+.mui-slider-group {
+    margin-top: 0.5rem;
+}
+#message {
+    margin-top: 50px;
+}
+.concentMain li {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 2px solid #E2E2E2;
+    align-items: center;
+}
+.meName {
+    color: #242B39;
+    font-size: 0.37rem;
+}
+.meTime {
+    color: #666666;
+    font-size: 0.37rem;
+}
+.meCon {
+    width: 5rem;
+    color: #999999;
+    font-size: 0.32rem;
+}
+.updateImg {
+    width: 1.06rem;
+    height: 1.06rem;
+}
+.labelImg {
+    width: 0.34rem;
+    height: 0.34rem;
+    margin-right: 0.1rem;
+}
+.processed {
+    padding-left: 0.44rem;
+}

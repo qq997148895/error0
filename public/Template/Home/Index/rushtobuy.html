@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>抢购</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size:0.4rem;line-height: 44px;text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header .back{
+				display: block;
+				width: 44px;
+				height: 44px;
+				background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+				background-size:0.4rem;
+				background-position:center center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			/* 中间内容 */
+			.count{
+				padding: 44px 0.25rem 1px;
+				font-size: 0.4rem;
+				text-align: center;
+			}
+			.stockright_price{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 1rem 0;
+				font-size: 0.6rem;font-weight: 600;
+				color: #fff;
+				border-radius: 4px;
+				height:3rem;
+				background: url("/Public/Home/img/icon/qianggou.png")no-repeat;
+				background-size: 100% 100%;
+			}
+			.stockright_num{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 2rem;
+				background:url('/Public/Home/img/icon/img_quan@2x.png')no-repeat ;
+				background-size:100% 100%;
+				flex-wrap: wrap;
+				padding: 0.3rem 0;
+				color: white;
+				margin-bottom: 2rem;
+			}
+			.stockright_num>div{
+				width: 100%;
+			}
+			.stockright_num>span{
+				font-size: 0.45rem;
+				font-weight: 600;
+			}
+			.count_btn{
+				width: 100%;
+				line-height: 1.2rem;
+				background-color: #886DEE;
+				color: white;
+				font-size: 0.4rem;
+				border-radius: 4px;
+				font-weight: 600;
+			}
+			.stockright_price_right{
+				font-size: 0.4rem;
+				margin-left: 0.5rem;
+				position: relative;
+				padding: 0 0.5rem;
+			}
+			.stockright_price_right span:nth-child(1){
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-weight: 400;
+			}
+			.stockright_price_right span:nth-child(2){
+				line-height: 2rem;
+				font-size: 1.2rem;
+			}
+			.stockright_price_right span:nth-child(3){
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				font-weight: 400;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<header>
+			抢购
+			<span class="back" onclick="javascript:history.back(-1);"></span>
+		</header>
+		<!-- 中间内容 -->
+		<div class="count">
+			<div class="stockright_price">股权增值券
+				<div class="stockright_price_right">
+					<span>￥</span>
+					<span>{$config.paidan_price}</span>
+					<span>/张</span>
+				</div>
+			</div>
+			<div class="stockright_num">
+				<div>
+					我的股权增值券数量:
+				</div>
+					<span>{$num}</span>
+			</div>
+			<div>
+				<span style="color: red">免费抢购时间：早上10点,下午3点,晚上8点！</span>
+			</div>
+			<button class="count_btn" id="rob" name="rob">
+				免费抢购
+			</button>
+			<br><br>
+			<button class="count_btn" id="ji" name="rob">
+				积分兑换
+			</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//免费抢购
+		$('#rob').click(function() {
+			//获取文本框的值
+			$.ajax({
+				url: '/Home/Rushtobuy/robCoupon',
+				data: {
+					type:1
+				},
+				dataType: 'json',
+				type: 'post',
+				success: function(data) {
+					if(data.status == 1) {
+						mui.alert(data.message, function() {
+							location.href = "/Home/Rushtobuy/rob";
+						});
+					} if (data.status == 0){
+						mui.alert(data.message);
+					}
+				}
+			});
+		})
+
+		document.getElementById("ji").addEventListener('tap', function(e) {
+			e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+			var btnArray = ['确定', '取消'];
+			mui.prompt('请输入你要兑换的股权增值券数量：', '输入数量', '提示', btnArray, function(e) {
+				if (e.index != 1) {
+					var num = e.value;
+					if(Number(num) < 1){
+						mui.alert('兑换股权增值券数量不能少于1');
+						return;
+					}
+					$.ajax({
+						url: '/Home/Rushtobuy/dui',
+						data: {
+							num:num
+						},
+						dataType: 'json',
+						type: 'post',
+						success: function(data) {
+							if(data.status == 1) {
+								mui.alert(data.message, function() {
+									location.href = "/Home/Rushtobuy/rob";
+								});
+							} if (data.status == 0){
+								mui.alert(data.message);
+							}
+						}
+					});
+				}
+			})
+		});
+
+		//积分兑换
+		$('#ji1').click(function(e) {
+			//获取文本框的值
+			$.ajax({
+				url: '/Home/Rushtobuy/robCoupon',
+				data: {
+					num:2
+				},
+				dataType: 'json',
+				type: 'post',
+				success: function(data) {
+					if(data.status == 1) {
+						mui.alert(data.message, function() {
+							location.href = "/Home/Rushtobuy/rob";
+						});
+					} if (data.status == 0){
+						mui.alert(data.message);
+					}
+				}
+			});
+		})
+	</script>
+</html>

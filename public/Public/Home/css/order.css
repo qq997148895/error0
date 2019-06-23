@@ -1,0 +1,64 @@
+.firstTab{
+	margin-top: 0.5rem;
+}
+#back{
+	color: #333333;
+	font-size: 40px;
+}
+.mui-bar-tab{
+	background-color: #FFFFFF;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+	border-bottom:1px solid #52A3FC;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+	border: 0;
+}
+.mui-slider-group{
+	margin-top: 0.5rem;
+	margin-bottom: 50px;
+}
+.backgroundGreen,.backgroundBlue,.backgroundGray,.backgroundYellow,.backgroundBonus{
+	padding:0.2rem 1rem;
+	margin-bottom: 0.05rem;
+}
+.backgroundGreen{
+	color: #333;
+	background-color: #56f3c8;
+}
+.backgroundGray{
+	color: #333;
+	background-color: #666666;
+}
+.backgroundYellow{
+	color: #333333;
+	background-color: #fee660;
+}
+.backgroundBonus{
+	color: #333333;
+	background:-webkit-linear-gradient(left,#14FC91, #00D473);
+	background:linear-gradient(to right,#14FC91, #00D473);
+}
+.backgroundBlue{
+	color: #333;
+	background-color: #7db7ff;
+}
+.backgroundGray button{
+	padding:0.02rem 0.2rem;
+}
+.backgroundGreen li,.backgroundGray li,.backgroundYellow li,.backgroundBonus li{
+	line-height: 0.8rem;
+}
+.mui-slider .mui-slider-group .mui-slider-item img{
+	width: 0.64rem;
+	height: 0.4rem;
+}
+.mui-segmented-control{
+	width: 70%;
+	margin: auto;
+}
+.time{
+	font-size: 0.6rem;
+	color: red;
+	font-weight: bold;
+}

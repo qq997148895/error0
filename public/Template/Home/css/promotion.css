@@ -1,0 +1,29 @@
+.mui-bar-nav{
+	background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+}
+.mui-bar .mui-icon{
+	font-size: 35px;
+}
+a{
+	color: #FFFFFF;
+}
+img{
+	margin: auto;
+}
+.imgLOGO{
+	width: 2.7rem;
+	height: 3.8rem;
+	margin-top: 80px;
+}
+.QRcode{
+	width: 3.2rem;
+	height: 3.1rem;
+	margin-top: 0.8rem;
+}
+.address{
+	color: #52A3FC;
+	text-align: center;
+	margin-top: 1rem;
+}
+ 

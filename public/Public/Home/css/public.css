@@ -1,0 +1,146 @@
+body{
+	background-color: #FFFFFF;
+}
+.flexEnd{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-end;
+}
+.flexBetween{
+	display: flex;
+	flex-flow: row;
+	justify-content:space-between;
+}
+.flexAround{
+	display: flex;
+	flex-flow: row;
+	justify-content:space-around;
+}
+.flexStar{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+.flexCenter{
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+.btn{
+	display: block;
+	width: 80%;
+	margin:1.5rem auto 0;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	color: #FFFFFF;
+	text-align: center;
+	background-color: #886dee;
+	font-size: 0.45rem;
+}
+.Con{
+	margin: 0 .3rem;
+}
+/*转让页面共用样式*/
+.transferTitle{
+	height: .8rem;
+	position: relative;
+}
+.transferTitle li{
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	font-size: 0.36rem;
+	line-height: .8rem;
+	border: 1px solid #886dee;
+	border-radius:4px;
+	color: #886dee;
+}
+.transferTitle li:nth-child(1){
+	 position: absolute;
+	 left: 0.2rem;
+	 top: 0;
+}
+.transferTitle li:nth-child(2){
+	 position: absolute;
+	 right: 0.2rem;
+	 top: 0;
+}
+.transferTitleColor{
+	background-color: #886dee;
+	color: #FFFFFF!important;
+	z-index: 1;
+}
+/*表格样式*/
+table{
+	width: 100%;
+}
+th,td{
+	line-height: 0.8rem;
+	text-align: center;
+	padding: 0.2rem;
+}
+th{
+	font-size: 0.43rem;
+}
+td{
+	color: #666666;
+}
+tr:nth-child(2n){
+	background-color: #F0EFEF;
+}
+/*底部tab切换样式*/
+.tab-buttom{
+	display: table-cell;
+    overflow: hidden;
+    width: 1%;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #999999;
+}
+.mui-tab-label{font-size: .36rem;}
+.tab-buttom span:nth-child(1){
+	display: block;
+}
+.tab-buttom span:nth-child(2){
+	display: block;
+}
+.tab-buttom.mui-active{
+	color: #886dee;
+}
+/*订单头部切换样式*/
+.order-top{
+	line-height: 38px;
+    display: table-cell;
+    overflow: hidden;
+    width: 1%;
+    -webkit-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #007aff;
+    border-color: #007aff;
+    border-left: 1px solid #007aff;
+}
+.order-top.mui-active{
+	color: #fff;
+    background-color: #007aff;
+}
+/*返回箭头样式*/
+.mui-bar .mui-icon{
+	font-size: 35px;
+}
+/*底部logo*/
+.bootmLogo p{
+	width: 100%;
+	text-align: center;
+	font-size: 0.34rem;
+}
+
+
+

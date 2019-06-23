@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.transfer_record}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/transfer-record.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Transfer/transfer" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">{$Think.lang.transfer_record}</h1>
+		</header>
+		<div class="Con">
+			<ul class="transferTitle flexStar">
+				<li id='transfer' class="transferTitleColor">排单币转让记录</li>
+				<li id='transfer-record'>{$Think.lang.activecode_r}</li>
+			</ul>
+			<ul class="ConMain">
+				<li>
+					 <table border="" cellspacing="" cellpadding="">
+			 	<tr>
+			 		<th>{$Think.lang.source}/{$Think.lang.whereabouts}</th>
+			 		<th>{$Think.lang.num}</th>
+			 		<th>{$Think.lang.time}</th>
+			 	</tr>
+			 	<volist name='result' id='result'>
+			 	<tr>
+			 		<td>{$result.from_user_name}{$Think.lang.to}{$result.to_user_name}</td>
+			 		<td>{$result.number}</td>
+			 		<td>{$result.addtime}</td>
+			 	</tr>
+			 	</volist>
+<!-- 			<tr>
+			 		<td>张三转入</td>
+			 		<td>1</td>
+			 		<td>2018-11-21 18:27</td>
+			 	</tr>
+			 	<tr>
+			 		<td>转给梦</td>
+			 		<td>1</td>
+			 		<td>2018-11-21 18:27</td>
+			 	</tr>
+ -->			 </table>
+				</li>
+				<li class="none">
+					 <table border="" cellspacing="" cellpadding="">
+			 	<tr>
+			 		<th>{$Think.lang.source}/{$Think.lang.whereabouts}</th>
+			 		<th>{$Think.lang.num}</th>
+			 		<th>{$Think.lang.time}</th>
+			 	</tr>
+			 	<volist name='result1' id='result1'>
+			 	<tr>
+			 		<td>{$result1.from_user_name}{$Think.lang.to}{$result1.to_user_name}</td>
+			 		<td>{$result1.number}</td>
+			 		<td>{$result1.addtime}</td>
+			 	</tr>
+			 	</volist>
+<!-- 			<tr>
+			 		<td>张三转入</td>
+			 		<td>1</td>
+			 		<td>2018-11-21 18:27</td>
+			 	</tr>
+			 	<tr>
+			 		<td>转给梦</td>
+			 		<td>1</td>
+			 		<td>2018-11-21 18:27</td>
+			 	</tr>
+ -->			 </table>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			$('.transferTitle li').on('tap',function(){
+				var _index=$(this).index();
+				$('.transferTitle li').eq(_index).addClass('transferTitleColor').siblings().removeClass('transferTitleColor')
+				$('.ConMain>li').eq(_index).removeClass('none').siblings().addClass('none');
+			})
+		</script>
+	</body>
+
+</html>

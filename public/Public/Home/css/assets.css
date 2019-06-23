@@ -1,0 +1,68 @@
+.mui-bar-nav {
+    background-color:#409BFE;
+    webkit-box-shadow: 0 0 0 0; 
+     box-shadow:  0 0 0 0;
+}
+a {
+    color: #FFFFFF;
+}
+.mui-bar-tab{
+	background-color: #FFFFFF;
+}
+.wallet{
+	margin-top: 44px;
+}
+.walletTop{
+	padding: 0.3rem;
+	border-bottom: 1px solid #E2E2E2;
+	background-color:#409BFE;
+}
+.walletTop li{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+
+.walletTop img{
+	width: 2.06rem;
+	height: 2.06rem;
+	margin: auto;
+}
+.walletTop p{
+	 color: #000;
+	 font-size: 0.5rem;
+}
+.withdrawBtn{
+	display: block;
+	width: 6rem;
+	height: 1rem;
+	line-height: 1rem;
+	margin: auto;
+	color: #FFFFFF;
+	font-size: 0.5rem;
+	background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+	margin-top: 1.2rem;
+}
+.prompta{
+	padding: 0 0.8rem;
+}
+h5{
+	line-height: 1rem;
+	text-align: center;
+	color: #FF603B;
+	margin-top: 2rem;
+}
+.prompta p{
+	line-height: 0.6rem;
+	color: #FF603B;
+}
+.prompta span{
+	display: inline-block;
+	width: 2rem;
+}
+.bootmLogo{
+	width: 100%;
+	position: fixed;
+	bottom: 2rem;
+}

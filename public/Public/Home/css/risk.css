@@ -1,0 +1,22 @@
+.mui-bar {
+    background-color:#409BFE;
+}
+body{
+	padding: 0.2rem;
+}
+h4{
+	margin: 50px 0 5px 0;
+	text-align: center;
+}
+p{
+	color: #333333;
+	font-size: 0.4rem;
+	text-indent: 1em;
+}
+.warn{
+	font-size: 0.6rem;
+	color: red;
+}
+a{
+	color: #FFFFFF;
+}

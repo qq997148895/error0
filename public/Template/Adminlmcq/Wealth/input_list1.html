@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  }); 
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+});
+</script>
+</head>
+<body>
+	<!--<div class="place">-->
+    <!--<span>位置：</span>-->
+    <!--<ul class="placeul">-->
+    <!--<li><a href="#">首页</a></li>-->
+    <!--<li><a href="#">数据表</a></li>-->
+    <!--<li><a href="#">基本内容</a></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+  <div class="rightinfo">
+	<form id="form1" name="form1" method="post" action="/Adminlmcq/Wealth/inputlist">
+      <input name="user2" type="text" class="dfinput" id="user2" placeholder="请输入会员昵称" />
+      <input name="" type="submit" class="btn" value="确认搜索"/>
+      <input name="user" id="user" type="hidden" value="{$tgbzuser.user_name}" />
+      <input name="amount" id="amount" type="hidden" value="{$tgbzuser.amount}" />
+      <input name="pid" id="pid" type="hidden" value="{$tgbzuser.id}" />
+  </form>
+	<form action="/Adminlmcq/Wealth/matchingone"  name="xgmm" id="xgmm" method="post">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>预约会员账号:{$aab[a]=$tgbzuser.user_name}  预约金额:{$tgbzuser.amount} </td>
+        <td align="right"><span id="yxje" style="color:#FF0000;">已选金额和={$check_money}</span>
+          <input name="arrid" id="arrid" type="hidden" value="{$check_id}" />
+          <input name="arrzs" id="arrzs" type="hidden" value="{$check_money}" />
+          <input name="user" id="user" type="hidden" value="{$tgbzuser.user_name}" />
+          <input name="amount" id="amount" type="hidden" value="{$tgbzuser.amount}" />
+          <input name="pid" id="pid" type="hidden" value="{$tgbzuser.id}" />
+          <input name="" type="submit" class="btn" value="确认匹配"/></td>
+      </tr>
+    </table>
+        <!--<form action=""  name="xgmm" id="xgmm" method="post" autocomplete="off">-->
+            <!--<input type="checkbox" name="jing" id="jing" class="qianbao" value="1" checked>余额钱包-->
+            <!--<input type="checkbox" name="dong" id="dong" class="qianbao" value="1" checked>冻结钱包-->
+        <!--</form>-->
+    <br />
+<!-- <script>
+    $('.qianbao').change(function(){
+
+        var jing = $('#jing').val();
+
+        var dong = $('#dong').val();
+
+ocation.href = '/jing/'+jing+'/dong/'+dong;
+    })
+</script> -->
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th>编号<!-- <i class="sort"><img src="__PUBLIC__/Admin/sncss/images/px.gif" /></i> --></th>
+        <th>会员昵称</th>
+        <th>联系电话</th>
+        <th>订单编号</th>
+        <th>状态</th>
+		    <th>时间</th>
+		    <th>接受帮助金额</th>
+		    <th>匹配操作</th>
+      </tr>
+      </thead>
+      <tbody>
+  		<foreach name='list' item='v'>
+          <tr>
+  		      <td>{$v.id}</td>
+            <td>
+              <span style="float: left">{$v.user_name}</span><span style="float: left;color: red">({$v.user_parents})</span>
+            </td>
+            <td>{$v.user_phone}</td>
+            <td>{$v.order_number}</td>
+  		      <td>
+              <if condition="$v.status eq 0" >未匹配<else/>已匹配</if>
+            </td>
+            <td>{$v.addtime}</td>
+  		      <td>{$v.amount}</td>
+            <td><label><input name="id" type="checkbox" data-value="{$v.amount}" class="dfdfe" value="{$v.id}" <php> if(in_array($v['id'],$check_array)) echo "checked";</php> /></label></td>
+          </tr> 
+      </foreach>
+      </tbody>
+    </table>
+  </form>
+  <style>.pages a,.pages span {
+    display:inline-block;
+    padding:2px 5px;
+    margin:0 1px;
+    border:1px solid #f0f0f0;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
+.pages a,.pages li {
+    display:inline-block;
+    list-style: none;
+    text-decoration:none; color:#58A0D3;
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+    margin:0;
+}
+.pages a:hover{
+    border-color:#50A8E6;
+}
+.pages span.current{
+    background:#50A8E6;
+    color:#FFF;
+    font-weight:700;
+    border-color:#50A8E6;
+}</style>
+   
+   <div class="pages"><br />
+      <div align="right">{$page}</div>
+   </div>
+    
+    
+    <div class="tip">
+    	<div class="tiptop"><span>提示信息</span><a></a></div>
+        
+      <div class="tipinfo">
+        <span><img src="images/ticon.png" /></span>
+        <div class="tipright">
+        <p>是否确认对信息的修改 ？</p>
+        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+        </div>
+      </div>
+        
+        <div class="tipbtn">
+        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+        <input name="" type="button"  class="cancel" value="取消" />
+        </div>
+    
+    </div>
+    
+    
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+	$(".dfdfe").change(function(){
+				var total = "{$tgbzuser.amount}";//用户买入总金额
+				var dis = $(this).attr('checked');
+				var id = $(this).val();
+				var val = parseInt($(this).attr('data-value'));
+				var str = $('#arrid').val();
+				var b = parseInt($("#arrzs").val());
+				if(dis){
+//					if((b+val)>total){
+//						alert("总金额"+(b+val)+"超出"+total);
+//						$(this).attr('checked',false);
+//						return;
+//					}
+					$('#arrid').val(str+id+',');
+					$("#arrzs").val((b+val));
+					$("#yxje").html('已选金额和='+(b+val));
+					//alert($("#arrzs").val());
+					//alert($('#arrid').val());
+
+				}else{
+					reg = new RegExp(id+',','g');
+					$('#arrid').val(str.replace(reg,''));
+					$("#arrzs").val((b-val));
+					$("#yxje").html('已选金额和='+(b-val));
+					//alert($("#arrzs").val());
+					//alert($('#arrid').val());
+				}
+				$.get("{:U('set_cookie')}?id="+$("#arrid").val()+"&money="+$("#arrzs").val(),function(){});
+			});
+	</script>
+
+</body>
+
+</html>

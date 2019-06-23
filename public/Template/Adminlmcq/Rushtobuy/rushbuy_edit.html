@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">管理员信息修改</a></li>
+            </ul>
+        </div>
+
+        <div class="formbody">
+
+            <div class="formtitle"><span>基本信息</span></div>
+            <form id="form1" name="form1" method="post" action="/Adminlmcq/Rushbuy/rushBuyEdit">
+                <input name="id"  type="hidden" class="dfinput" value="{$data.id}" />
+                <ul class="forminfo">
+                    <li>
+                        <label>优惠券数量：</label>
+                        <input name="couponnumber"  type="text" class="dfinput" value="{$data.couponnumber}" />
+                    </li>
+                    <li>
+                        <label>允许抢购的人数：</label>
+                        <input name="robnumber" type="text" class="dfinput" value="{$data.robnumber}"  />
+                    </li>
+                    <li style="display: flex;align-items: center">
+                        <label>分配方式：</label>
+                        <if condition="$data.isaverage eq 0">
+                            <input name="isaverage" type="radio" value="0"  checked="checked"/>随机分配
+                            <input name="isaverage" type="radio"  value="1" />平均分配
+                        </if>
+                        <if condition="$data.isaverage eq 1">
+                            <input name="isaverage" type="radio" value="0" />随机分配
+                            <input name="isaverage" type="radio"  value="1" checked="checked"/>平均分配
+                        </if>
+
+
+
+                    </li>
+
+                    <li>
+                        <label>&nbsp;</label>
+                        <input name="" type="submit" class="btn" value="确认修改"/>
+                    </li>
+                </ul>
+            </form>
+
+        </div>
+
+
+    </body>
+
+</html>

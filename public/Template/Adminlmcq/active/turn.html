@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+				<li>
+					<a href="#">首页</a>
+				</li>
+				<li>
+					<a href="#">活动设置</a>
+				</li>
+            </ul>
+        </div>
+
+        <div class="formbody">
+
+            <div class="formtitle"><span>大转盘参数</span></div>
+            <form id="form1" name="form1" method="post" action="/Adminlmcq/Active/turn">
+                <ul class="forminfo">
+                    <li><label>是否开启</label>
+                        <cite>
+                            <if condition="$result['switch'] eq 1">
+                                <input type="radio" checked="checked" name="switch" value="1"/>
+                                开启
+                                <input type="radio" name="switch"  value="0"/>关闭
+                            <else />
+                                <input type="radio" name="switch" value="1"/>开启
+                                <input type="radio" checked="checked" name="switch" value="0"/>
+                                关闭
+                            </if>
+                        </cite>
+                    </li>
+                    <li><label>单次抽奖消耗</label>
+                        <input name="consume" type="text" id="consume" class="dfinput" value="{$result['consume']|default=0}"/><i>熊猫</i>
+                    </li>
+
+					<li>
+						<label>一等奖</label>
+						金额：<input name="turn_num[0]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][0]|default=0}" />
+						概率：<input name="turn_v[0]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][0]|default=0}" />
+						<i>
+						</i>
+					</li>
+					<li>
+						<label>二等奖</label>
+						金额：<input name="turn_num[1]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][1]|default=0}" />
+						概率：<input name="turn_v[1]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][1]|default=0}" />
+						
+						<i>
+						</i>
+					</li>
+					<li>
+						<label>三等奖</label>
+						金额：<input name="turn_num[2]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][2]|default=0}" />
+						概率：<input name="turn_v[2]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][2]|default=0}" />
+						<i>
+						</i>
+					</li>
+					<li>
+						<label>四等奖</label>
+						金额：<input name="turn_num[3]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][3]|default=0}" />
+						概率：<input name="turn_v[3]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][3]|default=0}" />
+						<i>
+						</i>
+					</li>
+
+					<li>
+						<label>五等奖</label>
+						金额：<input name="turn_num[4]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][4]|default=0}" />
+						概率：<input name="turn_v[4]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][4]|default=0}" />
+						<i>
+						</i>
+					</li>
+					<li>
+						<label>六等奖</label>
+						金额：<input name="turn_num[5]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][5]|default=0}" />
+						概率：<input name="turn_v[5]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][5]|default=0}" />
+						<i>
+						</i>
+					</li>
+					<li>
+						<label>七等奖</label>
+						金额：<input name="turn_num[6]" type="text" id="turn_num" class="dfinput input-10" required="true" value="{$result['turn_num'][6]|default=0}" />
+						概率：<input name="turn_v[6]" type="text" id="turn_v" class="dfinput input-10" required="true" value="{$result['turn_v'][6]|default=0}" />
+						<i>
+						</i>
+					</li>
+
+                    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+                </ul>
+            </form>
+            <style>.pages a,.pages span {
+                    display:inline-block;
+                    padding:2px 5px;
+                    margin:0 1px;
+                    border:1px solid #f0f0f0;
+                    -webkit-border-radius:3px;
+                    -moz-border-radius:3px;
+                    border-radius:3px;
+                }
+                .pages a,.pages li {
+                    display:inline-block;
+                    list-style: none;
+                    text-decoration:none; color:#58A0D3;
+                }
+                .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                    margin:0;
+                }
+                .pages a:hover{
+                    border-color:#50A8E6;
+                }
+                .pages span.current{
+                    background:#50A8E6;
+                    color:#FFF;
+                    font-weight:700;
+                    border-color:#50A8E6;
+                }
+            </style>
+
+            <div class="pages"><br />
+
+          <div align="right">{$page}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+<!--
+
+
+			<form id="form1" name="form1" method="post" action="/txjjadmin.php/Home/active/turn">
+				<ul class="forminfo">
+
+
+
+
+
+					
+					<li>
+						<label>
+							&nbsp;
+						</label>
+						<input name="" type="submit" class="btn" value="确认保存" />
+					</li>
+				</ul>
+			</form>
+
+
+
+
+-->

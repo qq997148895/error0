@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script charset="utf-8" src="__PUBLIC__/Admin/kindeditor/kindeditor.js"></script>
+        <script charset="utf-8" src="__PUBLIC__/Admin/kindeditor/lang/zh_CN.js"></script>
+        <script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+        <link rel="stylesheet" href="__PUBLIC__/Uploadify/uploadify.css"/>
+        <script type="text/javascript" src='__PUBLIC__/Uploadify/jquery.uploadify.min.js'></script>
+         <script type='text/javascript'>
+                var PUBLIC = '__PUBLIC__';
+                var uploadUrl = '{:U("Upload/uploadFace")}';
+                var sid = "{$ssid}";
+                var ROOT = '__ROOT__';
+          </script>
+
+        <script type="text/javascript">
+         //上传插件
+        $(function() {
+
+            $('#face').uploadify({
+                swf : PUBLIC + '/Admin/Uploadify/uploadify.swf',    //引入Uploadify核心Flash文件
+                uploader : uploadUrl,   //PHP处理脚本地址
+                width : 120,    //上传按钮宽度
+                height : 30,    //上传按钮高度
+                buttonImage : PUBLIC + '/Admin/Uploadify/browse-btn.png',   //上传按钮背景图地址
+                fileTypeDesc : 'Image File',    //选择文件提示文字
+                fileTypeExts : '*.jpeg; *.jpg; *.png; *.gif',   //允许选择的文件类型
+                formData : {'session_id' : sid},
+                //上传成功后的回调函数
+                onUploadSuccess : function (file, data, response) {
+
+                    eval('var data = ' + data);
+                    if (data.status) {
+                        $('#face-img').attr('src', ROOT + '/Uploads/' + data.path);
+                        $('input[name=imagepath]').val('/Uploads/'+data.path);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <label></label>
+        <div class="rightinfo">
+            <form action="/Adminlmcq/News/newsAdd"  enctype="multipart/form-data" name="news" id="xgmm" method="post">
+                    <table width="90%" border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" class="tablebg" id="table1">
+                        <tr>
+                            <td width="157" bgcolor="#FFFFFF" class="tbkey" >分类：</td>
+                            <td width="301" bgcolor="#FFFFFF" class="tbval" >
+                              <select name="type" id="IF_type">
+                                <option value="1" selected="selected">新闻公告</option>
+                                <!-- <option value="2" >平台制度</option> -->
+                                <!-- <option value="3" >新手指南</option> -->
+                                <option value="4" >关于我们</option>
+                              </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" class="tbkey" >标题:</td>
+                            <td bgcolor="#FFFFFF" class="tbval"><input name="title" type="text" id="IF_theme" size="90" maxlength="60" /></td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" class="tbkey" >缩略图：</td>
+                            <td bgcolor="#FFFFFF" class="tbval">
+                                <input type="file" name="imagepath" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" class="tbkey" >内容：</td>
+                            <td bgcolor="#FFFFFF" class="tbval">
+                                <script>
+                                    KindEditor.ready(function (K) {
+                                        var editor1 = K.create('textarea[name="content"]', {
+                                            cssPath: '__PUBLIC__/Admin/kindeditor/plugins/code/prettify.css',
+                                            uploadJson: '__PUBLIC__/Admin/kindeditor/php/upload_json.php',
+                                            fileManagerJson: '__PUBLIC__/Admin/kindeditor/php/file_manager_json.php',
+                                            allowFileManager: true,
+                                            afterCreate: function () {
+                                                var self = this;
+                                                K.ctrl(document, 13, function () {
+                                                    self.sync();
+                                                    K('form[name=example]')[0].submit();
+                                                });
+                                                K.ctrl(self.edit.doc, 13, function () {
+                                                    self.sync();
+                                                    K('form[name=example]')[0].submit();
+                                                });
+                                            }
+                                        });
+                                        prettyPrint();
+                                    });
+                                </script>
+                                <textarea name="content" style="width:900px;height:500px;visibility:hidden;">
+                                </textarea>
+                            </td>
+                            </tr>
+                        </table>
+                        <!--基本信息結束-->
+                        <div id="state_lockcon" ></div>
+                        <table class="tablebg" id="table3" style="clear:both">
+                            <tr>
+                                <td colspan="3" >
+                                    <input   type="submit" class="button_text"  id="btn" value="确定">
+                                </TD>
+                            </tr>
+                        </table>
+                </form>
+
+                <div class="pages"><br />
+
+                    <div align="right">{$page}
+                    </div>
+                </div>
+
+
+            </div>
+
+        </body>
+
+    </html>

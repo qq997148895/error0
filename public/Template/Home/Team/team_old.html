@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.myteam}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/team.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Index/index" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">{$Think.lang.myteam}</h1>
+		</header>
+		<div class="teamMain">
+			<ul class="flexBetween" style="font-size: 0.42rem;">
+				<li>{$Think.lang.myteams}：<span class="teamColor">{$myteams}</span></li>
+			    <li>{$Think.lang.subordinates}：<span class="teamColor" >{$directpush}</span></li>
+			</ul>
+			<ul class="teamMainIn flexStar">
+				<li><img src="__PUBLIC__/Home/img/lunbo/touxiang1@2x.png" /></li>
+				<li>
+					<div class="teamName">{$userinfo.user_truename}({$userinfo.user_phone})</div>
+					<p>{$Think.lang.nickname}：{$userinfo.user_name}</p>
+					<p>{$Think.lang.vip}:{$userinfo.user_level}</p>
+				</li>
+				<li>
+					<p>{$Think.lang.myteams}{$myteams}</p>
+					<p>{$Think.lang.reputation}:{$userinfo.user_reputation}</p>
+				</li>
+			</ul>
+			<foreach name="myteamnum" item="vo">
+				<ul class="teamMainIn flexStar">
+					<li><img src="__PUBLIC__/Home/img/lunbo/touxiang2@2x.png" /></li>
+					<li>
+						<div class="teamName">{$vo.user_truename}({$vo.user_phone})</div>
+						<p>{$Think.lang.nickname}：{$vo.user_name}</p>
+						<p>{$Think.lang.vip}：{$vo.userlist_level}</p>
+					</li>
+					<li>
+						<p>{$Think.lang.myteams}{$vo.myteams}</p>
+						<p>{$Think.lang.reputation}：{$vo.user_reputation}</p>
+					</li>
+				</ul>
+			</foreach>
+			<!-- <ul class="teamMainIn flexStar">
+				<li><img src="__PUBLIC__/Home/img/lunbo/touxiang3@2x.png" /></li>
+				<li>
+					<div class="teamName">我(18312345432)</div>
+					<p>昵称：库蒂尼奥</p>
+					<p>VIP：3</p>
+				</li>
+				<li>
+					<p>团队总人数10</p>
+					<p>信誉值：5</p>
+				</li>
+			</ul> -->
+		</div>
+		<script type="text/javascript">
+			
+		</script>
+	</body>
+
+</html>

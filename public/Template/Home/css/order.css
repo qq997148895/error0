@@ -1,0 +1,51 @@
+.firstTab{
+	margin-top: 0.5rem;
+}
+#back{
+	color: #333333;
+	font-size: 40px;
+}
+.mui-bar-tab{
+	background-color: #FFFFFF;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+	border-bottom:1px solid #52A3FC;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+	border: 0;
+}
+.mui-slider-group{
+	margin-top: 0.5rem;
+	margin-bottom: 50px;
+}
+.backgroundGreen,.backgroundGray,.backgroundYellow,.backgroundBonus{
+	padding:0.2rem 1rem;
+	margin-bottom: 0.05rem;
+}
+.backgroundGreen{
+	color: #FFFFFF;
+	background-color: #009A53;
+}
+.backgroundGray{
+	color: #FFFFFF;
+	background-color: #666666;
+}
+.backgroundYellow{
+	color: #333333;
+	background-color: #FEE65F;
+}
+.backgroundBonus{
+	color: #333333;
+	background:-webkit-linear-gradient(left,#14FC91, #00D473);
+	background:linear-gradient(to right,#14FC91, #00D473);
+}
+.backgroundGray button{
+	padding:0.02rem 0.2rem;
+}
+.backgroundGreen li,.backgroundGray li,.backgroundYellow li,.backgroundBonus li{
+	line-height: 0.8rem;
+}
+.mui-slider .mui-slider-group .mui-slider-item img{
+	width: 0.64rem;
+	height: 0.4rem;
+}

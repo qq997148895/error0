@@ -1,0 +1,27 @@
+.mui-bar {
+    background-color: #886DEE;  
+}
+body{
+	width: 90%;
+	margin: auto;
+}
+h2{
+	margin: 60px 0 2rem 0;
+	text-align: center;
+}
+p{
+	color: #333333;
+	font-size: 1.2rem;
+	text-indent: 1em;
+	line-height: 2rem;
+}
+a{
+	color: #FFFFFF;
+}
+.bootmLogo{
+	width: 10rem;
+	position: fixed;
+	bottom: 0.5rem;
+	left: 50%;
+	margin-left: -5rem;
+}

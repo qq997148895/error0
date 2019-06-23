@@ -1,0 +1,54 @@
+.mui-bar-nav {
+    background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+}
+mui-bar-tab{
+	background-color: #FFFFFF;
+}
+a {
+    color: #FFFFFF;
+}
+.wallet{
+	margin-top: 50px;
+}
+.walletTop{
+	padding: 0.3rem;
+	border-bottom: 1px solid #E2E2E2;
+}
+.walletTop li{
+	width: 50%;
+	text-align: center;
+}
+.walletTop li:nth-child(1){
+	border-right: 1px solid #E2E2E2;
+}
+.walletTop img{
+	width: 1.06rem;
+	height: 1.06rem;
+	margin: auto;
+}
+.walletTop p{
+	 color: #333333;
+	 font-size: 0.53rem;
+	 line-height: 1rem;
+}
+.withdrawBtn{
+	color: #51A3FC;
+	font-size: 0.53rem;
+}
+.prompta{
+	padding: 0 0.8rem;
+}
+h5{
+	line-height: 2rem;
+	text-align: center;
+	color: #FF603B;
+}
+.prompta p{
+	line-height: 0.8rem;
+	color: #FF603B;
+}
+.prompta span{
+	display: inline-block;
+	width: 2rem;
+}

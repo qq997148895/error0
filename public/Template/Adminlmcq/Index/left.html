@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+        <script language="JavaScript" src="__PUBLIC__/Admin/sncss/js/jquery.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                //导航切换
+                $(".menuson li").click(function () {
+                    $(".menuson li.active").removeClass("active")
+                    $(this).addClass("active");
+                });
+
+                $('.title').click(function () {
+                    var $ul = $(this).next('ul');
+                    $('dd').find('ul').slideUp();
+                    if ($ul.is(':visible')) {
+                        $(this).next('ul').slideUp();
+                    } else {
+                        $(this).next('ul').slideDown();
+                    }
+                });
+            })
+        </script>
+        <style type="text/css">
+            .lefttop{
+                background-color:#18B3FF;
+            }
+            .leftmenu{
+                
+            }
+            .leftmenu .title{
+                position: relative;
+                padding-left: 15px;
+                background-color:rgba(0,0,0,0);
+                height: 40px;
+                line-height: 40px;
+                font-size: 14px;
+                border-bottom: 1px solid #eeeeee;
+            }
+            .leftmenu .title span{
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 4px;
+                height: 20px;
+                background-color: #18B3FF;
+                margin: 0;
+                margin-top:-10px; 
+            }
+            .leftmenu .menuson li{
+                padding-left: 15px;
+                line-height: 40px;
+            }
+            .leftmenu .menuson li:hover{
+                background-color: #ddf5ff;
+            }
+            .leftmenu .menuson li a{
+                font-size: 14px;
+            }
+            .menuson li.active i{
+                display: inline-block;
+                position:absolute;
+                height: 30px;
+                width: 20px;
+                top: 50%;
+                right: 0;
+                margin-top:-15px; 
+                background: url(__PUBLIC__/Admin/sncss/images/leftright.png) no-repeat;
+                background-size: 14px;
+                background-position: center;
+            }
+            .menuson li.active{
+                background-color:#ddf5ff;
+            }
+            .lefttop{
+                background: transparent;
+                background-color: #19b3ff;
+                border-top: 1px solid rgba(255,255,255,0.8);
+            }
+        </style>
+    </head>
+
+    <body style="background:#f0f9fd;">
+        <div class="lefttop"><span></span>功能栏</div>
+        <dl class="leftmenu">
+            <dd>
+                <div class="title">
+                    <!-- <span><img src="__PUBLIC__/Admin/sncss/images/leftico01.png" /></span> -->
+                    <span></span>
+                    会员管理
+                </div>
+                <ul class="menuson">
+                    <li>
+                        <!-- <cite></cite> -->
+                        <a href="/Adminlmcq/User/userlist" target="rightFrame">会员列表</a><i></i>
+                    </li>
+<!--                    <li><a href="/Adminlmcq/User/userAdd" target="rightFrame">添加会员</a><i></i></li>-->
+                    <li><a href="/Adminlmcq/User/userteam" target="rightFrame">会员关系图</a><i></i></li>
+<!--                    <li><a href="/Adminlmcq/User/imformessioncount" target="rightFrame">信息统计</a><i></i></li>-->
+<!--                    <li><a href="/Adminlmcq/User/platoon" target="rightFrame">排单币管理</a><i></i></li>-->
+<!--                    <li><a href="/Adminlmcq/User/activecode" target="rightFrame">激活码管理</a><i></i></li>-->
+                </ul>
+            </dd>
+
+            <dd>
+                <div class="title">
+                    <span></span>
+                    商家管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Merchant/merchantList" target="rightFrame">商家入驻</a><i></i></li>
+
+                </ul>
+            </dd>
+            <dd>
+                <div class="title">
+                    <span></span>
+                    商品管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Shop/addProject" target="rightFrame">产品添加</a><i></i></li>
+                    <li><a href="/Adminlmcq/Shop/listProject" target="rightFrame">产品列表</a><i></i></li>
+                    <li><a href="/Adminlmcq/Shop/listOrderform" target="rightFrame">订单列表</a><i></i></li>
+                </ul>
+            </dd>
+            <dd>
+                <div class="title">
+                    <span></span>
+                    抢购管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Rushbuy/rob" target="rightFrame">增值券管理</a><i></i></li>
+                </ul>
+            </dd>
+            <dd>
+                <div class="title">
+                    <span></span>
+                    地址管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Address/rob" target="rightFrame">地址列表</a><i></i></li>
+                </ul>
+            </dd>
+
+            <dd>
+                <div class="title">
+                    <span></span>
+                    文章管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/News/newsList" target="rightFrame">公告列表</a><i></i></li>
+                    <li><a href="/Adminlmcq/News/newsAdd" target="rightFrame">添加内容</a><i></i></li>
+                </ul>
+            </dd>
+            <dd>
+                <div class="title">
+                    <span></span>
+                    轮播图管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Setting/indexrunimg" target="rightFrame">首页轮播图</a><i></i></li>
+<!--                    <li><a href="/Adminlmcq/Banner/banner_list" target="rightFrame">轮播图列表</a><i></i></li>-->
+<!--                    <li><a href="/Adminlmcq/Banner/banner_add" target="rightFrame">轮播图添加</a><i></i></li>-->
+                </ul>
+            </dd>
+            <!-- <dd>
+                <div class="title">
+                    <span><img src="__PUBLIC__/Admin/sncss/images/leftico01.png" /></span>订单管理
+                </div>
+                <ul class="menuson">
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/buyOrder" target="rightFrame">买入订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/saleOrder" target="rightFrame">卖出订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/transactionOrder" target="rightFrame">交易中订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/successfulOrder" target="rightFrame">交易成功订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/salesplitOrder" target="rightFrame">卖出订单拆分</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/codeOrder" target="rightFrame">邀请码订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/ByteOrder" target="rightFrame">排单币订单</a><i></i></li>
+                </ul>
+            </dd> -->
+
+            <dd>
+                <div class="title">
+                    <!-- <span><img src="__PUBLIC__/Admin/sncss/images/leftico01.png" /></span> -->
+                    <span></span>
+                    订单管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Wealth/buyOrderone" target="rightFrame">买入订单--预付款</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/buyOrdertow" target="rightFrame">买入订单--非预付款</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/buyOrderthree" target="rightFrame">买入订单--激活购买</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/saleOrder" target="rightFrame">卖出订单</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/transactionOrder" target="rightFrame">交易中订单</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/successfulOrder" target="rightFrame">成功交易订单</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/buysplitOrder" target="rightFrame">买入订单拆分</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/salesplitOrder" target="rightFrame">卖出订单拆分</a><i></i></li>
+                    <!-- <li><cite></cite><a href="/Adminlmcq/Wealth/uncollected" target="rightFrame">超时未收款订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/nomoneypay" target="rightFrame">超时未打款订单</a><i></i></li> -->
+                    <li><a href="/Adminlmcq/Wealth/ungetmoney" target="rightFrame">未收到款订单</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/fastmatching" target="rightFrame">手动快速匹配</a><i></i></li>
+                    <!-- <li><cite></cite><a href="/Adminlmcq/Wealth/codeOrder" target="rightFrame">激活码订单</a><i></i></li>
+                    <li><cite></cite><a href="/Adminlmcq/Wealth/ByteOrder" target="rightFrame">排单币订单</a><i></i></li> -->
+                </ul>
+            </dd>
+            <dd>
+                <div class="title">
+                    <!-- <span><img src="__PUBLIC__/Admin/sncss/images/leftico01.png" /></span> -->
+                    <span></span>
+                    财富明细
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Wealth/wallet" target="rightFrame">财务明细</a><i></i></li>
+                    <li><a href="/Adminlmcq/Wealth/payInfo" target="rightFrame">打款详情</a><i></i></li>
+<!--                    <li><a href="/Adminlmcq/Wealth/tixian" target="rightFrame">提现明细</a><i></i></li>-->
+                </ul>    
+            </dd>
+            <!--<dd><div class="title"><span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span>数据库设置</div>
+                <ul class="menuson">-->
+                    <!-- <li><cite></cite><a href="/vsafyodmin.php/home/index/font_mess" target="rightFrame">前台显示</a><i></i></li> -->
+                    <!-- <li><cite></cite><a href="/vsafyodmin.php/home/index/my_initialize" target="rightFrame">初始化</a><i></i></li> -->
+                    <!--<li><cite></cite><a href="/Adminlmcq/Db/index" target="rightFrame">数据备份</a><i></i></li>
+                </ul>
+            </dd>-->
+            <dd>
+                <div class="title">
+                    <!-- <span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span> -->
+                    <span></span>
+                    参数设置
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Setting/parameter" target="rightFrame">参数设置</a><i></i></li>
+                </ul>
+            </dd>
+            <dd>
+                <div class="title">
+                    <!-- <span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span> -->
+                    <span></span>
+                    用户反馈
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Setting/bulletin" target="rightFrame">用户反馈</a><i></i></li>
+                </ul>
+            </dd>
+<!--            <dd>-->
+<!--                <div class="title">-->
+<!--                    &lt;!&ndash; <span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span> &ndash;&gt;-->
+<!--                    <span></span>-->
+<!--                    系统设置-->
+<!--                </div>-->
+<!--                <ul class="menuson">-->
+<!--&lt;!&ndash;                    <li><a href="/Adminlmcq/Setting/indexrunimg" target="rightFrame">首页轮播图</a><i></i></li>&ndash;&gt;-->
+<!--                    &lt;!&ndash; <li><a href="/Adminlmcq/Setting/runhouse" target="rightFrame">首页跑马灯</a><i></i></li> &ndash;&gt;-->
+<!--                    <li><a href="/Adminlmcq/Setting/userregister" target="rightFrame">用户注册协议</a><i></i></li>-->
+<!--                    <li><a href="/Adminlmcq/Setting/investmentrisk" target="rightFrame">投资风险协议</a><i></i></li>-->
+<!--                </ul>-->
+<!--            </dd>-->
+            <!-- <dd>
+                <div class="title"><span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span>活动列表</div>
+                <ul class="menuson">
+                    <li><cite></cite><a href="/Adminlmcq/Setting/luckdraw" target="rightFrame">抽奖设置</a><i></i></li>
+                </ul>
+            </dd>  -->
+            <dd>
+                <div class="title">
+                    <!-- <span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span> -->
+                    <span></span>
+                    管理员管理
+                </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/User/adminlist" target="rightFrame">管理员列表</a><i></i></li>
+                    <li><a href="/Adminlmcq/User/zf" target="rightFrame">总后台收款修改</a><i></i></li>
+                    <!--<li><cite></cite><a href="/Adminlmcq/Wealth/give" target="rightFrame">赠送熊猫或熊猫仔</a><i></i></li>-->
+                    <!--<li><cite></cite><a href="" target="rightFrame">网站总开关</a><i></i></li>-->
+                </ul>
+            </dd>
+            <!-- <dd>
+                <div class="title">
+                <span><img src="__PUBLIC__/Admin/sncss/images/leftico04.png" /></span>
+                <span></span>
+                商城管理
+            </div>
+                <ul class="menuson">
+                    <li><a href="/Adminlmcq/Shop/index" target="rightFrame">产品分类</a><i></i></li>
+                    <li><a href="/Adminlmcq/Shop/addProject" target="rightFrame">产品添加</a><i></i></li>
+                    <li><a href="/Adminlmcq/Shop/listProject" target="rightFrame">产品列表</a><i></i></li>
+                    <li><a href="/Adminlmcq/Shop/listOrderform" target="rightFrame">订单列表</a><i></i></li>
+                </ul>
+            </dd> -->
+<!--            <dd>
+                <div class="title"><span><img src="__PUBLIC__/admin/sncss/images/leftico04.png" /></span>管理员信</div>
+                <ul class="menuson">
+                    <li><cite></cite><a href="" target="rightFrame">写信</a><i></i></li>
+                    <li><cite></cite><a href="" target="rightFrame">发件</a><i></i></li>
+                    <li><cite></cite><a href="" target="rightFrame">收件</a><i></i></li>
+                </ul>
+            </dd>-->
+        </dl>
+
+    </body>
+</html>

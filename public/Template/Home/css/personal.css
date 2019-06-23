@@ -1,0 +1,82 @@
+.head-bar {
+    position: relative;
+    background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+}
+.head-bar h1 {
+    color: #FFFFFF;
+}
+a {
+    color: #FFFFFF;
+}
+.mui-bar-tab{
+	background-color: #FFFFFF;
+}
+.language {
+    width: 1.5rem;
+    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 0.37rem;
+}
+.languageIn {
+    display: none;
+}
+.mui-icon{
+	font-size: 35px;
+}
+.headerImg {
+    padding-top: 1.5rem;
+    text-align: center;
+    color: #FFFFFF;
+}
+.headerImg img {
+    width: 2.13rem;
+    height: 2.13rem;
+    margin: 0 auto 0.2rem;
+}
+.headBottom {
+    padding: 0.8rem;
+    box-sizing: border-box;
+}
+.headBottom p {
+    color: #FFFFFF;
+}
+.personal {
+    padding: 0 0.8rem;
+}
+.personal li {
+    border-bottom: 3px solid #ECECEC;
+    align-items: center;
+    padding: 0.3rem 0;
+    color: #666666;
+}
+.personal p, .personalBottom p {
+    width: 1rem;
+    text-align: center;
+}
+.personal p>img, .personalBottom p>img {
+    margin: auto;
+}
+.arrow {
+    font-size: 0.5rem;
+    color: #51A3FC;
+}
+.arrowIn {
+    font-size: 0.37rem;
+    color: #51A3FC;
+}
+.personalBottom {
+    margin-top: 1rem;
+    padding: 0 0.8rem;
+    margin-bottom:1.5rem ;
+}
+.personalBottom div {
+    align-items: center;
+    padding: 0.3rem 0;
+    color: #666666;
+}

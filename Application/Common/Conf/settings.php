@@ -1,0 +1,15 @@
+<?php return array (
+  'open_shangcheng' => '1',
+  'daikai' => '1',
+  'daikai_need' => '1',
+  'min_nums_limit' => '10',
+  'turn_need_pre' => '10',
+  'clear_pre' => '10',
+  'dog_upper_pre' => '12',
+  'cai_send_pre' => '80',
+  'cai_send_max' => '100',
+  'cai_close_time' => '1',
+  'close_start' => 1520772000,
+  'close_end' => 1520851200,
+  'shaoshang' => '100',
+); ?>

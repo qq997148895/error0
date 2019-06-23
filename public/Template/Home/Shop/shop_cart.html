@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css"/>
+    <script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        // H5 plus事件处理
+        function plusReady() {
+            // 设置系统状态栏背景为红色
+            plus.navigator.setStatusBarBackground('#409BFE');
+        }
+
+        if (window.plus) {
+            plusReady();
+        } else {
+            document.addEventListener('plusready', plusReady, false);
+        }
+    </script>
+    <style type="text/css">
+        header {
+            height: 44px;
+            background-color: #886dee;
+            color: white;
+            font-size: 0.4rem;
+            line-height: 44px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+        }
+
+        header .back {
+            display: block;
+            width: 44px;
+            height: 44px;
+            background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+            background-size: 0.4rem;
+            background-position: center center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* 中间内容 */
+        .count {
+            padding: 44px 0 1px;
+            font-size: 0.4rem;
+        }
+
+        .notData {
+            position: fixed;
+            top: 7rem;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .notData img {
+            /* display: block; */
+            margin: 0 auto 0.3rem;
+            width: 3rem;
+            min-height: 3rem;
+        }
+
+        .yesData_list li {
+            padding: 0.25rem 0.75rem 0.25rem 4rem;
+            position: relative;
+            height: 3rem;
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .yesData_list li > img {
+            position: absolute;
+            top: 0.25rem;
+            left: 1rem;
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .item_info h4 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .item_info p {
+            margin: 0.1rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .yesData_list li .price {
+            position: absolute;
+            bottom: 0.25rem;
+            left: 4rem;
+        }
+
+        .yesData_list li .price span:nth-child(1) {
+            font-size: 0.4rem;
+            color: red;
+        }
+
+        .yesData_list li .price span:nth-child(2) {
+            font-size: 0.35rem;
+            color: #C0C0C0;
+            text-decoration: line-through;
+        }
+
+        .quantityAdjusted {
+            position: absolute;
+            bottom: 0.25rem;
+            right: 0.75rem;
+            background-color: #F5F5F5;
+        }
+
+        .quantityAdjusted span {
+            display: inline-block;
+            min-width: 0.8rem;
+            line-height: 0.8rem;
+            text-align: center;
+        }
+
+        .yesData .change {
+            position: absolute;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: url('__PUBLIC__/Home/img/icon/select.png') no-repeat;
+            background-size: 0.5rem 0.5rem;
+            top: 50%;
+            left: 0.25rem;
+            margin-top: -0.25rem;
+        }
+
+        .yesData .active .change {
+            background: url('__PUBLIC__/Home/img/icon/selected.png') no-repeat;
+            background-size: 0.5rem 0.5rem;
+        }
+
+        .removeItem {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0.75rem;
+            text-align: center;
+            font-size: 0.65rem;
+            line-height: 0.75rem;
+        }
+
+        .yesData_bottom {
+            position: fixed;
+            bottom: 0.25rem;
+            left: 0.25rem;
+            height: 1.2rem;
+            width: 9.5rem;
+            border-radius: 4px;
+            background-color: #fff;
+            box-shadow: 0 0 10px 5px #EEEEEE;
+            padding: 0 0.25rem 0 1rem;
+        }
+
+        .yesData_bottom .left {
+            display: flex;
+            height: 1.2rem;
+            align-items: center;
+        }
+
+        .yesData_bottom .left button {
+            line-height: 0.8rem;
+            width: 2rem;
+            background-color: #E0E0E0;
+            color: white;
+            border-radius: 0.4rem;
+            margin-left: 0.3rem;
+        }
+
+        .yesData_bottom .left .active {
+            background-color: #886DEE;
+        }
+
+        .yesData_bottom .left span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    购物车
+    <span class="back" onclick="javascript:history.back(-1);"></span>
+</header>
+<div class="count">
+    <!-- 没有数据时显示 -->
+    <if condition="$flag eq 0">
+        <div class="notData">
+            <img src="" alt="">
+            暂无数据
+        </div>
+    </if>
+    <!-- 有数据时显示 -->
+    <div class="yesData">
+        <!-- 购物车列表 -->
+        <if condition="$flag eq 1">
+            <ul class="yesData_list">
+                <foreach name="carlist" item="v">
+                    <li key='{$v.goods_id}' val="{$v.id}" class="active" price='{$v.goods_price}' number='{$v.goods_num}'>
+                        <img src="{$v.imagepath1}" alt="">
+                        <div class="item_info">
+                            <h4 class="title">{$v.goods_name}</h4>
+                            <p class="text">{$v.goods_details}</p>
+                            <p class="text">订单类型：
+                                <if condition="$v.type eq 1">
+                                    注册单
+                                </if>
+                                <if condition="$v.type eq 2">
+                                    复购单
+                                </if>
+                            </p>
+                            <div class="price">
+                                <span>￥{$v.goods_price}</span>
+                                <span>￥{$v.goods_oldprice}</span>
+                            </div>
+                            <div class="quantityAdjusted">
+                                <span class="jian">-</span><span class="number" maxnum='{$v.goods_number}'>{$v.goods_num}</span><span
+                                    class="jia">+</span>
+                            </div>
+                        </div>
+                        <div class="change">
+                        </div>
+                        <div class="removeItem">
+                            ×
+                        </div>
+                    </li>
+                </foreach>
+            </ul>
+        </if>
+        <!-- 结算和操作 -->
+        <div class="yesData_bottom">
+            <div class="change">
+            </div>
+            <div class="left fr">
+                <span>￥100</span>
+                <button class="active">结算(1)</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //提示框按钮文本
+    var btnArray = ['否', '是'];
+    //商品总数
+    var goodsnum = 0;
+    //商品总价
+    var goodspri = 0;
+    //选中商品的数组
+    var goodsarr = [];
+    //点击商品的多选按钮
+    $(".yesData_list").on("click", "li .change", function () {
+        var parentName = $(this).parent('li').attr('class');
+        if (parentName == 'active') {
+            $(this).parent('li').removeClass('active');
+        } else {
+            $(this).parent('li').addClass('active');
+        }
+        Total();
+    });
+    //删除商品
+    $(".yesData_list").on("click", ".removeItem", function () {
+        var parent = $(this).parents('li');
+        var id = parent.attr('val');
+        mui.confirm('是否将该商品从购物车中删除？', '提示', btnArray, function (e) {
+            if (e.index == 1) {
+                $.ajax({
+                    url: "/Home/Mall/cart_edit",
+                    type: "POST",
+                    data: {
+                        type:1,
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(str) {
+                        if(str.status == 1){
+                            parent.remove();
+                            Total();
+                        }else{
+                            mui.alert('删除商品失败！');
+                        }
+                    },
+                });
+            } else {
+                console.log('你点击了取消');
+            }
+        })
+    });
+    //增加商品数量
+    $(".yesData_list").on("click", ".quantityAdjusted .jia", function () {
+        var num = $(this).siblings('.number').text() * 1;
+        var maxNum = $(this).siblings('.number').attr('maxnum') * 1;
+        var parent = $(this).parents('li');
+        var id = parent.attr('val');
+        var _this = $(this);
+        if (num >= maxNum) {
+            mui.alert('库存不足')
+        } else {
+            $.ajax({
+                url: "/Home/Mall/cart_edit",
+                type: "POST",
+                data: {
+                    type:2,
+                    id: id
+                },
+                dataType: "json",
+                success: function(str) {
+                    if(str.status == 1){
+                        num++;
+                        console.log(num);
+                        _this.siblings('.number').text(num);
+                        console.log(_this.siblings('.number'))
+                        parent.attr('number', num);
+                        Total();
+                    }else{
+                        mui.alert('增加商品失败！');
+                    }
+                },
+            });
+        }
+    });
+    //减少商品数量
+    $(".yesData_list").on("click", ".quantityAdjusted .jian", function () {
+        var num = $(this).siblings('.number').text() * 1;
+        var parent = $(this).parents('li');
+        var id = parent.attr('val');
+        var _this = $(this);
+        if (num <= 1) {
+            mui.confirm('是否将该商品从购物车中删除？', '提示', btnArray, function (e) {
+                if (e.index == 1) {
+                    $.ajax({
+                        url: "/Home/Mall/cart_edit",
+                        type: "POST",
+                        data: {
+                            type:1,
+                            id: id
+                        },
+                        dataType: "json",
+                        success: function(str) {
+                            if(str.status == 1){
+                                parent.remove();
+                                Total();
+                            }else{
+                                mui.alert('删除商品失败！');
+                            }
+                        },
+                    });
+                } else {
+                    console.log('你惦记了取消');
+                }
+            })
+        } else {
+            $.ajax({
+                url: "/Home/Mall/cart_edit",
+                type: "POST",
+                data: {
+                    type:3,
+                    id: id
+                },
+                dataType: "json",
+                success: function(str) {
+                    if(str.status == 1){
+                        num--;
+                        console.log(num);
+                        _this.siblings('.number').text(num);
+                        parent.attr('number', num);
+                        Total();
+                    }else{
+                        mui.alert('增加商品失败！');
+                    }
+                },
+            });
+        }
+    });
+    //批量选择
+    $('.yesData_bottom .change').click(function () {
+        var parent = $(this).parent();
+        var bol = parent.hasClass('active');
+        if (bol) {
+            parent.removeClass('active');
+            $(".yesData_list li").removeClass('active');
+        } else {
+            parent.addClass('active');
+            $(".yesData_list li").addClass('active');
+        }
+        Total();
+    });
+    //点击结算
+    $('.yesData_bottom .left button').click(function () {
+        var this_bol = $(this).hasClass('active');
+        if (this_bol) {
+            var j=JSON.stringify( goodsarr );
+            // var a = ''
+            // alert(j);
+            // console.log(j);
+            location.href='/Home/Mall/carbuy/list/'+ j;
+
+
+        } else {
+            mui.alert('请至少选择一种商品');
+        }
+    });
+    //计算总价格的函数
+    Total();
+
+    function Total() {
+        var len = $(".yesData_list li").length;
+        var len_active = $(".yesData_list .active").length;
+        if (len <= len_active) {
+            $('.yesData_bottom').addClass('active');
+        } else {
+            $('.yesData_bottom').removeClass('active');
+        }
+        if (len_active == 0) {
+            $('.yesData_bottom .left button').removeClass('active');
+        } else {
+            $('.yesData_bottom .left button').addClass('active');
+        }
+        goodsnum = 0;
+        goodspri = 0;
+        goodsarr = [];
+        $(".yesData_list .active").each(function () {
+            var id = $(this).attr('key');
+            var price = $(this).attr('price') * 1;
+            var number = $(this).attr('number') * 1;
+            goodsnum += number;
+            goodspri += price * number;
+            var obj = {
+                id: id,
+                number: number
+            };
+            goodsarr.push(obj);
+        });
+        $('.yesData_bottom .left span').text('￥' + goodspri);
+        $('.yesData_bottom .left button').text('结算(' + goodsnum + ')');
+    }
+</script>
+</html>

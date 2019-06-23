@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.updatapay}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/pay-withdraw.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">{$Think.lang.updatapay}</h1>
+		</header>
+		<div id="pay" class="mui-slider">
+			<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<a class="mui-control-item mui-active" href="#BankCard">
+					{$Think.lang.Banks}
+				</a>
+				<a class="mui-control-item" href="#alipay">
+					{$Think.lang.Alipay}
+				</a>
+			</div>
+			<div class="mui-slider-group">
+				<div id="BankCard" class="mui-slider-item mui-control-content mui-active">
+					<!--
+                     	作者：18291958857@163.com
+                     	时间：2018-12-17
+                     	描述：银行卡
+                     -->
+                    <div class="promptPayUpdate">{$Think.lang.enterbank}</div>
+					<ul class="concentMain">
+						<li class="flexStar">
+							 <input type="text" id="" value="" placeholder="{$Think.lang.enterbanknum}"/>
+						</li>
+						<li class="flexStar">
+							 <input type="number" id="" value="" placeholder="{$Think.lang.phone}" /> 
+						</li>
+						<li class="flexStar">
+							 <input type="text" id="" value="" placeholder="{$Think.lang.verification}" /> 
+							 <button class="code">{$Think.lang.getverifi}</button>
+						</li>
+					</ul>
+					<div class="addBrank">
+						<span class="add">+</span>
+						<span>{$Think.lang.add_bankcard}</span>
+					</div>
+					<button class="btn">{$Think.lang.confirm}</button>
+				</div>
+				<div id="alipay" class="mui-slider-item mui-control-content">
+					<!--
+                     	作者：18291958857@163.com
+                     	时间：2018-12-17
+                     	描述：支付宝
+                     -->
+                    <div class="promptPayUpdate">{$Think.lang.enterAlipay}</div>
+					<ul class="concentMain">
+						<li class="flexStar">
+							 <input type="number" id="" value="" placeholder="{$Think.lang.phone}" /> 
+						</li>
+						<li class="flexStar">
+							 <input type="text" id="" value="" placeholder="{$Think.lang.verification}" /> 
+							 <button class="code">{$Think.lang.getverifi}</button>
+						</li>
+					</ul>
+					<button class="btn">{$Think.lang.confirm}</button>
+				</div>
+			</div>
+		</div>
+		<div class="bootmLogo">
+			<p>{$Think.lang.dreamcommunity}</p>
+			<p>Dream communiy</p>
+		</div>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>赠币记录</div>
+<div style="margin-top: 10px">
+    <table style="border: #6a6c6f solid 1px;" border=1 cellspacing="0" cellpadding="0">
+        <tr>
+            <th>会员id</th>
+            <th>赠币数量</th>
+            <th>时间</th>
+            <th>信息描述</th>
+        </tr>
+        <volist name="log" id="v">
+            <tr>
+                <td>{$v.user_id}</td>
+                <td>{$v.amount}</td>
+                <td>{$v.change_date|date='Y-m-d H:i:s',###}</td>
+                <td>{$v.log_note}</td>
+            </tr>
+        </volist>
+    </table>
+    <style>.pages a,.pages span {
+        display:inline-block;
+        padding:2px 5px;
+        margin:0 1px;
+        border:1px solid #f0f0f0;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+    }
+    .pages a,.pages li {
+        display:inline-block;
+        list-style: none;
+        text-decoration:none; color:#58A0D3;
+    }
+    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+        margin:0;
+    }
+    .pages a:hover{
+        border-color:#50A8E6;
+    }
+    .pages span.current{
+        background:#50A8E6;
+        color:#FFF;
+        font-weight:700;
+        border-color:#50A8E6;
+    }</style>
+
+    <div class="pages"><br />
+        <div align="left">{$page}
+        </div>
+    </div>
+</div>
+</body>
+</html>

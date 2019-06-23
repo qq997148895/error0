@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+        <script language="JavaScript" src="__PUBLIC__/Admin/sncss/js/jquery.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                //顶部导航切换
+                $(".nav li a").click(function () {
+                    $(".nav li a.selected").removeClass("selected")
+                    $(this).addClass("selected");
+                })
+            })
+        </script>
+        <style type="text/css">
+            .topright{
+                background: transparent;
+                width: 100px;
+            }
+            .topright ul{
+                padding: 0;
+                text-align: center;
+            }
+            .topright ul li{
+                padding: 0;
+                width: 60px;
+                height: 70px;
+                border-left: 2px solid rgba(222,222,222);
+                padding-left: 20px;
+                position: relative;
+                margin-top: 9px;
+            }
+            .topright img{
+                display: block;
+                width: 60px;
+                height: 38px;
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                margin-top: -19px;
+            }
+            .topleft{
+                background: transparent;
+                padding-top: 4px;
+            }
+        </style>
+    </head>
+
+    <body style="background-color:#18b3ff;">
+        <div class="topleft">
+            <a href="main.html" target="_parent"><img style="position: absolute;top: 50%;left: 10px;margin-top: -18px;" src="__PUBLIC__/Admin/sncss/images/logo.png" title="系统首页" /></a>
+        </div>
+        <div class="topright">    
+            <ul>
+                <li><a href="/Adminlmcq/Login/logout" target="_parent"><img src="__PUBLIC__/Admin/sncss/images/topout.png" alt="" /></a></li>
+            </ul>
+        </div>
+    </body>
+</html>

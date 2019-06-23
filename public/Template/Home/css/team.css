@@ -1,0 +1,36 @@
+.mui-bar-nav{
+	background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+}
+.mui-bar .mui-icon{
+	font-size: 35px;
+}
+a{
+	color: #FFFFFF;
+}
+.teamMain{
+	margin-top: 45px;
+}
+.teamColor{
+	color: #52A3FC;
+}
+.teamMain ul{
+	padding: 0.3rem 1rem;
+	border-bottom: 1px solid #ECECEC;
+}
+.teamMain p{
+	color: #666666;
+	font-size: 0.3rem;
+}
+.teamMain ul img{
+	width: 1.33rem;
+	height: 1.33rem;
+}
+.teamMainIn li:nth-child(n+2){
+	margin-left: 0.5rem;
+	height: 1.8rem;
+}
+.teamName{
+	color: #333333;
+	font-size: 0.4rem;
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>参数设置</title>
+    <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="__PUBLIC__/Admin/datetimepicker/jquery.js"></script>
+    <script src="__PUBLIC__/Admin/datetimepicker/jquery.datetimepicker.js"></script>
+    <link href="__PUBLIC__/Admin/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">参数设置</a>
+        </li>
+    </ul>
+</div>
+
+<div class="formbody">
+
+    <div class="formtitle"><span>系统参数</span></div>
+    <form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/Adminlmcq/Setting/parameter">
+        <ul class="forminfo">
+            <li><label>股权增值券赠送比例</label>
+                <input name="stock_give" type="number" class="dfinput" value="{$list.stock_give}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>商家入驻需要消耗的股权值</label>
+                <input name="stock_enter" type="number" class="dfinput" value="{$list.stock_enter}" style="width: 10%;" /><i style="padding-left: 10px;">股权</i>
+            </li>
+            <li><label>股权价值</label>
+                <input name="stock_price" type="number" min="0.00" step="0.01" class="dfinput" value="{$list.stock_price}" style="width: 10%;" /><i style="padding-left: 10px;">元</i>
+            </li>
+            <li><label>股权增值券价值</label>
+                <input name="paidan_price" type="number" min="0.00" step="0.01" class="dfinput" value="{$list.paidan_price}" style="width: 10%;" /><i style="padding-left: 10px;">元</i>
+            </li>
+            <li><label>买入消耗股权增值券比例</label>
+                <input name="paidna_expend" type="text" class="dfinput" value="{$list.paidna_expend}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>排单上限</label>
+                <input name="paidan_max" type="number" class="dfinput" value="{$list.paidan_max}" style="width: 10%;" /><i style="padding-left: 10px;">股权</i>
+            </li>
+            <li><label>排单必须</label>
+                <input name="paidan_divide" type="number" class="dfinput" value="{$list.paidan_divide}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">股权的倍数</i>
+            </li>
+            <li><label>排单预付款比例</label>
+                <input name="paidan_yufu" type="number" min="0.00" step="0.01" class="dfinput" value="{$list.paidan_yufu}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>收款时间限制</label>
+                <input name="pay_time_max" type="text" class="dfinput" value="{$list.pay_time_max}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">时</i>
+            </li>
+            <li><label>提前打款有奖时间</label>
+                <input name="pay_time_min" type="text" class="dfinput" value="{$list.pay_time_min}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">时</i>
+            </li>
+            <li><label>提前打款奖励百分比</label>
+                <input name="pay_time_award" type="text" class="dfinput" value="{$list.pay_time_award}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>卖出到账时间</label>
+                <input name="collect_time" type="text" class="dfinput" value="{$list.collect_time}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">天</i>
+            </li>
+            <li><label>卖出收益</label>
+                <input name="interest_price" type="text" class="dfinput" value="{$list.interest_price}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>冻结时间</label>
+                <input name="frozen_time" type="text" class="dfinput" value="{$list.frozen_time}" style="width: 10%;" maxlength="5" />
+                <i style="padding-left: 10px;">天</i>
+            </li>
+            <li><label>第一代推荐奖励</label>
+                <input name="reward_rate1" type="text" class="dfinput" value="{$list.reward_rate1}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>第二代推荐奖励</label>
+                <input name="reward_rate2" type="text" class="dfinput" value="{$list.reward_rate2}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>第三代动态奖励</label>
+                <input name="reward_rate3" type="text" class="dfinput" value="{$list.reward_rate3}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>积分股权互相兑换扣除比例</label>
+                <input name="convertible_equity" type="text" class="dfinput" value="{$list.convertible_equity}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>积分兑换商品扣除比例</label>
+                <input name="buy_goods" type="text" class="dfinput" value="{$list.buy_goods}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>最大一代推荐奖励：</label>
+                <input name="first_max_reward" type="text" class="dfinput" value="{$list.first_max_reward}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>最大二代推荐奖励：</label>
+                <input name="second_max_reward" type="text" class="dfinput" value="{$list.second_max_reward}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>最大三代推荐奖励：</label>
+                <input name="third_max_reward" type="text" class="dfinput" value="{$list.third_max_reward}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>无限代奖励：</label>
+                <input name="infinite" type="text" class="dfinput" value="{$list.infinite}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>注册单扣除股权比例：</label>
+                <input name="equity_ratio" type="text" class="dfinput" value="{$list.equity_ratio}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>复购单商家得到比例：</label>
+                <input name="repurchase_proportion" type="text" class="dfinput" value="{$list.repurchase_proportion}" style="width: 10%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>积分抢购消耗积分：</label>
+                <input name="draw" type="text" class="dfinput" value="{$list.draw}" style="width: 10%;" /><i style="padding-left: 10px;"></i>
+            </li>
+<!--            <li><label>一代商品积分奖励：</label>-->
+<!--                <input name="draw" type="text" class="dfinput" value="{$list.frist_award}" style="width: 10%;" /><i style="padding-left: 10px;"></i>-->
+<!--            </li>-->
+<!--            <li><label>二代商品积分奖励：</label>-->
+<!--                <input name="draw" type="text" class="dfinput" value="{$list.second_award}" style="width: 10%;" /><i style="padding-left: 10px;"></i>-->
+<!--            </li>-->
+<!--            <li><label>三代商品积分奖励：</label>-->
+<!--                <input name="draw" type="text" class="dfinput" value="{$list.third_award}" style="width: 10%;" /><i style="padding-left: 10px;"></i>-->
+<!--            </li>-->
+<!--            <li><label style="width: 100px;">自动匹配开启状态</label>-->
+<!--                <input type="radio" name="is_man_match" style="height: 30px;" value="1"-->
+<!--                <if condition="$list.is_man_match eq 1">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >开&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                <input type="radio" name="is_man_match" style="height: 30px;" value="2"-->
+<!--                <if condition="$list.is_man_match eq 2">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >关-->
+<!--            </li>-->
+<!--            <li><label style="width: 100px;">烧伤制度开启状态</label>-->
+<!--                <input type="radio" name="dynamic_burn" style="height: 30px;" value="1"-->
+<!--                <if condition="$list.dynamic_burn eq 1">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >开&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                <input type="radio" name="dynamic_burn" style="height: 30px;" value="0"-->
+<!--                <if condition="$list.dynamic_burn eq 0">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >关-->
+<!--            </li>-->
+<!--            <li><label style="width: 100px;">账户激活开启状态</label>-->
+<!--                <input type="radio" name="active_switch" style="height: 30px;" value="1"-->
+<!--                <if condition="$list.active_switch eq 1">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >开&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                <input type="radio" name="active_switch" style="height: 30px;" value="0"-->
+<!--                <if condition="$list.active_switch eq 0">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >关-->
+<!--            </li>-->
+<!--            <li><label style="width: 100px;">排单开启状态</label>-->
+<!--                <input type="radio" name="openorclose_paidan" style="height: 30px;" value="1"-->
+<!--                <if condition="$list.openorclose_paidan eq 1">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >开&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                <input type="radio" name="openorclose_paidan" style="height: 30px;" value="0"-->
+<!--                <if condition="$list.openorclose_paidan eq 0">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >关-->
+<!--            </li>-->
+<!--            <li><label style="width: 100px;">商城开启状态</label>-->
+<!--                <input type="radio" name="shop_openclose" style="height: 30px;" value="1"-->
+<!--                <if condition="$list.shop_openclose eq 1">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >开&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                <input type="radio" name="shop_openclose" style="height: 30px;" value="2"-->
+<!--                <if condition="$list.shop_openclose eq 2">-->
+<!--                    checked="checked"-->
+<!--                </if>-->
+<!--                >关-->
+<!--            </li>-->
+
+
+
+
+
+
+
+
+
+
+<!--             <li><label>动态转兑换比例</label>
+                <input name="to_turn" type="text" class="dfinput" value="{$list.to_turn}" style="width: 10%;" /><i style="padding-left: 10px;">%&nbsp;&nbsp;&nbsp;注释:动态奖金转兑换钱包的比例</i>
+            </li> -->
+<!--             <li><label>静态转兑换比例</label>
+                <input name="to_turn2" type="text" class="dfinput" value="{$list.to_turn2}" style="width: 10%;" /><i style="padding-left: 10px;">%&nbsp;&nbsp;&nbsp;注释:静态会员利息收益转兑换钱包的比例</i>
+            </li> -->
+            <!-- <li><label>客服收款二维码</label>
+                <input type="file" name="imagepath" value="">
+            </li>
+            <li><label>客服联系电话</label>
+                <input name="kfphone" type="text" class="dfinput" value="{$list.kfphone}" style="width: 10%;" />
+            </li> -->
+            <!-- <li><label>利息冻结倒计时</label>
+                <input name="interest_cold" type="number" class="dfinput" value="{$list.interest_cold}" style="width: 10%;"/><i style="padding-left: 10px;">时</i>
+            </li>
+            <li><label>可未完成订单数</label>
+                <input name="unfinished_ordernumber" type="number" class="dfinput" value="{$list.unfinished_ordernumber}" style="width: 10%;" /><i style="padding-left: 10px;">单/人</i>
+            </li>
+            <li><label>静态钱包提现额</label>
+                <input name="static_lower" type="number" class="dfinput" value="{$list.static_lower}" style="width: 10%;" />-<input name="static_hight" type="number" class="dfinput" value="{$list.static_hight}" style="width: 10%;" /><i style="padding-left: 10px;">元</i>
+            </li>
+            <li><label>动态钱包提现额</label>
+                <input name="dynamic_lower" type="number" class="dfinput" value="{$list.dynamic_lower}" style="width: 10%;" />-<input name="dynamic_hight" type="number" class="dfinput" value="{$list.dynamic_hight}" style="width: 10%;" /><i style="padding-left: 10px;">元</i>
+            </li>
+            <li><label>每日签到奖励</label>
+                <input name="signin_number" type="number" class="dfinput" value="{$list.signin_number}" style="width: 10%;"/><i style="padding-left: 10px;">元</i>
+            </li> -->
+            <!-- <li><label>禁止订单卖出日</label>
+                <select name="unsellout_date" class="dfinput" style="width: 10%;" id="unsellout_date">
+                    <option value="1" chacked="chacked">周一</option>
+                    <option value="2">周二</option>
+                    <option value="3">周三</option>
+                    <option value="4">周四</option>
+                    <option value="5">周五</option>
+                    <option value="6">周六</option>
+                    <option value="7">周日</option>
+                </select>
+            </li>
+            <script type="text/javascript">
+                var thelabel='{$list.unsellout_date}';
+                $('#unsellout_date option').each(function(){
+                    var label1=$(this);
+                    var label1val=label1.val();
+                    if (label1val==thelabel) {
+                        label1.attr('selected','true');
+                    }
+                });
+            </script> -->
+            <!-- <li><label>推荐下级期限</label>
+                <input name="days_recommend_limit" type="number" class="dfinput" value="{$list.days_recommend_limit}" style="width: 10%;"/><i style="padding-left: 10px;">天</i>
+            </li>
+            <li><label style="width: 100px;">商城开启状态</label>
+                <input type="radio" name="shop_openclose" style="height: 30px;" value="1"
+                <if condition="$list.shop_openclose eq 1">
+                    checked="checked"
+                </if>
+                >开&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="shop_openclose" style="height: 30px;" value="2"
+                <if condition="$list.shop_openclose eq 2">
+                    checked="checked"
+                </if>
+                >关
+            </li> -->
+
+<!--             <li><label>提供帮助总金额</label>
+                <input name="helpfor_number" type="number" class="dfinput" value="{$list.helpfor_number}" style="width: 10%;" /><i style="padding-leftthreehours_inner: 10px;">元</i>
+            </li>
+            <li><label>接受帮助总金额</label>
+                <input name="askforhelp_number" type="number" class="dfinput" value="{$list.askforhelp_number}" style="width: 10%;" /><i style="padding-left: 10px;">元</i>
+            </li> -->
+            <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+        </ul>
+    </form>
+    <style>.pages a,.pages span {
+        display:inline-block;
+        padding:2px 5px;
+        margin:0 1px;
+        border:1px solid #f0f0f0;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+    }
+    .pages a,.pages li {
+        display:inline-block;
+        list-style: none;
+        text-decoration:none; color:#58A0D3;
+    }
+    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+        margin:0;
+    }
+    .pages a:hover{
+        border-color:#50A8E6;
+    }
+    .pages span.current{
+        background:#50A8E6;
+        color:#FFF;
+        font-weight:700;
+        border-color:#50A8E6;
+    }
+    </style>
+
+    <div class="pages"><br />
+
+        <div align="right">{$page}
+        </div>
+    </div>
+</div>
+<script>
+    $("#start,#end").datetimepicker({step:60,lang:'ch'});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+.mui-bar {
+    background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+}
+a {
+    color: #FFFFFF;
+}
+.apeal{
+	margin-top: 70px;
+	padding: 0 0.8rem;
+}
+input[type=text]{
+	height: 0.8rem;
+	font-size: 0.37rem;
+}

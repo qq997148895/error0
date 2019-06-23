@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script charset="utf-8" src="__PUBLIC__/Admin/kindeditor/kindeditor.js"></script>
+        <script charset="utf-8" src="__PUBLIC__/Admin/kindeditor/lang/zh_CN.js"></script>
+        <script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+        <link rel="stylesheet" href="__PUBLIC__/Uploadify/uploadify.css"/>
+        <script type="text/javascript" src='__PUBLIC__/Uploadify/jquery.uploadify.min.js'></script>
+    </head>
+    <body>
+        <div class="rightinfo">
+            <form action="/Adminlmcq/Setting/investmentrisk"  enctype="multipart/form-data" name="news" id="xgmm" method="post">
+                <table width="90%" border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" class="tablebg" id="table1">
+                    <tr>
+                        <td bgcolor="#FFFFFF" class="tbkey" >内容：</td>
+                        <td bgcolor="#FFFFFF" class="tbval">	
+                            <script>
+                                KindEditor.ready(function (K) {
+                                    var editor1 = K.create('textarea[name="content"]', {
+                                        cssPath: '__PUBLIC__/Admin/kindeditor/plugins/code/prettify.css',
+                                        uploadJson: '__PUBLIC__/Admin/kindeditor/php/upload_json.php',
+                                        fileManagerJson: '__PUBLIC__/Admin/kindeditor/php/file_manager_json.php',
+                                        allowFileManager: true,
+                                        afterCreate: function () {
+                                            var self = this;
+                                            K.ctrl(document, 13, function () {
+                                                self.sync();
+                                                K('form[name=example]')[0].submit();
+                                            });
+                                            K.ctrl(self.edit.doc, 13, function () {
+                                                self.sync();
+                                                K('form[name=example]')[0].submit();
+                                            });
+                                        }
+                                    });
+                                    prettyPrint();
+                                });
+                            </script>
+                            <textarea name="content" style="width:700px;height:200px;visibility:hidden;">
+                                <?php echo $investmentrisk;?>
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+                <!--基本信息結束-->
+                <div id="state_lockcon" ></div>		
+                <table class="tablebg" id="table3" style="clear:both">
+                    <TR>
+                        <td colspan="3" >
+                            <input   type="submit" class="button_text"  id="btn" value="确定"> 
+                        </TD>
+                    </TR>
+                </table>		
+            </form>
+        </div>
+    </body>
+</html>

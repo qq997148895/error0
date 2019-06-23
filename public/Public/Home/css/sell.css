@@ -1,0 +1,51 @@
+.mui-bar{
+	 background-color:#886DEE;
+}
+
+a{
+	color: #FFFFFF;
+}
+.sell{
+	margin-top: 1.5rem;
+}
+.sell li{
+	
+	
+}
+#sellSelect{
+	border: 1px solid #ccc!important;
+    height: 1rem;
+    font-size: .4rem;
+}
+.sell li p{color: #333;font-size: .38rem;margin-bottom: .2rem;}
+.sell span{
+	display: block;
+	color: red;
+	margin-top: 0.3rem;
+	font-size: .35rem;
+	margin-bottom: .2rem;
+}
+.prompt{
+	margin-top: 0.6rem;
+}
+.prompt h5{
+	color: #FF603B;
+	text-align: center;
+	line-height: 0.8rem;
+}
+.prompt p{
+	color: #333;
+	line-height: 0.8rem;
+	font-size: 0.3rem;
+}
+.prompt span{
+	display: inline-block;
+	width: 1.5rem;
+	margin-left: 0.25rem;
+}
+.btn{
+	margin-top: 1rem;
+}
+.bootmLogo{
+	margin-top: 0.8rem;
+}

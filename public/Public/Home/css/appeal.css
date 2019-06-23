@@ -1,0 +1,66 @@
+.mui-bar {
+    background-color:#886dee;
+}
+a {
+    color: #FFFFFF;
+}
+.apeal{
+	margin-top: 70px;
+	padding: 0 0.8rem;
+}
+input[type=text]{
+	height: 0.8rem;
+	font-size: 0.37rem;
+}
+textarea{
+	height: 4rem;
+}
+.flexAround{
+	display: flex;
+	flex-flow: row;
+	justify-content:space-around;
+}
+.addImg{
+	width: 2rem;
+	height: 2rem;
+	line-height: 1rem;
+	text-align: center;
+	font-size: 0.37rem;
+	position: relative;
+	background-color: #EEEEEE;
+	/*border: 1px solid #959595;*/
+	border-radius: 0.2rem;
+	margin: 1rem auto 0;
+	color: #666666;
+}
+#upload{
+	width: 2rem;
+	height: 2rem;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+#upload2{
+	width: 2rem;
+	height: 2rem;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+#upload3{
+	width: 2rem;
+	height: 2rem;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.bootmLogo{
+	width: 100%;
+	margin-top: 2.5rem;
+}

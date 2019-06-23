@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.about_us}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/response.css" /> 
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Mymessage/myinfo" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">{$Think.lang.about_us}</h1>
+		</header>
+		<h2>《{$Think.lang.about_us}》</h2>
+		<p>{$Think.lang.about}</p>
+		<p style="text-align: right;padding-right: 0.5rem;margin-top: 0.8rem;">——{$Think.lang.dreamcommunity}</p> 
+		<div class="bootmLogo">
+			<p>{$Think.lang.dreamcommunity}</p>
+<!--			<p>City</p>-->
+		</div>
+	</body>
+</html>

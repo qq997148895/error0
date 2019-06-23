@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>手机客户端下载</title>
+		<script src="__PUBLIC__/Home/js/mui.min.js"></script>
+		<link href="__PUBLIC__/Home/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/base.css" />
+		<script src="__PUBLIC__/Home/js/flexible.js"></script>
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/xiazai.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.1.1.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #333;"></a>
+			<h1 class="mui-title">手机客户端下载</h1>
+		</header>
+		<p style="text-align: center;padding-top:1.7rem;margin-bottom: 1rem;">请下载APP,使用手机号登录即可正常使用</p>
+		<span id="ios" style="display: block;width: 7rem;height: 1.5rem;margin: 0.3rem auto;background: url(__PUBLIC__/Home/img/iphone@2x.png)no-repeat;background-size: cover;"></span>
+		<span id="android" style="display: block;width: 7rem;height: 1.5rem;margin: 0.3rem auto;background: url(__PUBLIC__/Home/img/Android@2x.png)no-repeat;background-size: cover;"></span>
+		<script type="text/javascript">
+			//安卓下载
+			$('#android').on('tap', function() {
+				//window.location.href = "/Home/ScheduleTask/uploadsApk"; //android app协议http://cherry.guojinkj123.com/cherry.apk
+              	window.location.href = "https://www.zuoapp.com/app/ukO9p6";
+			})
+			//ios下载
+			$('#ios').on('tap', function() {
+				//window.location.href = "/Home/ScheduleTask/uploadsApk2"; //ios app协议com.baidu.tieba://
+              	window.location.href = "https://www.zuoapp.com/app/z7FJW0";
+			})
+		</script>
+	</body>
+
+</html>

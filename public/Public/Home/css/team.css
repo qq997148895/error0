@@ -1,0 +1,45 @@
+.mui-bar-nav{
+	background-color:#886dee; 
+}
+.mui-bar .mui-icon{
+	font-size: 35px;
+}
+a{
+	color: #FFFFFF;
+}
+.teamMain{
+	margin-top: 45px;
+}
+.teamColor{
+	color: #fff;
+	font-size: .38rem;
+}
+.teamMain ul{
+	padding: 0.3rem .5rem;
+	border-bottom: 1px solid #ECECEC;
+}
+.teamMain p{
+	color: #666666;
+	font-size: 0.3rem;
+}
+.teamMain ul img{
+	width: 1.33rem;
+	height: 1.33rem;
+}
+.teamMainIn li:nth-child(n+2){
+	margin-left: 0.5rem;
+	width: 4rem;
+}
+.teamName{
+	color: #333333;
+	font-size: 0.4rem;
+}
+.team_top{
+	background:#886dee ;
+	margin: 50px .2rem .2rem;
+    display: flex;
+    border-radius: 5px;
+    padding: 0.5rem!important;
+}
+.team_top li{flex: 1;text-align: center;color: #fff;}
+.team_top li:first-child{border-right: 2px solid #fff;}

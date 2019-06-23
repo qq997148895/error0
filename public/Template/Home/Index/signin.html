@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>签到</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size:0.4rem;line-height: 44px;text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header .back{
+				display: block;
+				width: 44px;
+				height: 44px;
+				background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+				background-size:0.4rem;
+				background-position:center center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			/* 中间内容 */
+			.count{
+				padding: 44px 0.25rem 1px;
+				font-size: 0.4rem;
+			}
+			.count_title{
+				line-height: 0.8rem;
+				margin-bottom: 0.2rem;
+			}
+			.count_title button{
+				width: 2rem;
+				line-height: 0.8rem;
+				background-color: #886DEE;
+				color: white;
+				font-size: 0.35rem;
+				float: right;
+			}
+			.count_table{
+				line-height: 1rem;
+				text-align: center;
+				margin-bottom: 0.3rem;
+			}
+			.count_table .title{
+				border: 1px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+			}
+			.count_table .title span{
+				display: inline-block;
+				width: 14.286%;
+			}
+			.count_table .list{
+				border: 0.5px solid #EEEEEE;
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+			}
+			.count_table .list li{
+				height: 1rem;
+				display: inline-block;
+				width: 14.286%;
+				border: 0.5px solid #EEEEEE;
+			}
+			.count_table .list li.active{
+				background: url('__PUBLIC__/Home/img/icon/icon_qiandao@2x.png') no-repeat;
+				background-size:1rem;
+				background-position: center center;
+			}
+			/* 商品列表 */
+			.goods_title{
+				line-height: 1rem;
+			}
+			.count_list{
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+			}
+			.count_list li{
+				display: inline-block;
+				width:4.6rem;
+				margin-bottom: 0.25rem;
+				position: relative;
+				border: 1px solid #EEEEEE;
+				padding-bottom: 0.2rem;
+			}
+			.count_list li img{
+				width: 100%;
+				height: 4.6rem;
+			}
+			.count_list li p{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				color: #000000;
+			}
+			.count_list .price{
+				margin-top: 0.2rem;
+			}
+			.count_list .price span:nth-child(1){
+				color: red;
+				font-size:0.42rem;
+			}
+			.count_list .exchange{
+				position: absolute;
+				right: 0.2rem;
+				bottom: 0.2rem;
+				font-size: 0.4rem;
+				color: white;
+				width: 1.5rem;
+				line-height: 0.6rem;
+				background-color: #886DEE;
+				border-radius: 2px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			签到
+			<span class="back" onclick="javascript:history.back(-1);"></span>
+		</header>
+		<!-- 中间内容 -->
+		<div class="count">
+			<div class="count_title">
+				<div>
+					连续签到七天，才能兑换商品，中断则从新签到。
+				</div>
+				<div>
+					签到天数：<span id="qiandao">{$count}</span><button id="signin_btn">立即签到</button>
+				</div>
+			</div>
+			<!-- 表格 -->
+			<div class="count_table">
+				<div class="title">
+					<span>日</span>
+					<span>一</span>
+					<span>二</span>
+					<span>三</span>
+					<span>四</span>
+					<span>五</span>
+					<span>六</span>
+				</div>
+				<ul class="list">
+                    <foreach name="array" item = "vo">
+                        <if condition="$vo.sign eq 0">
+                        <li class="active">{$vo.0}</li>
+                            <else/>
+                                <li>{$vo.0}</li>
+                        </if>
+                    </foreach>
+				</ul>
+			</div>
+			<span class="goods_title">兑换商品</span>
+			<ul class="count_list">
+				<foreach name="listgoods" item="goods">
+					<li>
+						<img src="{$goods.imagepath1}" alt="" onclick="window.location.href='/Home/Mall/shop_details/id/{$goods.id}'">
+						<p></p>
+						<div class="price">
+							<span>{$goods.goods_name}</span>
+						</div>
+						<input type="hidden" value="{$goods.id}">
+						<div class="exchange">兑换</div>
+					</li>
+				</foreach>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		$('#signin_btn').click(function () {
+			$.ajax({
+				url: "/Home/Index/signInTo",
+				type: "POST",
+				dataType: "json",
+				success: function(str) {
+					mui.alert(str.message);
+					if(str.status == 1){
+						$('#qiandao').text(str.tian);
+						var mydate = new Date();
+						var riqi = mydate.getDate();
+						console.log(riqi);
+						$('.list li').each(function () {
+							var this_txt = $(this).text()*1;
+							if (this_txt==riqi){
+								$(this).addClass('active');
+							}
+						});
+					}
+				},
+			})
+		})
+		//商品兑换的点击事件
+		$('.count_list').on("click",'li .exchange',function () {
+			var t = $('#qiandao').text();
+			t = Number(t);
+			console.log(t);
+			if( t < 7){
+				mui.alert('连续签到7天才可兑换商品');
+				return;
+			}
+			var id = $(this).siblings('input[type=hidden]').val();
+			window.location.href = "/Home/Index/dui/id/"+id;
+		});
+	</script>
+</html>

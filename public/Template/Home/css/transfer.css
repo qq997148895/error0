@@ -1,0 +1,35 @@
+.mui-bar{
+	background-color: #52A3FC;
+}
+
+a{
+	color: #FFFFFF;
+}
+
+.recording{
+	float: right;
+	line-height: 44px;
+	color: #FFFFFF;
+}
+.transferTitle{
+	margin-top: 3.7rem; 
+}
+.haveNum{
+	margin: 1.3rem 0;
+	font-size: 0.43rem;
+}
+.transferInput li{
+	height: 1.5rem;
+	line-height: 1.5rem;
+	border-bottom: 1px solid #D4D4D4;
+	padding-top: 0.2rem;
+	box-sizing: border-box;
+}
+.transferInput input{
+	border: none;
+	background: transparent;
+	padding: 0;
+}
+.none{
+	display: none;
+}

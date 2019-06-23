@@ -1,0 +1,44 @@
+.mui-bar {
+    background-color: #886DEE; 
+}
+a {
+    color: #FFFFFF;
+}
+.announcement {
+    margin-top: 45px;
+}
+.announcement li {
+    height: 1.4rem;
+    line-height: 1.4rem;
+    border-bottom: 1px solid #E2E2E2;
+    padding: 0 0.4rem;
+    box-shadow: 1px 1px 1px #ccc;
+    margin: .2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.announcementColor {
+    display: inline-block;
+    width: 6rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+}
+
+/*公告详情*/
+
+.announcement h5 {
+    color: #51A3FC;
+    line-height: 2rem;
+    text-align: center;
+}
+.announcement p {
+    padding: 0 0.8rem;
+    text-indent: 2em;
+    line-height: 0.8rem;
+}
+.announcement p:last-child {
+    text-align: right;
+    margin-top: 1rem;
+}

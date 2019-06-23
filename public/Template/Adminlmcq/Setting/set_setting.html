@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="__PUBLIC__/Admin/datetimepicker/jquery.js"></script>
+        <script src="__PUBLIC__/Admin/datetimepicker/jquery.datetimepicker.js"></script>
+        <link href="__PUBLIC__/Admin/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li>
+                    <a href="#">系统设置</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="formbody">
+
+            <div class="formtitle"><span>系统参数</span></div>
+            <form id="form1" name="form1" method="post" action="/Adminlmcq/Setting/set_setting">
+                <ul class="forminfo">
+                    <li><label>是否开启商城</label>
+                        <cite>
+                            <if condition="$open_shangcheng  eq 1">
+                                <input type="radio" checked="checked" name="open_shangcheng" value="1"/>
+                                开启
+                                <input type="radio" name="open_shangcheng"  value="0"/>关闭
+                            <else />
+                                <input type="radio" name="open_shangcheng" value="1"/>开启
+                                <input type="radio" checked="checked" name="open_shangcheng" value="0"/>
+                                关闭
+                            </if>
+                        </cite>
+                    </li>
+                    <li><label>是否允许代开</label>
+                        <cite>
+                            <if condition="$daikai eq 1">
+                                <input type="radio" checked="checked" name="daikai" value="1"/>
+                                开启
+                                <input type="radio" name="daikai"  value="0"/>关闭
+                            <else />
+                                <input type="radio" name="daikai" value="1"/>开启
+                                <input type="radio" checked="checked" name="daikai" value="0"/>
+                                关闭
+                            </if>
+                        </cite>
+                    </li>
+                    <li><label>代开条件</label>
+                        <cite>
+                            <if condition="$daikai_need eq 1">
+                                <input type="radio" checked="checked" name="daikai_need" value="1"/>
+                                需有金窝
+                                <input type="radio" name="daikai_need"  value="0"/>不限制
+                            <else />
+                                <input type="radio" name="daikai_need" value="1"/>需有金窝
+                                <input type="radio" checked="checked" name="daikai_need" value="0"/>
+                                不限制
+                            </if>
+                        </cite>
+                    </li>
+                    <li><label>最低交易数量</label>
+                        <input name="min_nums_limit" type="text" class="dfinput" value="{$min_nums_limit}" /><i>交易数量是最低交易数量的整数倍</i>
+                    </li>
+                    <li><label>平台手续费</label>
+                        <input name="turn_need_pre" type="number" class="dfinput" value="{$turn_need_pre}" min="0" max="100" /><i>%</i>
+                    </li>
+                    <li><label>打扫系数</label>
+                        <input name="clear_pre" type="number" class="dfinput" value="{$clear_pre}" min="0" max="100" /><i>%</i>
+                    </li>
+
+                    <li><label>每月一号狗升级的比例</label>
+                        <input name="dog_upper_pre" type="number" class="dfinput" value="{$dog_upper_pre}" min="0" max="100" /><i>%</i>
+                    </li>
+
+                    <li><label>奖池分发比例</label>
+                        <input name="cai_send_pre" type="number" class="dfinput" value="{$cai_send_pre}" min="0" max="100" /><i>%</i>
+                    </li>
+					
+					<li><label>烧伤比例</label>
+						<input name="shaoshang" type="number" class="dfinput" value="{$shaoshang}" min="0" max="10000" /><i>%</i><i>如果不开启烧伤，请写0</i>
+					</li>
+					
+                    <li><label>单注最高奖励</label>
+                        <input name="cai_send_max" type="text" class="dfinput" value="{$cai_send_max}"/><i>如果不控制，请写0</i>
+                    </li>
+                    <li><label>开奖前后</label>
+                        <input name="cai_close_time" type="text" class="dfinput" value="{$cai_close_time}"/><i>小时内不允许竞猜</i>
+                    </li>
+					<li><label>系统维护时间</label>
+						<input name="close_start" type="text" class="dfinput" style="width:200px;" value="{$close_start}" id="start" /><i>至</i><i></i>
+						<input name="close_end" type="text" class="dfinput" style="width:200px;" value="{$close_end}" id="end" /><i></i>
+					</li>
+								
+                    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+                </ul>
+            </form>
+            <style>.pages a,.pages span {
+                    display:inline-block;
+                    padding:2px 5px;
+                    margin:0 1px;
+                    border:1px solid #f0f0f0;
+                    -webkit-border-radius:3px;
+                    -moz-border-radius:3px;
+                    border-radius:3px;
+                }
+                .pages a,.pages li {
+                    display:inline-block;
+                    list-style: none;
+                    text-decoration:none; color:#58A0D3;
+                }
+                .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                    margin:0;
+                }
+                .pages a:hover{
+                    border-color:#50A8E6;
+                }
+                .pages span.current{
+                    background:#50A8E6;
+                    color:#FFF;
+                    font-weight:700;
+                    border-color:#50A8E6;
+                }
+            </style>
+
+            <div class="pages"><br />
+
+          <div align="right">{$page}
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#start,#end").datetimepicker({step:60,lang:'ch'});
+        </script>
+		
+    </body>
+</html>

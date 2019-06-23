@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.transfer}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/transfer.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+<style type="text/css">
+	.haveNum{background: url(__PUBLIC__/Home/img/icon/img_paidanbi@2x.png) no-repeat;background-size: 100% 100%;text-align: center;color: #fff;}
+	.haveNum span{margin-top: .2rem;display: inline-block;}
+</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Mymessage/myinfo" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">{$Think.lang.transfer}</h1>
+			<span class="recording">{$Think.lang.record}</span>
+		</header>
+		<div class="Con">
+			<ul class="transferTitle flexStar">
+				<li id='transfer' class="transferTitleColor">排单币转让</li>
+				<li id='transfer-record'>{$Think.lang.activecode_t}</li>
+			</ul>
+			<ul class="ConMain">
+				<li>
+					<div class="haveNum">可用排单币<br /><span>{$bytenum}</span></div>
+					<ul class="transferInput">
+						<li  class="phoneMain">
+							<p>对方手机号</p>
+							<input id='user_phone' type="text" placeholder="请输入对方手机号码" />
+							<span class="user"></span>
+						</li>
+						<li>
+							<p>转让数量</p>
+							<input id='num' type="number" placeholder="请输入排单币转让数量" />
+						</li>
+						<li>
+							<p>资金密码</p>
+							<input id='user_secpwd' type="password" placeholder="请输入资金密码" />
+						</li>
+					</ul>
+					<button onclick="baoshi()" class="btn">确定转让</button>
+				</li>
+				<li class="none">
+					<div class="haveNum">激活码剩余数量<br /><span>{$count}</span></div>
+					<ul class="transferInput">
+						<li class="phoneMain">
+							<p>对方手机号</p>
+							<input id='tophone' type="text" placeholder="请输入对方手机号码" />
+							<span class="top"></span>
+						</li>
+						<li>
+							<p>转让数量</p>
+							<input id='tonumber' type="number" placeholder="请输入激活码转让数量" />
+						</li>
+						<li>
+							<p>资金密码</p>
+							<input id='topass' type="password" placeholder="请输入资金密码" />
+						</li>
+					</ul>
+					<button onclick="jihuoma()" id="jihuoma" class="btn">确定转让</button>
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			/*记录*/
+			$('.recording').on('tap',function(){
+				 location.href="/Home/Transfer/transferRecord"
+			})
+			$('.transferTitle li').on('tap',function(){
+				var _index=$(this).index();
+				$('.transferTitle li').eq(_index).addClass('transferTitleColor').siblings().removeClass('transferTitleColor');
+				$('.ConMain>li').eq(_index).removeClass('none').siblings().addClass('none');
+			});
+			//宝石币转让
+			function baoshi(){
+				var phone = $('#user_phone').val();
+				console.log(phone)
+				$.ajax({
+					url:'/Home/Transfer/transfer',
+					data:{
+			          phone : $('#user_phone').val(),
+			          num : $('#num').val(),
+			          user_secpwd:$('#user_secpwd').val()
+					},
+					type:'POST',
+					success:function(str){
+						alert(str.message);
+						window.location.reload();
+					}
+				});
+			}
+			//激活码转让
+			function jihuoma(){
+				$.ajax({
+					url:'/Home/Transfer/Activation_transfer',
+					data:{
+			          tophone : $('#tophone').val(),
+			          tonumber : $('#tonumber').val(),
+			          topass:$('#topass').val()
+					},
+					type:'POST',
+					success:function(str){
+						alert(str.message);
+						window.location.reload();
+					}
+				});
+			}
+			//宝石币显示昵称
+			$('#user_phone').blur(function(){
+				$('.user').css('display','block');
+				$.ajax({
+					url:'/Home/Transfer/Nickname',
+					data:{
+			          phone : $('#user_phone').val(),
+					},
+					type:'POST',
+					success:function(str){
+						console.log(str);
+						if(str.status == 1)
+						$('.user').text('({$Think.lang.nickname}:'+str.message+')');
+					}
+				});
+
+			})
+			//激活码显示昵称
+			$('#tophone').blur(function(){
+				$('.top').css('display','block');
+				$.ajax({
+					url:'/Home/Transfer/Nickname',
+					data:{
+			          phone : $('#tophone').val(),
+					},
+					type:'POST',
+					success:function(str){
+						console.log(str);
+						if(str.status == 1)
+						$('.top').text('({$Think.lang.nickname}:'+str.message+')');
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

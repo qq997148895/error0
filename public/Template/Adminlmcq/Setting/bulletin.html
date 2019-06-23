@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        无标题文档
+    </title>
+    <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/sncss/css/baguetteBox.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .gallery:after {content: '';display: block;height: 2px;margin: .5em 0 1.4em;}
+        .gallery a {width: 100%;display: inline-block;overflow: hidden;}
+        .ribbon > img {position: absolute;top: 0;right: 0;border: 0;}
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/h-ui.admin/js/H-ui.admin.page.js"></script>
+</head>
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">问题反馈列表</a>
+        </li>
+    </ul>
+</div>
+<div class="rightinfo">
+    <div class="tools">
+        <form id="form1" name="form1" method="post" action="/Adminlmcq/Setting/bulletin">
+            <input name="user_phone" placeholder="请输入用户账号" type="text" class="dfinput" id="user" value="" />
+            <input name="" type="submit" class="btn" value="确认搜索"/>
+        </form>
+    </div>
+    <table class="tablelist">
+        <thead>
+            <tr>
+                <th width="30">序号</th>
+                <th width="50">用户账号</th>
+                <th width="50">联系方式</th>
+                <th width="50">申诉问题</th>
+                <th width="150">详情内容</th>
+                <th width="150">附加图片</th>
+                <th width="50">申诉时间</th>
+                <th width="30">状态</th>
+                <th width="150">回复内容</th>
+                <th width="80">回复时间</th> 
+                <th width="60">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <foreach name='list' item='v'>
+                <tr>
+                    <td>{$v.id}</td>
+                    <td>{$v.username}</td>
+                    <td>{$v.phone}</td>
+                    <td>{$v.title}</td>
+                    <td>{$v.content}</td>
+                    <td>
+                        <if condition="$v.img1 neq null"><div class="baguetteBoxOne gallery" style="float: left;"><a href="{$v.img1}" target="_bank"><img src="{$v.img1}" width="80px" height="80px" /></a></div></if>
+                        <if condition="$v.img2 neq null"><div class="baguetteBoxOne gallery" style="float: left;"><a href="{$v.img2}" target="_bank"><img src="{$v.img2}" width="80px" height="80px" /></a></div></if>
+                        <if condition="$v.img3 neq null"><div class="baguetteBoxOne gallery" style="float: left;"><a href="{$v.img3}" target="_bank"><img src="{$v.img3}" width="80px" height="80px" /></a></div></if>
+                    </td>
+                    <td><?php echo date("Y-m-d H:i:s",$v['addtime']);?></td>
+                    <td>
+                        <if condition="$v.status eq 0"><span style="color: red;">未回复</span></if>
+                        <if condition="$v.status eq 1"><span style="color: blue;">已回复</span></if>
+                    </td>
+                    <td>{$v.category}</td>
+                    <td>
+                        <if condition="$v.backtime neq 0"><?php echo date("Y-m-d H:i:s",$v['backtime']);?></if>
+                        <if condition="$v.backtime eq 0">----</if>
+                    </td> 
+                    <td style="text-align: center;">
+                        <if condition="$v.status eq 0">
+                              <a href="javascript:;" onclick="unuserpay('留言回复','/Adminlmcq/Setting/feedok/id/{$v['id']}','450','310')" class="ml-5" style="text-decoration:none">
+                                   回复         
+                                </a>
+                           &nbsp;|&nbsp;
+                            <a onClick="javascript:if (!confirm('确定删除？')) return false;" href="/Adminlmcq/Setting/feeddelete/id/{$v.id}/" style='cursor:pointer;'>删除</a>
+                        </if>
+                        <if condition="$v.status neq 0">
+                            <a onClick="javascript:if (!confirm('确定删除？')) return false;" href="/Adminlmcq/Setting/feeddelete/id/{$v.id}/" style='cursor:pointer;'>删除</a>
+                        </if>
+                    </td>
+                </tr>
+            </foreach>
+        </tbody>
+    </table>
+    <style>
+        .pages a,.pages span {
+            display:inline-block;
+            padding:2px 5px;
+            margin:0 1px;
+            border:1px solid #f0f0f0;
+            -webkit-border-radius:3px;
+            -moz-border-radius:3px;
+            border-radius:3px;
+        }
+        .pages a,.pages li {
+            display:inline-block;
+            list-style: none;
+            text-decoration:none; color:#58A0D3;
+        }
+        .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+            margin:0;
+        }
+        .pages a:hover{
+            border-color:#50A8E6;
+        }
+        .pages span.current{
+            background:#50A8E6;
+            color:#FFF;
+            font-weight:700;
+            border-color:#50A8E6;
+        }
+    </style>
+    <div class="pages"><br />
+        <div align="right">{$page}</div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/jquery.js"></script>
+<script type="text/javascript">
+    function del(id){
+        var ids=id;
+        $.ajax({
+            url:'/Adminlmcq/Setting/feeddelete',
+            data:{id:ids},
+            type:'post',
+            success:function(result){
+                if (result.status==1) {
+                    alert('删除成功');
+                    location.reload();
+                }else{
+                    alert('删除失败');
+                }
+            }
+        });
+    }
+    function feeded(id){
+        var ids=id;
+        $.ajax({
+            url:'/Adminlmcq/Setting/feedok',
+            data:{id:ids},
+            type:'post',
+            success:function(result){
+                if (result.status==1) {
+                    alert('操作成功');
+                    location.reload();
+                }else{
+                    alert('操作失败');
+                }
+            }
+        });
+    }
+    function unuserpay(title, url, w, h) {
+        layer_show(title, url, w, h);
+    }
+</script>
+<script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/baguetteBox.js"></script>
+<script>
+    window.onload = function() {
+        baguetteBox.run('.baguetteBoxOne');
+        baguetteBox.run('.baguetteBoxTwo');
+        baguetteBox.run('.baguetteBoxThree', {
+            animation: 'fadeIn',
+            noScrollbars: true
+        });
+        baguetteBox.run('.baguetteBoxFour', {
+            buttons: false
+        });
+        baguetteBox.run('.baguetteBoxFive', {
+            captions: function(element) {
+                return element.getElementsByTagName('img')[0].alt;
+            }
+        });
+
+        if (typeof oldIE === 'undefined' && Object.keys) {
+            hljs.initHighlighting();
+        }
+    };
+</script>
+</html>

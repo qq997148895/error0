@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".click").click(function () {
+                    $(".tip").fadeIn(200);
+                });
+
+                $(".tiptop a").click(function () {
+                    $(".tip").fadeOut(200);
+                });
+
+                $(".sure").click(function () {
+                    $(".tip").fadeOut(100);
+                });
+
+                $(".cancel").click(function () {
+                    $(".tip").fadeOut(100);
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">数据表</a></li>
+                <li><a href="#">基本内容</a></li>
+            </ul>
+        </div>
+
+        <div class="rightinfo">
+            <div class="tools">
+                <a href="/Adminlmcq/News/newsList/type/1" style="color: blue;font-size: 14px;">增加</a>
+                &nbsp;&nbsp;
+                <!-- <a href="/Adminlmcq/News/newsList/type/2" style="color: blue;font-size: 14px;">平台制度</a> -->
+                &nbsp;&nbsp;
+                <!-- <a href="/Adminlmcq/News/newsList/type/3" style="color: blue;font-size: 14px;">新手指南</a> -->
+                &nbsp;&nbsp;
+<!--                <a href="/Adminlmcq/News/newsList/type/4" style="color: blue;font-size: 14px;">关于我们</a>-->
+            </div>
+            <table class="tablelist">
+                <thead>
+                    <tr>
+                        <th style="width:5%">序号</th>
+                        <th style="width:5%">用户ID</th>
+                        <th style="width:8%">收货人</th>
+                        <th style="width:10%">收货人联系方式</th>
+                        <th style="width:15%">收货地址 省/市/区</th>
+                        <th style="width:15%">详细地址</th>
+                        <th style="width:15%">邮政编码</th>
+                        <th style="width:5%">默认地址</th>
+                        <th style="width:5%">是否被删除</th>
+                        <th style="width:15%">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='v'>
+                        <tr>
+                            <td>
+                                {$v.id}
+                            </td>
+                            <td>
+                                {$v.uid}
+                            </td>
+                            <td>
+                                {$v.name}
+                            </td>
+                            <td>
+                                {$v.phone}
+                            </td>
+                            <td>
+                                {$v.address_pca}
+                            </td>
+                            <td>
+                                {$v.address_detailed}
+                            </td>
+                            <td>
+                                {$v.postal_code}
+                            </td>
+                            <td>
+                                <if condition="$v.is_default eq 0">不是默认地址</if>
+                                <if condition="$v.is_default eq 1">默认地址</if>
+
+                            </td>
+
+                            <td>
+                                <if condition="$v.is_del eq 0">未删除</if>
+                                <if condition="$v.is_del eq 1">已删除</if>
+
+                            </td>
+
+
+                            <td>
+<!--                                <a href="/Adminlmcq/Rushbuy/rushBuyEdit/id/{$v.id}" class="tablelink">修改</a>　-->
+                                <a href="/Adminlmcq/Merchant/merchantDel/merchant_id/{$v.id}" class="tablelink" onclick="javascript:if (!confirm('确定删除此商家吗？'))
+                                            return  false;">删除</a>
+                            </td>
+                        </tr> 
+                    </foreach>
+                </tbody>
+            </table>
+            <style>.pages a,.pages span {
+                    display:inline-block;
+                    padding:2px 5px;
+                    margin:0 1px;
+                    border:1px solid #f0f0f0;
+                    -webkit-border-radius:3px;
+                    -moz-border-radius:3px;
+                    border-radius:3px;
+                }
+                .pages a,.pages li {
+                    display:inline-block;
+                    list-style: none;
+                    text-decoration:none; color:#58A0D3;
+                }
+                .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                    margin:0;
+                }
+                .pages a:hover{
+                    border-color:#50A8E6;
+                }
+                .pages span.current{
+                    background:#50A8E6;
+                    color:#FFF;
+                    font-weight:700;
+                    border-color:#50A8E6;
+                }</style>
+
+            <div class="pages"><br />
+
+                <div align="right">{$page}
+                </div>
+            </div>
+            <div class="tip">
+                <div class="tiptop"><span>提示信息</span><a></a></div>
+
+                <div class="tipinfo">
+                    <span><img src="images/ticon.png" /></span>
+                    <div class="tipright">
+                        <p>是否确认对信息的修改 ？</p>
+                        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+                    </div>
+                </div>
+                <div class="tipbtn">
+                    <input name="" type="button"  class="sure" value="确定" />&nbsp;
+                    <input name="" type="button"  class="cancel" value="取消" />
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+
+    </body>
+
+</html>

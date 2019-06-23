@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>留言回复</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/h-ui/css/H-ui.min.css">
+</head>
+<body>
+<article class="cl pd-20">
+	<form action="" method="post" class="form form-horizontal" id="user_pay">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户账户：</label>
+			<div class="formControls col-xs-8 col-sm-9">{$list.user_name}</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>真实姓名：</label>
+            <div class="formControls col-xs-8 col-sm-9">{$list.user_truename}</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>回复内容：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="content2" id="content2" rows="" cols="" placeholder="请输入留言内容" style="width: 238px;height: 75px;"></textarea>
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input type="hidden" class="input-text" value="{$list.id}" placeholder="" id="xuhao" name="xuhao">
+				<input class="btn btn-primary radius" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;" id="tosub">
+			</div>
+		</div>
+	</form>
+</article>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/h-ui.admin/js/H-ui.admin.page.js"></script>
+
+<script type="text/javascript">
+	$("#tosub").click(function(){
+	    var dianji_num=0;
+	    var xuhao=document.getElementById('xuhao').value;
+	    var content2=document.getElementById('content2').value;
+	    layer.confirm('确认回复?',{
+	        btn:['确定','取消'],
+	    },function(){
+	        dianji_num+=1;
+	        if(dianji_num == 1){
+	          $.ajax({
+	            url:'/Adminlmcq/Setting/tohuifu',
+	            data:{xuhao:xuhao,content2:content2},
+	            type:'post',
+	            success:function(result){
+	              if(result.status==1){
+	                layer.msg(
+	                  result.message,
+	                  {icon:6,time:2000,},
+	                  function(){
+	                  	window.parent.location.reload();
+	                  	var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+	                  },
+	                );
+	                // setTimeout(function(){
+                 //        var index = parent.layer.getFrameIndex(window.name);
+                 //        //parent.$('.btn-refresh').click();
+                 //        parent.layer.close(index);
+                 //    },2000);
+	              }else{
+	                layer.msg(result.message,{icon:5,time:2000});
+	              }
+	            }
+	          });
+	        }
+	      }
+	    );
+	})
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

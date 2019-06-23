@@ -1,0 +1,25 @@
+.mui-bar {
+    background: -webkit-linear-gradient(left, #51A3FC, #409BFE);
+    background: linear-gradient(to right, #51A3FC, #409BFE);
+}
+a {
+    color: #FFFFFF;
+}
+.helpIn {
+    margin-top: 2rem;
+}
+.helpIn li {
+    height: 1.5rem;
+    padding-top: 0.3rem;
+    border-bottom: 1px solid #D4D4D4;
+}
+.helpIn input {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+.helpIn span {
+    display: block;
+    color: #FD2F2F;
+    margin-top: 0.3rem;
+}

@@ -1,0 +1,34 @@
+.mui-bar{
+	background-color: #52A3FC;
+}
+
+a{
+	color: #FFFFFF;
+}
+.sell{
+	margin-top: 1.5rem;
+}
+.sell li{
+	height: 1.5rem;
+	padding-top: 0.3rem;
+	
+}
+
+.sell span{
+	display: block;
+	color: #51A3FC;
+	margin-top: 0.3rem;
+}
+.prompt{
+	margin-top: 0.6rem;
+}
+.prompt h5{
+	text-align: center;
+}
+.prompt p,.prompt h5{
+	color: #FF603B;
+	line-height: 0.8rem;
+}
+.prompt p:nth-child(5){
+	margin-top: 0.5rem;
+}

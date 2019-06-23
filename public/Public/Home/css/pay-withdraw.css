@@ -1,0 +1,113 @@
+.mui-bar {
+    background-color:#409BFE;
+}
+a {
+    color: #FFFFFF;
+}
+.mui-bar-tab{
+	background-color: #FFFFFF;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+	border-bottom:1px solid #52A3FC;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+	border: 0;
+}
+.mui-slider-group{
+	margin-top: 0.5rem;
+}
+#pay{
+	margin-top: 50px;
+}
+.updateBtn{
+	display: inline-block;
+	border: none;
+	background-color: transparent;
+	position: absolute;
+	top: 0;
+	right: 0.3rem;
+	line-height: 40px;
+	color: #FFFFFF;
+	font-size: 0.4rem;
+}
+.promptPay{
+	line-height: 1rem;
+	color: #51A3FC;
+	padding: 0 0.8rem;
+	margin-top: 0.3rem;
+}
+input[type=text],input[type=number],input[type=password]{
+	border: none;
+	height: 1rem;
+	line-height: 1rem;
+	margin-bottom: 0;
+	font-size: 0.5rem;
+	padding: 0;
+}
+.concentMain{
+	padding: 0 0.8rem;
+}
+.concentMain li{
+	color: #999999;
+	border-bottom: 1px solid #E7E7E7;
+	padding:0.2rem 0;
+	position: relative;
+}
+.concentMain label{
+	width: 3rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+}
+.addBrank{
+	padding: 0 0.8rem;
+	margin-top: 0.2rem;
+	color: #51A3FC;
+	line-height: 1rem;
+}
+.add{
+	display: inline-block;
+	float: left;
+	font-size: 0.8rem;
+	margin-right: 0.2rem;
+}
+.addImg{
+	width: 4rem;
+	height: 4rem;
+	line-height: 1rem;
+	text-align: center;
+	font-size: 0.37rem;
+	position: relative;
+	background-color: #EEEEEE;
+	border: 1px solid #959595;
+	border-radius: 0.2rem;
+	margin: 1rem auto 0;
+	color: #666666;
+}
+#upload{
+	width: 4rem;
+	height: 4rem;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.code{
+	position: absolute;
+	top: 0.4rem;
+	right: 0.2rem;
+	color: #51A3FC;
+}
+.promptPayUpdate{
+	line-height: 1rem;
+	color: #51A3FC;
+	border-bottom: 1px solid #51A3FC;
+	margin: 0 0.8rem;
+}
+.bootmLogo{
+	width: 100%;
+	margin-top: 4.5rem;
+}
+div{
+	font-size: 0.4rem;
+}

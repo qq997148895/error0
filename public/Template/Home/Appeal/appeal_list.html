@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>反馈列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/appeal.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			.order_byte{margin: 44px .3rem;}
+			.order_bytebox{border: 1px solid #eee;padding: .2rem;box-shadow: 1px 2px 1px #ccc;border-radius: 4px;margin-bottom: .2rem;position: relative;}
+			.order_bytebox p{color: #444;font-size: .38rem;margin-bottom: .15rem;}
+			.order_bytebox input{position: absolute;right:.2rem;top: .5rem;background: #886dee;color: #fff;width: 2rem;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Mymessage/myinfo" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">反馈列表</h1>
+		</header>
+		<foreach name='list' item='v'>
+		<div class="apeal">
+			<div class="order_byte">
+				<div class="order_bytebox">
+					<p>反馈原因：{$v.title}</p>
+					<p>反馈时间：{$v.addtime}</p>
+					<p>回复结果：
+						<if condition="$v['status'] eq 0">
+							<span class="status">未回复</span>
+						</if>
+						<if condition="$v['status'] eq 1">
+							<span class="status">已答复</span>
+						</if>
+					</p>
+					<input type="hidden" id="id" name="id" value="{$v.id}">
+					<input type="button"  onclick="window.location.href='/Home/Index/FeedbackDetails/id/{$v.id}'" id="see" name="see" value="查看" class="but" />
+
+				</div>
+			</div>
+		</div>
+		</foreach>
+		
+
+		<script type="text/javascript">
+
+			// $('.see').click(function(){
+			// 	window.location.href="/Home/Index/FeedbackDetails/id/$v.id";
+			// });
+
+			// //提交
+			// function save() {
+			// 	var id = $("#id").val()
+			// 	$.ajax({
+			// 		url: "/Home/Index/FeedbackDetails",
+			// 		type: "POST",
+			// 		data: {
+			// 			id:id
+			// 		},
+			// 		dataType: "json",
+			// 		success: function(data) {
+			// 			if (data.status==1){
+			//
+			// 			} if (data.status == 0){
+			// 				mui.alert(data.message);
+			// 			}
+			// 		},
+			// 	});
+			//
+			// }
+		</script>
+	</body>
+
+</html>

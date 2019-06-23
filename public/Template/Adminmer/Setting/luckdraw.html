@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>抽奖设置</title>
+    <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="__PUBLIC__/Admin/datetimepicker/jquery.js"></script>
+    <script src="__PUBLIC__/Admin/datetimepicker/jquery.datetimepicker.js"></script>
+    <link href="__PUBLIC__/Admin/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">抽奖设置</a>
+        </li>
+    </ul>
+</div>
+
+<div class="formbody">
+
+    <div class="formtitle"><span>抽奖设置</span></div>
+    <form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/Adminlmcq/Setting/luckdraw">
+        <ul class="forminfo">
+            <li><label>单次抽奖消耗</label>
+                <input name="prize_value" type="number" class="dfinput" value="{$list.prize_value}" style="width: 8%;" /><i style="padding-left: 10px;">元</i>
+            </li>
+            <li><label style="width: 100px;">抽奖开启状态</label>
+                <input type="radio" name="prize_open" style="height: 30px;" value="1"
+                <if condition="$list.prize_open eq 1">
+                    checked="checked"
+                </if>
+                >开&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="prize_open" style="height: 30px;" value="0"
+                <if condition="$list.prize_open eq 0">
+                    checked="checked"
+                </if>
+                >关
+            </li>
+            <li><label>一等奖</label>
+                金额/奖品: <input name="prize_name1" type="text" class="dfinput" value="{$list.prize_name1}" style="width: 8%;" />
+                概率: <input name="prize_level1" type="number" class="dfinput" value="{$list.prize_level1}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>二等奖</label>
+                金额/奖品: <input name="prize_name2" type="number" class="dfinput" value="{$list.prize_name2}" style="width: 8%;" />
+                概率: <input name="prize_level2" type="number" class="dfinput" value="{$list.prize_level2}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>三等奖</label>
+                金额/奖品: <input name="prize_name3" type="number" class="dfinput" value="{$list.prize_name3}" style="width: 8%;" />
+                概率: <input name="prize_level3" type="number" class="dfinput" value="{$list.prize_level3}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>四等奖</label>
+                金额/奖品: <input name="prize_name4" type="text" class="dfinput" value="{$list.prize_name4}" style="width: 8%;" />
+                概率: <input name="prize_level4" type="number" class="dfinput" value="{$list.prize_level4}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>五等奖</label>
+                金额/奖品: <input name="prize_name5" type="number" class="dfinput" value="{$list.prize_name5}" style="width: 8%;" />
+                概率: <input name="prize_level5" type="number" class="dfinput" value="{$list.prize_level5}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>六等奖</label>
+                金额/奖品: <input name="prize_name6" type="number" class="dfinput" value="{$list.prize_name6}" style="width: 8%;" />
+                概率: <input name="prize_level6" type="number" class="dfinput" value="{$list.prize_level6}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>谢谢参与</label>
+                金额/奖品: <input name="prize_name7" type="number" class="dfinput" value="0" style="width: 8%;" readonly="readonly" />
+                概率: <input name="prize_level7" type="number" class="dfinput" value="{$list.prize_level7}" style="width: 8%;" /><i style="padding-left: 10px;">%</i>
+            </li>
+            <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+        </ul>
+    </form>
+    <style>.pages a,.pages span {
+        display:inline-block;
+        padding:2px 5px;
+        margin:0 1px;
+        border:1px solid #f0f0f0;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+    }
+    .pages a,.pages li {
+        display:inline-block;
+        list-style: none;
+        text-decoration:none; color:#58A0D3;
+    }
+    .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+        margin:0;
+    }
+    .pages a:hover{
+        border-color:#50A8E6;
+    }
+    .pages span.current{
+        background:#50A8E6;
+        color:#FFF;
+        font-weight:700;
+        border-color:#50A8E6;
+    }
+    </style>
+
+    <div class="pages"><br />
+
+        <div align="right">{$page}
+        </div>
+    </div>
+</div>
+<script>
+    $("#start,#end").datetimepicker({step:60,lang:'ch'});
+</script>
+
+</body>
+</html>

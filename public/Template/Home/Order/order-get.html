@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.orderget}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/order.css" />
+		<style type="text/css">
+			.getchackbtn{float: right;background-color: #007AFF;color: white;width: 2rem;height: 0.7rem;line-height: 0.7rem;cursor: pointer;}
+			.getchackbtn a{color: white;}
+			.getchackbtn1{float: right;background-color: #007AFF;color: white;width: 2rem;height: 0.7rem;line-height: 0.7rem;cursor: pointer;}
+			.getchackbtn2{background-color: #007AFF;color: white;width: 2rem;height: 0.7rem;line-height: 0.7rem;cursor: pointer;margin-left: 0.2rem}
+			.getchackbtn4{background-color: #007AFF;color: white;width: 2rem;height: 0.7rem;line-height: 0.7rem;cursor: pointer;margin-left: 0.2rem}
+			.getchackbtn3{background-color: #007AFF;color: white;width: 2rem;height: 0.7rem;line-height: 0.7rem;cursor: pointer;margin-left: 0.2rem}
+			.getchackbtn3 a{color: white;}
+			.btnok{color: #007aff; margin-right: 2%;}
+		</style>
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#FFFFFF');
+                plus.navigator.setStatusBarStyle('dark');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="Con">
+			<div class="firstTab flexStar">
+				<a href="/Home/Index/index" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<div id="segmentedControl" class="mui-segmented-control">
+					<a class="order-top" href="/Home/OrderCenter/buy_matching_list">{$Think.lang.tohelp}</a>
+					<a class="order-top mui-active" href="/Home/OrderCenter/sell_matching_list">{$Think.lang.toget}</a>
+					<!-- <a class="order-top" href="/Home/OrderCenter/order_bonus">奖金</a> -->
+				</div>
+			</div>
+		</div>
+		<!--
+        	作者：18291958857@163.com
+        	时间：2018-12-13
+        	描述：二级切换
+        -->
+		<div id="slider" class="mui-slider">
+			<!-- <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<a class="mui-control-item mui-active" href="#all">
+					所有订单
+				</a>
+				<a class="mui-control-item" href="#inTransaction">
+					交易中
+				</a>
+				<a class="mui-control-item" href="#unmatched">
+					待匹配
+				</a>
+				<a class="mui-control-item" href="#completed">
+					已完成
+				</a>
+			</div> -->
+			<div class="mui-slider-group">
+				<div id="all" class="mui-slider-item mui-control-content mui-active">
+					<foreach name="alllist" item="v">
+						<if condition="$v.order_type eq 1">
+							<ul class="backgroundYellow">
+								<li class="flexBetween">
+									<span>{$Think.lang.ordermoney}:{$v.amount}￥</span>
+									<if condition="$v.matching eq 0">
+										<span>{$Think.lang.tobematched}</span>
+									</if>
+									<if condition="$v.matching eq 1">
+										<span>{$Think.lang.transaction}</span>
+									</if>
+									<if condition="$v.matching eq 2">
+										<span>{$Think.lang.completed}</span>
+									</if>
+								</li>
+								<li>
+									<if condition="$v.matching eq 0">
+										<span>{$Think.lang.alreadymatched}:0￥</span>
+									</if>
+									<if condition="$v.matching eq 1">
+										<span>{$Think.lang.alreadymatched}:{$v.matched}￥</span>
+									</if>
+									<if condition="$v.matching eq 2">
+										<span>{$Think.lang.alreadymatched}:{$v.amount}￥</span>
+									</if>
+								</li>
+								<li class="flexBetween">
+									<span>{$Think.lang.ordernumber}：{$v.order_number}</span>
+									<img src="__PUBLIC__/Home/img/icon/guoqi@2x.png" />
+								</li>
+								<li>
+									<input type="hidden" name="saleorderid" value="{$v.id}">
+									<span>{$Think.lang.time}:</span>
+									<span>{$v.addtime}</span>
+								</li>
+								<li class="flexEnd">
+									<button class="getchackbtn3"><a href="/Home/OrderCenter/saleinfoing/id/{$v.id}">{$Think.lang.viewdetails}</a></button>
+								</li>
+							</ul>
+						</if>
+						<if condition="$v.order_type neq 1">
+							<ul class="backgroundGreen">
+                              	<li class="flexStar">
+									<span>{$v.buyuser_name}</span>
+									<img class="arrow"  src="__PUBLIC__/Home/img/icon/jiantou.png" alt="" />
+									<span>{$Think.lang.you}</span>
+								</li>
+								<li class="flexBetween">
+									<span>{$Think.lang.ordermoney}:{$v.amount}￥</span>
+									<if condition="$v.matching eq 0">
+										<span>{$Think.lang.tobematched}</span>
+									</if>
+									<if condition="$v.matching eq 1">
+										<if condition="$v.status eq 0">
+											<span>{$Think.lang.transactionpp}</span>
+										</if>
+										<if condition="$v.status eq 1">
+											<span>{$Think.lang.transactionp}</span>
+										</if>
+									</if>
+									<if condition="$v.matching eq 2">
+										<span>{$Think.lang.completed}</span>
+									</if>
+								</li>
+								<!-- <li>
+									<if condition="$v.matching eq 0">
+										<span>已匹配:0￥</span>
+									</if>
+									<if condition="$v.matching eq 1">
+										<span>已匹配:{$v.amount}￥</span>
+									</if>
+									<if condition="$v.matching eq 2">
+										<span>已匹配:{$v.amount}￥</span>
+									</if>
+								</li> -->
+								<li class="flexBetween">
+									<span>{$Think.lang.ordernumber}：{$v.order_number}</span>
+									<img src="__PUBLIC__/Home/img/icon/guoqi@2x.png" />
+								</li>
+								<li>
+									<span>{$Think.lang.time}:</span>
+									<span>{$v.addtime}</span>
+								</li>
+								<if condition="$v.complaint eq 0">
+									<li>
+										<span>{$Think.lang.countdownoar}:</span>
+										<span timeD="{$v.endtime}" class="djs"></span>
+									</li>
+								</if>
+								<if condition="$v.complaint eq 1">
+									<li>
+										<span>{$Think.lang.recognitionc}:</span>
+										<span timeD="{$v.endtime}" class="djs"></span>
+									</li>
+								</if>
+								<li class="flexEnd">
+									<input type="hidden" name="saleorderid" value="{$v.id}">
+									<if condition="$v.matching eq 1">
+										<if condition="$v.status eq 1">
+											<if condition="$v.complaint eq 3">
+												<span class="btnok">{$Think.lang.complaints}</span>
+												<else/><button class="getchackbtn3"><a href="/Home/OrderCenter/make_money_get/id/{$v.id}">{$Think.lang.toconfirm}</a></button>
+											</if>
+										</if>
+									</if>
+									<if condition="$v.matching eq 2">
+										<span class="btnok">{$Think.lang.confirmed}</span>
+										<!--点赞功能-->
+										<if condition="$v.theordertype eq 1">
+											<!-- <if condition="$v.theisgood eq 2">
+												<button class="getchackbtn4">赞一下</button><else/><span class="btnok">已点赞</span>
+											</if> -->
+											<if condition="$v.theisgood eq 2">
+												<button class="getchackbtn4">{$Think.lang.compliment}</button>
+											</if>
+											<if condition="$v.theisgood eq 1">
+												<span class="btnok">{$Think.lang.alreadyp}</span>
+											</if>
+										</if>
+									</if>
+									<button class="getchackbtn3"><a href="/Home/OrderCenter/saleinfoing/id/{$v.id}">{$Think.lang.viewdetails}</a></button>
+								</li>
+							</ul>
+						</if>
+					</foreach>
+				</div>
+			</div>
+		</div>
+		<!--
+        	作者：18291958857@163.com
+        	时间：2018-12-12
+        	描述：底部切换
+        -->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="tab-buttom" href="/Home/Index/index">
+				<span class="mui-icon iconfont icon-shouye"></span>
+				<span class="mui-tab-label">{$Think.lang.index}</span>
+			</a>
+			<a class="tab-buttom mui-active" href="/Home/OrderCenter/buy_matching_list">
+				<span class="mui-icon iconfont icon-dingdan"></span>
+				<span class="mui-tab-label">{$Think.lang.order}</span>
+			</a>
+			<a class="tab-buttom" href="/Home/Wallet/userWallet">
+				<span class="mui-icon iconfont icon-qianbao"></span>
+				<span class="mui-tab-label">{$Think.lang.wallet}</span>
+			</a>
+			<a class="tab-buttom" href="/Home/Mymessage/myinfo">
+				<span class="mui-icon iconfont icon-wode"></span>
+				<span class="mui-tab-label">{$Think.lang.my}</span>
+			</a>
+		</nav>
+	</body>
+	<script type="text/javascript" src="__HOME__/layer/layer.js"></script>
+	<script type="text/javascript">
+		//确认点赞,所有订单模块
+		$(".getchackbtn4").click(function(){
+			var saleorderid=$(this).siblings('input').val();
+			layer.confirm('{$Think.lang.confirmationp}?',{title:['{$Think.lang.prompt}'],
+			btn:['{$Think.lang.Determine}','{$Think.lang.cancel}'],
+			},function(){
+				$.ajax({
+					url:'/Home/OrderCenter/thumbsup',
+					data:{saleorderid:saleorderid},
+					dataType:'json',
+					type:'post',
+					success:function(data){
+						if (data.status==0) {
+							layer.msg(data.message,{icon:5,time:3000});
+						}else{
+							layer.msg(data.message,{icon:6,time:3000},function(){
+								//window.location.reload(true);
+								location.href="/Home/OrderCenter/sell_matching_list";
+							});
+						}
+					}
+				});
+			});
+		});
+		//确认点赞,已完成模块
+		$(".getchackbtn2").click(function(){
+			var saleorderid=$(this).siblings('input').val();
+			layer.confirm('{$Think.lang.confirmationp}?',{title:['{$Think.lang.prompt}'],
+			btn:['{$Think.lang.Determine}','{$Think.lang.cancel}'],
+			},function(){
+				$.ajax({
+					url:'/Home/OrderCenter/thumbsup',
+					data:{saleorderid:saleorderid},
+					dataType:'json',
+					type:'post',
+					success:function(data){
+						if (data.status==0) {
+							layer.msg(data.message,{icon:5,time:3000});
+						}else{
+							layer.msg(data.message,{icon:6,time:3000},function(){
+								//window.location.reload(true);
+								location.href="/Home/OrderCenter/sell_matching_list";
+							});
+						}
+					}
+				});
+			});
+		});
+		//倒计时
+		var timeArr=$('body').find('.djs');
+		timeArr.map(function(index,items){
+			var endtime=$(items).attr('timeD');
+			var h = 0;
+            var m = 0;
+            var s = 0;
+			var timer = setInterval(function(){
+				var NowTime = new Date();
+	            var t = endtime - NowTime.getTime();
+	            //console.log(date);
+	            //console.log(NowTime.getTime());
+	            if(t > 0) {
+	              h = Math.floor(t / 1000 / 60 / 60);
+	              m = Math.floor(t / 1000 / 60 % 60);
+	              s = Math.floor(t / 1000 % 60);
+	              if(h <= 9) h = '0' + h;
+			      if(m <= 9) m = '0' + m;
+			      if(s <= 9) s = '0' + s;
+			      $(items).html("<span  class='time'>"
+			 	             +h+":</span><span  class='time'>"
+			 	             +m+":</span><span   class='time'>"
+			 	             +s+"</span>");
+	            }else{
+	            	  $(items).html("<span  class='time'>"
+			 	             +h+":</span><span  class='time'>"
+			 	             +m+":</span><span   class='time'>"
+			 	             +s+"</span>");
+	            	  clearInterval(timer);
+	            }
+			});
+		},1000)
+	</script>
+</html>

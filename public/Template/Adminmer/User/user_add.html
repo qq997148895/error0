@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">会员列表</a></li>
+                <li><a href="#">添加新会员</a></li>
+            </ul>
+        </div>
+
+        <div class="formbody">
+
+            <div class="formtitle"><span>基本信息</span></div>
+            <!-- <div style="margin-left: 25px;margin-bottom: 20px;">
+                <label>重置二级密码</label>
+                <a style="line-height: 34px;" onClick="javascript:if (!confirm('确定重置此会员支付密码？'))
+                 return  false;" href="/Adminlmcq/User/resetPayPwd/user_id/{$user['user_id']}" >
+                 <button style="width: 100px;height: 20px; color: #d70101; cursor: pointer;">重置</button>
+                </a> &nbsp;&nbsp;
+            </div> -->
+            <form id="form1" name="form1" method="post" action="/Adminlmcq/User/userAdd">
+                <ul class="forminfo">
+                    <li><label>会员昵称</label><input name="user_name"  type="text" class="dfinput"  /></li>
+                    <li><label>注册手机号</label><input name="user_phone" type="text" class="dfinput" /><i>机器人,可留空</i></li>
+                    <li><label>真实姓名</label><input name="user_truename" type="text" class="dfinput" /><i></i></li>
+                    <li><label>推荐人电话</label><input name="user_parent" type="text" class="dfinput"  /><i></i></li>
+                    <li><label>登录密码</label><input name="user_password" type="text" class="dfinput" /><i>必填项</i></li>
+                    <li><label>二级密码</label><input name="user_secpwd" type="text" class="dfinput" /><i>必填项</i></li>
+                    <li><label>微信号</label><input name="user_wechat" type="text" class="dfinput" /><i></i></li>
+                    <li><label>静态钱包</label><input name="static_amount" type="text" class="dfinput" /><i></i></li>
+                    <li><label>动态钱包</label><input name="change_amount" type="text" class="dfinput" /><i></i></li>
+                    <li><label>信誉值</label><input name="user_reputation" type="text" class="dfinput" /><i></i></li>
+                    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
+                </ul>
+            </form>
+        </div>
+    </body>
+</html>

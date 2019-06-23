@@ -1,0 +1,123 @@
+.head-bar {
+    position: relative;
+    background:url(../img/icon/bg_my@2x.png) no-repeat;
+    background-size: cover; 
+}
+.head-bar h1 {
+    color: #FFFFFF;
+}
+a {
+    color: #FFFFFF;
+}
+.mui-bar-tab{
+	background-color: #FFFFFF;
+}
+.mui-title{
+	margin: 0;
+}
+.language {
+    width: 1.5rem;
+    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 0.37rem;
+}
+.languageIn {
+    display: none;
+}
+.mui-icon{
+	font-size: 35px;
+}
+.headerImg {
+    padding-top: 1.5rem;
+    text-align: center;
+    color: #FFFFFF;
+}
+.userImg{
+    height: 2.13rem;
+    position: relative;
+}
+.userImg img {
+    width: 2.13rem;
+    height: 2.13rem;
+    position: absolute;
+    top:0;
+    left: 50%;
+    margin-left: -1.075rem;
+    border-radius: 50%;
+}
+#FILE1{
+    width: 2.13rem;
+    height: 2.13rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -1.075rem;
+    opacity: 0;
+    z-index: 10;
+}
+.headBottom {
+    padding: 0.8rem;
+    box-sizing: border-box;
+}
+.headBottom p {
+    color: #FFFFFF;
+}
+.personal {
+    padding: 0;
+    margin-top: 0.7rem;
+}
+.personal li {
+    border-bottom: 1px solid #ECECEC;
+    align-items: center;
+    padding: 0.3rem;
+    color: #666666;
+    background: url("../img/icon/icon_xiayibu@2x.png") no-repeat;
+    background-size:0.3rem;
+    background-position: 95% center;
+}
+.personal p, .personalBottom p {
+    width: 1rem;
+    text-align: center;
+}
+.personal p>img, .personalBottom p>img {
+    margin: auto;
+}
+.arrow {
+    font-size: 0.5rem;
+    color: #51A3FC;
+}
+.arrowIn {
+    font-size: 0.37rem;
+    color: #51A3FC;
+}
+.personalBottom {
+    padding: 0 ;
+    margin-bottom:2rem ;
+}
+.personalBottom div {
+    align-items: center;
+    padding: 0.3rem;
+    color: #666666;
+    border-bottom: 1px solid #ECECEC;
+}
+.personalBottom>div:nth-last-child(n+2){
+    background: url("../img/icon/icon_xiayibu@2x.png") no-repeat;
+    background-size:0.3rem;
+    background-position: 95% center;
+}
+/*.personalBottom div:last-child{border: none;}*/
+#nickname{
+    margin-top: 0.3rem;
+}
+.personal span,.personalBottom span,.headerImg span{
+	font-size: 0.4rem;
+}
+.personal a{
+	display: block;
+	width: 100%;
+}

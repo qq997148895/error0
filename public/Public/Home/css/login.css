@@ -1,0 +1,63 @@
+body{
+	/*background: url(../img/background@2x.png) no-repeat center;
+	background-size:100% 5.5rem;
+	background-position-y: 6.8rem ;*/
+	background: #fff;
+}
+.lang{
+	text-align: right;
+	color: #52a3fc;
+	height: 2.2rem;
+	line-height: 0.8rem;
+	padding-top: 0.5rem;
+	box-sizing: border-box;
+}
+.lang li{
+	margin-right: 0.5rem;
+}
+.languageIn a{
+	display: block;
+}
+.logoImg{
+	height: 2.5rem;
+	margin: 2rem auto;
+}
+.loginInput{
+	width: 80%;
+	margin:0.5rem auto 0;
+	position: relative;
+}
+.loginInput input{
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom-color: #ccc;
+	text-indent: 1em;
+}
+.loginInput input:nth-child(1){
+	background: url(../img/icon/phone@2x.png) no-repeat left center;
+	background-size: 0.4rem;
+}
+.loginInput input:nth-child(2){
+	background: url(../img/icon/password@2x.png) no-repeat left center;
+	background-size: 0.45rem;
+}
+.loginInput input:nth-child(3){
+	background: url(../img/icon/code.png) no-repeat left center;
+	background-size: 0.45rem;
+	
+}
+.loginTab{
+	width: 80%;
+	margin: auto;
+	color: #886dee;
+	font-size: 0.4rem;
+}
+.languageIn {
+    display: none;
+}
+.bootmLogo{
+	width: 100%;
+	margin-top: 1rem;
+}

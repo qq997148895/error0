@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="__PUBLIC__/Admin/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+<script type="text/javascript" src="__PUBLIC__/Admin/zTree_v3/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+	<script type="text/javascript">
+		//配置
+var setting = {
+	//视图配置
+	view: {
+		showLine: true,
+		nameIsHTML: true
+	},
+	//数据配置
+	data: {
+		simpleData: {
+			enable: true
+		}
+	}
+};
+//zTree的节点信息,可一次性全部加载
+var zNodes =[
+	{ id:1, pId:0, name:"父節點1 - 展開", open:true},
+	{ id:11, pId:1, name:"父節點11 - 摺疊"},
+	{ id:111, pId:11, name:"葉子節點111"},
+	{ id:112, pId:11, name:"葉子節點112"},
+	{ id:113, pId:11, name:"葉子節點113"},
+	{ id:114, pId:11, name:"葉子節點114"},
+	{ id:12, pId:1, name:"父節點12 - 摺疊"},
+	{ id:121, pId:12, name:"葉子節點121"},
+	{ id:122, pId:12, name:"葉子節點122"},
+	{ id:123, pId:12, name:"葉子節點123"},
+	{ id:124, pId:12, name:"葉子節點124"},
+	{ id:13, pId:1, name:"父節點13 - 沒有子節點", isParent:true},
+	{ id:2, pId:0, name:"父節點2 - 摺疊"},
+	{ id:21, pId:2, name:"父節點21 - 展開", open:true},
+	{ id:211, pId:21, name:"葉子節點211"},
+	{ id:212, pId:21, name:"葉子節點212"},
+	{ id:213, pId:21, name:"葉子節點213"},
+	{ id:214, pId:21, name:"葉子節點214"},
+	{ id:22, pId:2, name:"父節點22 - 摺疊"},
+	{ id:221, pId:22, name:"葉子節點221"},
+	{ id:222, pId:22, name:"葉子節點222"},
+	{ id:223, pId:22, name:"葉子節點223"},
+	{ id:224, pId:22, name:"葉子節點224"},
+	{ id:23, pId:2, name:"父節點23 - 摺疊"},
+	{ id:231, pId:23, name:"葉子節點231"},
+	{ id:232, pId:23, name:"葉子節點232"},
+	{ id:233, pId:23, name:"葉子節點233"},
+	{ id:234, pId:23, name:"葉子節點234"},
+	{ id:3, pId:0, name:"父節點3 - 沒有子節點", isParent:true}
+];
+
+
+$(document).ready(function(){
+	//var $user1 = $('#user').val();
+	$.ajax({
+		type: "post",
+		dataType : "json",
+		global : false,
+		url : "/Adminlmcq/User/userTeam/getuser/{$getuser}",
+		success : function(data, textStatus) {
+			console.log(data.data);
+			if (data.status == 0)
+			{
+				zNodes1 = data.data;
+				// console.log(zNodes1.length);
+				if (data.parameter!='') {
+					$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+				}else{
+					// for(var i=0;i<zNodes1.length;i++){
+						// znode = zNodes1[i];
+						var treeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+						// openAllTreenode(treeObj);
+					// }
+				}
+			} else {
+				alert(data.data);
+			}
+			return ;
+		}
+	});
+});
+function openAllTreenode(treeObj){
+
+	// 获取树对象
+	//var treeObj = $.fn.zTree.getZTreeObj("treeDiv");
+	/* 获取所有树节点 */
+	var nodes = treeObj.transformToArray(treeObj.getNodes());
+	// 展开除第一级之外的其他节点
+	for (var i = 0, length_1 = nodes.length; i < length_1; i++) {
+		if(nodes[i].level == 0){
+			continue;
+		}
+		nodes[i].open = true;
+	}
+	//展开第一级节点
+	treeObj.expandNode(nodes[0], true);
+
+}
+
+
+
+$(function(){
+	$('#btn').click(function(){
+
+		var user1 = $('#user').val();//获取用户名
+		$.ajax({
+				type: "post",
+				dataType : "json",
+				global : false,
+				url : "/Adminlmcq/User/getTree",
+				data : {
+				user1 : user1
+				},
+				success : function(data, textStatus) {
+					if (data.status == 0)
+					{
+						zNodes1 = data.data;
+						$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+					} else {
+						alert(data.data);
+					}
+					return ;
+				}
+		});
+	})
+})
+
+</script>
+</head>
+
+<body>
+<div class="formbody">
+    <div class="core_con">
+	<div style="font-size:9pt;">
+		<form>
+		会员账号 : <input id="user" name="user" value="" type="text" placeholder="请输入会员手机号"> <input name="" type="button" id="btn" value="搜索">
+		</form>
+	</div>
+    <div class="content_wrap">
+	<div class="zTreeDemoBackground " style="color: black !important;">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+</div>
+	</div>
+
+    </div>
+
+
+</body>
+<style type="text/css ">
+	.zTreeDemoBackground .ztree li span{
+		color: black;}
+	#treeDemo_1_a #treeDemo_1_span{color: black;}
+</style>
+<!-- <script type="text/javascript">
+	var teamlist=$("input[name='userlist']").val();
+	if (teamlist!='') {
+		for(var i=0;i<teamlist.length;i++){
+			teamlist = teamlist[i];
+			var treeObj = $.fn.zTree.init($("#treeDemo"), setting, teamlist);
+			openAllTreenode(treeObj);
+		}
+	}
+</script> -->
+</html>

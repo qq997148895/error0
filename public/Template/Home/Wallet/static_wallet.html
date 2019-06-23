@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>静态钱包</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/help.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+<style type="text/css">
+	.mui-pull-right{height: 44px;display: inline-block;line-height: 44px;font-size: .36rem;}
+	.static_wtop{background: url(__PUBLIC__/Home/img/icon/img_jingtaiqb@2x.png) no-repeat;background-size: 100% 100%;padding: .55rem .3rem;text-align: center;margin: 55px .3rem 0;}
+	.static_wtop h5{color: #fff;font-size: .35rem;}
+	.static_wtop p{font-size: .45rem;margin-top: .2rem;font-weight: 600;color: #fff;}
+	.w_ts{color: red;margin: .2rem .3rem;font-size: .35rem;}
+	.static_wcenter{margin: .5rem .3rem;}
+	.static_wcenter h5{font-size: .4rem;color: #333;margin-bottom: .15rem;}
+</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Stock/stockright" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">股权价值</h1>
+			<a href="/Home/Wallet/staticWalletDetail" class="mui-pull-right">明细</a>
+		</header>
+		<div class="static_wtop">
+			<h5>股权价值</h5>
+			<p>{$user.static_amount}</p>
+		</div>
+<!--		<h6 class="w_ts">注：提现金额必须是100的倍数，2000起提。</h6>-->
+		<div class="static_wcenter">
+			<h5>用户手机号</h5>
+			<input type="number" value="" name="phone" placeholder="请输入用户手机号" />
+			<h5>数量</h5>
+			<input type="number" value="" name="num" placeholder="请输入转赠股权数量" />
+			<h5>资金密码</h5>
+			<input type="password" value="" name="tranpass" placeholder="请输入资金密码" />
+			<button class="btn" id="btn">确认转赠</button>
+		</div>
+
+		<div class="static_wcenter">
+			<h5>兑换积分</h5>
+			<input type="number" value="" name="money" placeholder="请输入兑换积分数量" />
+			<h5>资金密码</h5>
+			<input type="password" value="" name="tranpass1" placeholder="请输入资金密码" />
+			<button class="btn" id="btn1">确认兑换</button>
+		</div>
+		<script type="text/javascript">
+			var lock1 = true;
+			$('#btn').click(function() {
+				lock1 = false;
+				var phone = $("input[name='phone']").val();
+				var num = $("input[name='num']").val();
+				var thepass = $("input[name='tranpass']").val();
+				var btnArray = ['否', '是'];
+				if(!lock1){
+					mui.confirm('确认转赠？', '提示', btnArray, function(e) {
+						if (e.index == 1) {
+							lock1 = true;
+							$.ajax({
+								url: '/Home/Wallet/give',
+								data: {
+									phone: phone,
+									num: num,
+									thepass: thepass
+								},
+								dataType: 'json',
+								type: 'post',
+								success: function(data) {
+									mui.alert(data.message);
+								}
+							});
+						}
+					})
+				}
+			});
+			var lock2 = true;
+			$('#btn1').click(function() {
+				lock2 = false;
+				var allmoney = $("input[name='money']").val();
+				var thepass = $("input[name='tranpass1']").val();
+				layer.confirm('确认兑换?', {
+					title: ['提示'],
+					btn: ['确认', '取消'],
+				}, function() {
+					if(!lock2){
+						lock2 = true;
+						$.ajax({
+							url: '/Home/Wallet/exchange',
+							data: {
+								allmoney: allmoney,
+								type:1,
+								thepass: thepass
+							},
+							dataType: 'json',
+							type: 'post',
+							success: function(data) {
+								if(data.status == 0){
+									layer.msg(data.msg, {
+										icon: 5,
+										time: 3000
+									});
+								}else{
+									layer.msg(data.msg, {
+										icon: 6,
+										time: 3000
+									},function () {
+										window.location.reload();
+									});
+								}
+							}
+						});
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

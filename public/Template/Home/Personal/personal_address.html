@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>地址列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			body,html{
+				height: 100%;
+				background-color: #F5F5F5;
+			}
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size:0.4rem;line-height: 44px;text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header .back{
+				display: block;
+				width: 44px;
+				height: 44px;
+				background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+				background-size:0.4rem;
+				background-position:center center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			/* 中间内容 */
+			.count{
+				padding: 44px 0.25rem 50px;
+				font-size: 0.4rem;
+			}
+			.notime{
+				/* display: none; */
+				position: fixed;
+				top: 6rem;
+				width: 3rem;
+				height: 4rem;
+				margin-left: -1.5rem;
+				left: 50%;
+				background: url('__PUBLIC__/Home/img/icon/user_address.png') no-repeat;
+				background-size:3rem ;
+			}
+			.wrap_header{
+				background-color:white ;
+			}
+			/*地址列表*/
+			.existent{
+				padding: 0.25rem;
+			}
+			.existent li{
+				padding: 0.4rem 0.25rem;
+				background-color:white ;
+				min-height: 1.5rem;
+				padding-right: 1.5rem;
+				position: relative;
+				border-radius:5px ;
+				margin-bottom: 0.2rem;
+			}
+			.existent_btn{
+				position: absolute;
+				height: 0.6rem;
+				line-height: 0.6rem;
+				top: 50%;
+				margin-top: -0.3rem;
+				right: 0.3rem;
+			}
+			.existent_title{
+				margin-bottom: 0.2rem;
+				position: absolute;
+				top: 0.4rem;
+				left: 0.25rem;
+			}
+			.existent_title span:nth-child(1){
+				font-size: 0.45rem;
+			}
+			
+			.existent_title span:nth-child(2){
+				color: #7c7c7c;
+				display: inline-block;
+				margin: 0 0.1rem;
+			}
+			.existent_title span:nth-child(3){
+				display: none;
+				color: red;
+				padding:2px;
+				border: 1px solid red;
+				border-radius: 3px;
+				text-align: center;
+				line-height: 0.4rem;
+			}
+			.existent_title span.active{
+				display: inline-block !important;
+			}
+			.existent_cont{
+				padding-right: 0.2rem;
+				color: #4c4c4c;
+				border-right:1px solid #f1f1f1 ;
+				padding-top: 0.8rem;
+				font-size: 0.35rem;
+			}
+			.existent_btn a{
+				color: #15d1be;
+			}
+			.bottom_btn{
+				width: 100%;
+				position: fixed;
+				left: 0;
+				bottom: 0;
+			}
+			.bottom_btn button{
+				width: 100%;
+				line-height: 55px;
+				color: white;
+				background-color: #886DEE;
+				border-radius: 0;
+				font-size: 0.4rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			地址列表
+			<span class="back" onclick="javascript:history.back(-1);"></span>
+		</header>
+		<!-- 中间内容 -->
+		<div class="count">
+			<!--暂无地址时显示-->
+			<if condition="$address eq null">
+				<div class="notime" style="">
+				</div>
+			</if>
+
+
+
+			<!--有地址时显示-->
+			<foreach name='address' item='v'>
+			<ul class="existent">
+				<li>
+					<div class="existent_title">
+						<span> {$v.name}</span>
+						<span>{$v.phone}</span>
+						<if condition="$v.is_default eq 1">
+							<span class="active">默认</span>
+						</if>
+					</div>
+					<div class="existent_cont">
+						{$v.address_pca}{$v.address_detailed}
+					</div>
+					<div class="existent_btn">
+						<a href="/Home/Mymessage/personal_address_edit/id/{$v.id}">编辑</a>
+					</div>
+				</li>
+			</ul>
+			</foreach>
+		</div>
+		<div class="bottom_btn">
+			<button type="button" onclick="window.location.href='/Home/Mymessage/personal_address_add'">新建收货地址</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		
+	</script>
+</html>

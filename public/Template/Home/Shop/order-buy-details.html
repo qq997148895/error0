@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.orderhd}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/order-details.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<link href="__PUBLIC__/Admin/sncss/css/baguetteBox.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			.center_img{
+				position: relative;
+				display: flex;
+				align-items: center;
+				margin-bottom: 0.5rem;
+			}
+			.center_img img{
+				width: 3rem;
+				height: 3rem;
+			}
+			.center_img input{
+				position: absolute;
+				width: 3rem;
+				height: 3rem;
+				opacity: 0;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/Mall/shop_order" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">订单详情</h1>
+		</header>
+		<div class="conD">
+			<ul class="backgroundBlueD">
+				<li class="flexBetween">
+					<span>商品名称：{$goods.goods_name}</span>
+				</li>
+				<li class="flexBetween">
+					<span>商品数量：{$order.count}</span>
+				</li>
+				<li class="flexBetween">
+					<span>订单金额:{$order.sumprice}</span>
+						<if condition="$order.zt eq 0">
+							<span>未付款</span>
+						</if>
+						<if condition="$order.zt eq 1">
+							<span>已付款</span>
+						</if>
+						<if condition="$order.zt eq 2">
+							<span>已完成</span>
+						</if>
+				</li>
+				<li class="flexBetween">
+					<span>订单号：{$order.order}</span>
+					<img class="flag" src="__PUBLIC__/Home/img/icon/guoqi@2x.png" />
+				</li>
+
+				<if condition="$order.type eq 1">
+					<li class="flexBetween">
+						<span>订单类型：注册单(80%现金+20%股权)</span>
+					</li>
+				</if>
+
+				<if condition="$order.type eq 2">
+					<li class="flexBetween">
+						<span>订单类型：复购单(积分购买)</span>
+					</li>
+				</if>
+				<li>
+					<span>时间:</span>
+					<span>{$order.addtime}</span>
+				</li>
+				<li class="flexStar">
+					<span>商家姓名:</span>
+					<span>{$touser.user_name}</span>
+				</li>
+				<li>
+					<span>商家支付宝:</span>
+					<span>{$zfb.ali_num}</span>
+				</li>
+				<li>
+					<span>商家银行卡:</span>
+					<span>{$card.id_card}</span>
+				</li>
+				<if condition="$order['zt'] eq 0">
+<!--					未付款-->
+					<li>
+						<span>上传凭证图:</span>
+						<input type="hidden" name="erweima" id="erweima">
+						<div class="center_img">
+								<img id="preview-img" src="/Public/Home/img/sc.jpg">
+								<input type="file" value="" id="FILE1" onchange="sc(this.id)" />
+							<div class="clr"></div>
+						</div>
+						<input type="button" value="确认付款" id="butt">
+					</li>
+				</if>
+				<if condition="$order['type'] eq 1">
+					<if condition="$order['zt'] eq 1">
+						<!--					已经付款-->
+						<li>
+							<span>打款凭证图:</span>
+							<div class="center_img">
+								<div class="baguetteBoxOne gallery">
+									<a href="{$order.img}" target="_bank">
+										<img id="preview-img" src="{$order.img}">
+									</a>
+								</div>
+							</div>
+						</li>
+					</if>
+				</if>
+				<if condition="$order['zt'] eq 2">
+<!--					确认收款-->
+					<li>
+						<span>订单已完成</span>
+						<input type="file">
+					</li>
+				</if>
+			</ul>
+			<input type="hidden" id="id" value="{$order.id}">
+		</div>
+	</body>
+	<script type="text/javascript" src="__HOME__/layer/layer.js"></script>
+	<script type="text/javascript">
+		$("#butt").click(function () {
+			var id = $('#id').val();
+			var photo=$('input[name=erweima]').val();
+			layer.confirm('{$Think.lang.confirmationof}?',{title:['{$Think.lang.prompt}'],
+				btn:['{$Think.lang.Determine}','{$Think.lang.cancel}'],
+			},function(){
+				$.ajax({
+					url:'/Home/Mall/make_money',
+					data:{oid:id,photo:photo},
+					dataType:'json',
+					type:'post',
+					success:function(data){
+						alert(data.message);
+						window.location.reload();
+					}
+				});
+			});
+		})
+		function sc(id){
+			var fileObj = document.getElementById(id).files[0]; // 获取文件对象
+			var FileController = "{:U('OrderCenter/upfile')}";                    // 接收上传文件的后台地址
+			// FormData 对象
+			var form = new FormData();    //存储需要传递的参数
+			form.append(id, fileObj);     // 文件对象
+			var xhr = new XMLHttpRequest();
+			xhr.open("post", FileController, true);
+			xhr.onload = function () {
+				var posit=this.responseText;
+				document.getElementById('erweima').value=posit;
+				var show=document.getElementById('preview-img');
+				show.src=posit;
+			};
+			xhr.send(form);
+		};
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/baguetteBox.js"></script>
+	<script>
+		window.onload = function() {
+			baguetteBox.run('.baguetteBoxOne');
+			baguetteBox.run('.baguetteBoxTwo');
+			baguetteBox.run('.baguetteBoxThree', {
+				animation: 'fadeIn',
+				noScrollbars: true
+			});
+			baguetteBox.run('.baguetteBoxFour', {
+				buttons: false
+			});
+			baguetteBox.run('.baguetteBoxFive', {
+				captions: function(element) {
+					return element.getElementsByTagName('img')[0].alt;
+				}
+			});
+			if (typeof oldIE === 'undefined' && Object.keys) {
+				hljs.initHighlighting();
+			}
+		};
+	</script>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.personal}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size:0.4rem;line-height: 44px;text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header .back{
+				display: block;
+				width: 44px;
+				height: 44px;
+				background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+				background-size:0.4rem;
+				background-position:center center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			/* 中间内容 */
+			.count{
+				padding: 44px 0 1px;
+				background-color: #F5F5F5;
+				font-size: 0.4rem;
+			}
+			/* swiper自定义 */
+			.swiper-container{
+				width: 100%;
+				background-color: white;
+				/* min-height: 5rem;
+				height:5rem; */
+			}
+			.swiper-pagination-bullet-active{
+				background: white;
+			}
+			.banner_swiper img{
+				width: 100%;
+			}
+
+
+			.shopInfo{
+				background-color: white;
+				margin-bottom: 0.2rem;
+				padding: 0.25rem;
+			}
+			.shopInfo h5{
+				color: #000000;
+				margin-bottom: 0.2rem;
+			}
+			.shopInfo .price span:nth-child(1){
+				color: red;
+				display: inline-block;
+				margin-right: 0.1rem;
+			}
+			.shopInfo .price span:nth-child(2){
+				font-size: 0.3rem;
+				color: #C0C0C0;
+				text-decoration: line-through;
+			}
+			.shopInfo .number{
+				font-size: 0.3rem;
+				color: #C0C0C0;
+				padding-right:4rem ;
+			}
+
+
+			.imgTextDetails{
+				background-color: white;
+				text-align: center;
+			}
+			.imgTextDetails_title{
+				line-height: 1rem;
+				color: #CCCCCC;
+			}
+			.imgTextDetails_title span{
+				color: #303133;
+				display: inline-block;
+				margin: 0 0.3rem;
+			}
+			.imgTextDetails_count img{
+				width: 10rem;
+			}
+
+
+			.pageBottom{
+				position: fixed;
+				left: 0;
+				bottom: 0.25rem;
+				width:9.5rem;
+				margin: 0 0.25rem;
+				background-color: white;
+				border-radius: 5px;
+				height: 1.4rem;
+				display: flex;
+				align-items:center;
+				font-size: 0;
+			}
+			.pageBottom>div{
+				height: 1.4rem;
+				width: 50%;
+				font-size: 0.4rem;
+			}
+			.pageBottom_left{
+				display: inline-block;
+				width: 1rem;
+				height: 1rem;
+				position: relative;
+			}
+			.pageBottom_left a{
+				display: inline-block;
+				width: 1.4rem;
+				height:1.4rem;
+				text-align: center;
+				color: #808080;
+				margin-right: 0.4rem;
+				/* position: absolute;
+				top: 0;
+				left: 0; */
+			}
+			.pageBottom_left .item{
+				width: 0.6rem;
+				height:0.6rem;
+				margin: 0.2rem auto 0;
+			}
+			.pageBottom_left a:nth-child(1) .item{
+				background: url('__PUBLIC__/Home/img/icon/shop_details_index.png') no-repeat;
+				background-size:0.6rem ;
+				background-position: center center;
+			}
+			.pageBottom_left a:nth-child(2) .item{
+				background: url('__PUBLIC__/Home/img/icon/shop_car.png') no-repeat;
+				background-size:0.6rem ;
+				background-position: center center;
+			}
+			.pageBottom_right{
+				padding-right: 0.25rem;
+			}
+			.pageBottom_right button{
+				height: 0.8rem;
+				margin: 0.3rem 0;
+				width: 2.2rem;
+				background-color:#886DEE ;
+				border-radius: 0.4rem;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			商品详情
+			<span class="back" onclick="javascript:history.back(-1);"></span>
+		</header>
+		<!-- 中间内容 -->
+		<div class="count">
+			<div class="swiper-container banner_swiper">
+				<div class="swiper-wrapper">
+					<if condition="$goods['imagepath1'] neq null">
+                        <div class="swiper-slide"><img src="{$goods.imagepath1}" alt=""></div>
+					</if>
+					<if condition="$goods['imagepath2'] neq null">
+                        <div class="swiper-slide"><img src="{$goods.imagepath2}" alt=""></div>
+					</if>
+					<if condition="$goods['imagepath3'] neq null">
+                        <div class="swiper-slide"><img src="{$goods.imagepath3}" alt=""></div>
+					</if>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="shopInfo">
+				<h5>{$goods.goods_name}</h5>
+				<div class="price">
+					<span>￥{$goods.goods_price}</span><span>￥{$goods.goods_oldprice}</span>
+				</div>
+				<div class="number">
+					<span>销量：{$goods.goods_sell}</span><span class="fr">库存：{$goods.goods_number}</span>
+				</div>
+				<if condition="$goods['goods_price'] egt 1000">
+					<div class="chose">
+						<label for=""><input type="radio" name="type" value="1" checked class="t_romm_ip" />注册单(80%现金+20%股权)</label>
+						<label for=""><input type="radio" name="type" value="2" class="t_romm_ip" />复购单(积分购买)</label>
+					</div>
+				</if>
+			</div>
+			<div class="imgTextDetails">
+				<div class="imgTextDetails_title">
+					——<span>图文详情</span>——
+				</div>
+				<div class="imgTextDetails_count">
+					<img src="{$goods.image_declare1}" alt="">
+					<img src="{$goods.image_declare2}" alt="">
+					<img src="{$goods.image_declare3}" alt="">
+
+				</div>
+			</div>
+			<div class="pageBottom">
+				<div class="pageBottom_left">
+					<a href="/Home/Index/index">
+						<div class="item"></div>
+						首页
+					</a>
+					<a href="/Home/Mall/shop_cart">
+						<div class="item"></div>
+						购物车
+					</a>
+				</div>
+				<div class="pageBottom_right">
+					<button type="button" id="addcart">加入购物车</button>
+					<button class="fr" id="buy" type="button" >立即购买</button>
+				</div>
+			</div>
+		</div>
+	<input type="hidden" value="{$goods.id}" id="gid">
+	</body>
+	<script src="__PUBLIC__/Home/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var id =$('#gid').val();
+		var type = 1;
+		 var mySwiper = new Swiper ('.swiper-container', {
+			direction: 'horizontal',
+			loop: true,
+			// 如果需要分页器
+			autoplay:2000,
+			autoplayDisableOnInteraction:true,
+			pagination: '.swiper-pagination'
+		})
+		$('.chose input[type=radio]').change(function () {
+			type=$(this).val();
+		})
+		$('#addcart').click(function () {
+			$.ajax({
+				url: "/Home/Mall/add_cart",
+				type: "POST",
+				data: {
+					id: id,
+					type:type
+				},
+				dataType: "json",
+				success: function(str) {
+					mui.alert(str.message);
+				},
+			});
+		})
+		$('#buy').click(function () {
+			location.href='/Home/Mall/buy/id/' + id + '/type/' + type;
+			// $.post("/Home/Mall/buy",{id:id,type:type})
+			// $.post({
+			// 	url: "/Home/Mall/buy",
+			// 	type: "POST",
+			// 	data: {
+			// 		id: id,
+			// 		type:type
+			// 	},
+			// 	dataType: "json",
+			// });
+		})
+	</script>
+</html>

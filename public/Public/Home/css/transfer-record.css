@@ -1,0 +1,17 @@
+.mui-bar{
+	background-color: #886dee;
+}
+
+a{
+	color: #FFFFFF;
+}
+.transferTitle{
+	margin-top: 1.6rem; 
+}
+table{
+	border-top: 1px solid #999999;
+	margin-top: 0.4rem;
+}
+.none{
+	display: none;
+}

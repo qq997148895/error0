@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.personal}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size: 18px;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header input#sousuo{
+				display: block;
+				padding: 0;
+				margin: 0;
+				width: 9.5rem;
+				margin: 7px auto;
+				height: 30px;
+				border-radius: 15px;
+				font-size:0.4rem;
+				line-height: 30px;
+				color: #000000;
+				padding: 0 1rem 0 0.25rem;
+			}
+			header .sousuoBtn{
+				display: inline-block;
+				width: 0.8rem;
+				height: 0.8rem;
+				position: absolute;
+				top: 7px;
+				right: 0.35rem;
+				background: url("__PUBLIC__/Home/img/icon/icon_sousuo@2x.png") no-repeat;
+				background-size:0.4rem ;
+				background-position:center center;
+			}
+			header input::-webkit-input-placeholder { /* WebKit browsers */ 
+				font-size: 0.4rem; 
+			} 
+			/* 底部导航 */
+			.index_bottom{
+				background-color: white;
+				z-index: 99;
+			}
+			/* 循环列表 */
+			.count{
+				padding: 0px 0.25rem 50px;
+			}
+			.count_title{
+				padding: 0.25rem 0;
+			}
+			.count_title img{
+				width: 4.6rem;
+				display: inline-block;
+				vertical-align: top;
+				border-radius: 4px;
+			}
+			.item_head{
+				position: relative;
+				height: 40px;
+				padding-left: 40px;
+				/* font-size: 0; */
+			}
+			.item_left img{
+				position: absolute;
+				top: 5px;
+				left: 0;
+				width: 30px;
+				height: 30px;
+			}
+			.item_left p{
+				font-size: 0.3rem;
+				line-height: 19px;
+			}
+			.item_left span{
+				font-size: 0.4rem;
+				font-weight: 600;
+				line-height: 19px;
+			}
+			.item_right{
+				position: absolute;
+				top: 50%;
+				margin-top: -0.3rem;
+				width: 1.5rem;
+				right: 0;
+				line-height: 0.6rem;
+				text-align: center;
+				border-radius: 0.4rem;
+				border: 1px solid #886DEE;
+				color: #886DEE;
+				font-size: 0.35rem;
+			}
+			.item_count{
+				display: flex;
+				padding-top: 0.2rem;
+				justify-content: space-between;
+			}
+			.item_count img{
+				width: 3rem;
+				height:3rem;
+			}
+			.count_list li{
+				margin-bottom: 0.2rem;
+			}
+			.count_top_img{
+				padding-top: 44px;
+				margin-bottom: 10px;
+			}
+			.count_top_img img{
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="index_bottom">
+			<ul>
+				<li>
+					<a href="/Home/Index/index">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_homepage01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mall/shop">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_Shopping02@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mymessage/myinfo">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_my01@2x.png" alt="" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<header>
+			<input id="sousuo" type="text" value="{$name}" placeholder="请输入搜索内容"><span id='search' class="sousuoBtn"></span>
+		</header>
+		<div class="count_top_img">
+			<img src="__PUBLIC__/Home/img/icon/miaosha.png" alt="">
+		</div>
+		<div class="count">
+
+			<ul class="count_list">
+				<foreach name="malllist" item="v">
+				<li>
+					<div class="item_head">
+						<div class="item_left">
+							<img src="__PUBLIC__/Home/img/icon/img_toux@2x.png" alt="">
+							<span>{$v.merchant_name}</span>
+							<p>{$v.merchant_id}</p>
+						</div>
+						<div class="item_right" onclick="window.location.href='/Home/Mall/shop_list/id/{$v.user_id}'">
+							进店
+						</div>
+					</div>
+					<div class="item_count">
+						<foreach name="v.goods" item="vv">
+							<a href="/Home/Mall/shop_details/id/{$vv.id}"><img src="{$vv.imagepath1}" alt=""></a>
+						</foreach>
+					</div>
+				</li>
+				</foreach>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$('.count_top_img').on("click",function () {
+			mui.alert('活动暂未开放');
+		})
+		$('#search').on("click",function () {
+			var name = $('#sousuo').val();
+			window.location.href='/Home/Mall/shop/name/'+name
+		})
+	</script>
+</html>

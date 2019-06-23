@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>用户登录</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__PUBLIC__/imagess/User_Login.css" type="text/css" rel="stylesheet">
+<script language="javascript">
+function SetFocus()
+{
+if (document.Login.username.value=="")
+    document.Login.username.focus();
+else
+    document.Login.username.select();
+}
+function CheckForm()
+{
+    if(document.Login.username.value=="")
+    {
+        alert("请输入用户名！");
+        document.Login.username.focus();
+        return false;
+    }
+    if(document.Login.password.value == "")
+    {
+        alert("请输入密码！");
+        document.Login.password.focus();
+        return false;
+    }
+}
+</script>
+<script language="javascript" type="text/javascript"> window.status = '欢迎登陆！'; </script> 
+
+<meta content="MSHTML 6.00.6000.16705" name="GENERATOR"></head>
+<body id="userlogin_body">
+<form name="Login" onsubmit="return CheckForm();" action="__APP__/index/checkLogin" method="post">
+<div id="user_login">
+<dl>
+  <dd id="user_top">
+  <ul>
+    <li class="user_top_l"></li>
+    <li class="user_top_c"></li>
+    <li class="user_top_r"></li></ul>
+  </dd><dd id="user_main">
+  <ul>
+    <li class="user_main_l"></li>
+    <li class="user_main_c">
+    <div class="user_main_box">
+    <ul>
+      <li class="user_main_text">用户名： </li>
+      <li class="user_main_input"><input class="TxtUserNameCssClass" id="username" maxlength="20" name="username"> </li></ul>
+    <ul>
+      <li class="user_main_text">密　码： </li>
+      <li class="user_main_input"><input class="TxtPasswordCssClass" id="password" value="" name="password" type="password"></li></ul>
+    </div></li>
+    <li class="user_main_r"><input class="IbtnEnterCssClass" src="__PUBLIC__/imagess/user_botton.gif" name="Submit" onmouseover="window.status='cc';return true" type="image"> </li></ul>
+  </dd><dd id="user_bottom">
+  <ul>
+    <li class="user_bottom_l"></li>
+    <li class="user_bottom_c"><span style="MARGIN-TOP: 40px">&nbsp;</span> </li>
+    <li class="user_bottom_r"></li></ul></dd></dl></div>
+    <input id="ComeUrl" name="ComeUrl" type="hidden">
+	<script language="JavaScript" type="text/JavaScript">
+       SetFocus();
+	</script>
+</form>
+
+</body></html>

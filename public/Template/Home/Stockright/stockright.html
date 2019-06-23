@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>股权</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			html,body{
+				height: 100%;
+				background-color: #F5F5F5;
+			}
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size: 18px;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header h1{
+				line-height: 44px;
+				text-align:center;
+				font-size: 17px;
+			}
+			/* 底部导航 */
+			.index_bottom{
+				background-color: white;
+				z-index: 99;
+				border-top: 1px solid #EEEEEE;
+			}
+			/* 循环列表 */
+			.count{
+				padding: 44px 0 50px;
+				background-color:#F5F5F5 ;
+			}
+			.help{
+				padding: .3rem .2rem;
+				display: flex;
+				align-items: center;
+				border-bottom: 10px solid #f6f6f6;
+				background: #fff;
+			}
+			.help li{
+				flex: 1;
+				margin: 0 .1rem;
+				text-align: center;
+			}
+			.help li img{width: 100%;}
+			.headBottom{
+				width: 100%;	
+				color: #fffdfd;	
+				/*position: absolute;*/
+			    /*bottom: 0.1rem;*/
+				line-height: 1.2rem;
+				text-align: center;
+				display: flex;
+				background-color: white;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			.headBottom li{
+				display: flex;
+				align-items: center;
+				text-align: center;
+				margin: 0 auto;
+			}
+			.headBottom span{
+				display: inline-block;
+				height: 1.2rem;
+			}
+			.headBottom .icon{
+				width: 1.2rem;
+				background: url("__PUBLIC__/Home/img/icon/home_icon_jiage@2x.png") no-repeat;
+				background-size: 0.6rem;
+				background-position: center center;
+			}
+			.headBottom .text{
+				font-size: 0.5rem;
+				color: #ff6666;
+				font-weight: 600;
+			}
+			.codeGem{
+				border-bottom: 10px solid #F6F6F6;
+				background: #fff;
+			}
+			.codeGem li{
+				width: 25%;
+				text-align: center;
+				padding: 0.3rem 0;
+			}
+			.codeGem li span{font-size: .45rem;}
+			.codeGem li p{margin-bottom: 5px;}
+			.codeGem li:nth-child(1){
+				border-right: 1px solid #E7E7E7;
+				color: #00ddd0;
+			}
+			.codeGem li:nth-child(1) p{
+				color: #00ddd0;
+			}
+			.codeGem li:nth-child(2){
+				border-right: 1px solid #E7E7E7;
+				color: #ed65b8;
+			}
+			.codeGem li:nth-child(2) p{
+				color: #ed65b8;
+			}
+			.codeGem li:nth-child(3){
+				border-right: 1px solid #E7E7E7;
+				color: #886dee;
+			}
+			.codeGem li:nth-child(3) p{
+				color: #886dee;
+			}
+			.codeGem li:nth-child(4){
+				color: #3da5f6;
+			}
+			.codeGem li:nth-child(4) p{
+				color: #3da5f6;
+			}
+			.codeGem li span{
+				font-weight: 600;
+			}
+			.codeGem img{
+				width: 0.8rem;
+				height: 0.8rem;
+				margin:0.1rem auto;
+			}
+			.kline{
+				width: 100%;
+				background-color: #FFFFFF;
+				margin-bottom: 0.3rem;
+				padding:0 0.25rem;
+			}
+			#main{
+				height:240px;
+				width: 100%;
+			}
+			.myStockright{
+				line-height: 50px;
+				background-color: #FFFFFF;
+				text-align: center;font-size: 18px;font-weight: 600;
+			}
+			.kline_title{
+				text-align: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<h1 class="title" style="border-bottom: 1px solid #fff;">股权</h1>
+		</header>
+		
+		
+		<div class="count">
+			<ul class="headBottom flexStar">
+				<li><span class="icon"></span><span class="text">当前价格:{$config.stock_price}</span></li>
+			</ul>
+			<ul class="codeGem flexBetween wallet_list">
+				<li>
+					 <p>股权钱包</p>
+					<span id="">{$walletinfo.stock_money}</span>
+				</li>
+				<li>
+					<p>积分钱包</p>
+					<span id="">{$walletinfo.change_amount}</span>
+				</li>
+				<li>
+					<p>持股钱包</p>
+					<span id="">{$walletinfo.freeze}</span>
+				</li>
+				<li>
+					<p>股权增值券</p>
+					<span id="">{$walletinfo.order_byte}</span>
+				</li>
+			</ul>
+			
+			<div class="kline">
+				<div class="kline_title">
+					k线图
+				</div>
+				<div id="main">
+					
+				</div>
+			</div>
+			<ul class="help flexAround">
+				<li class="helpColor"><img src="__PUBLIC__/Home/img/icon/home_btn_mairu@2x.png"/></li>
+				<li><img src="__PUBLIC__/Home/img/icon/homg_btn_maichu@2x.png"/></li>
+			</ul>
+			<div class="myStockright">
+				我的股权：{$walletinfo.static_amount}
+			</div>
+		</div>
+		<div class="index_bottom">
+			<ul>
+				<li>
+					<a href="/Home/Index/index">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_homepage01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Stock/stockright">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_guquan02@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mall/shop">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_Shopping01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/OrderCenter/buy_matching_list">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_Order01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mymessage/myinfo">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_my01@2x.png" alt="" />
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="__PUBLIC__/js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.wallet_list li').on('tap', function() {
+			/*判断账号是否激活*/
+			var _index = $(this).index();
+			switch(_index) {
+				case 0:
+					location.href = "/Home/Wallet/StaticWallet";
+					break;
+				case 1:
+					location.href = "/Home/Wallet/DynamicWallet";
+					break;
+				case 2:
+					location.href = "/Home/Wallet/FrozenWallet";
+					break;
+				case 3:
+					//mui.alert('{$Think.lang.remain}');
+					location.href = "/Home/Wallet/MallWallet";
+					break;
+			}
+		});
+		$('.help li').on('tap', function() {
+			var _index = $(this).index();
+			switch(_index) {
+				case 0:
+					location.href = "/Home/OrderCenter/buyorder";
+					break;
+				case 1:
+					location.href = "/Home/OrderCenter/saleorder";
+					break;
+			}
+		})
+		// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+			 grid: {
+				top:'10%',
+				left: '15%',
+				right: '10%'
+			},
+			xAxis: {
+				type: 'category',
+				data: {$time}
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [{
+				data: {$price},
+				type: 'line'
+			}],
+			dataZoom : [
+				{
+					type: 'slider',
+					show: true,
+					start:0,
+					end: {$num},
+					handleSize: 8
+				}
+			]
+		};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+	</script>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新建地址</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.picker.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.poppicker.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.picker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.poppicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size:0.4rem;line-height: 44px;text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header .back{
+				display: block;
+				width: 44px;
+				height: 44px;
+				background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+				background-size:0.4rem;
+				background-position:center center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			/* 中间内容 */
+			.count{
+				padding: 44px 0.25rem 50px;
+				font-size: 0.4rem;
+			}
+			/**/
+			.wrap_cont_list{
+				padding-top:0.3rem ;
+			}
+			.wrap_cont_list li{
+				padding: 0.2rem 0.25rem 0.2rem 2.75rem;
+				border-bottom: 1px solid  #eeeeee;
+				position: relative;
+			}
+			.wrap_cont_list li span{
+				position: absolute;
+				display: block;
+				left: 0.25rem;
+				top: 50%;
+				width: 2.5rem;
+				height: 1rem;
+				line-height: 1rem;
+				margin-top: -0.5rem;
+			}
+			.wrap_cont_list li input{
+				border: 0;
+				padding: 0;
+				margin-bottom: 0;
+			}
+			.change_btn{
+				padding: 0.25rem;
+				padding-left:0.75rem;
+				position: relative;
+			}
+			.change_btn span{
+				display: block;
+			    position: absolute;
+			    top: 0.3rem;
+			    left: 0.25rem;
+			    width: 0.45rem;
+			    height: 0.45rem;
+			    border: 1px solid #eeeeee;
+			    border-radius: 50%;
+			}
+			.change_btnBG{
+				background:url(__PUBLIC__/Home/img/icon/user_icon_mrx@2x.png) no-repeat ;
+				background-size:0.4rem ;
+				background-position:left 50% ;
+			} 
+			.wrap_header_right{
+				background: url(__PUBLIC__/Home/img/icon/user_remove.png) no-repeat;
+				background-size:0.55rem ;
+				background-position:50% 50%;
+			}
+			.changeaddress{
+				padding-left: 0.5rem;
+				background: url(__PUBLIC__/Home/img/icon/@2x.png) no-repeat;
+				background-size:0.25rem ;
+				background-position:95% 50% ;
+			}
+			.mui-poppicker,.mui-picker{
+				background-color:white ;
+			}
+			.mui-poppicker-header button{
+				background-color:white  !important;
+				color: #15d1be !important;
+				border: 0 !important;
+				font-size: 0.4rem !important;
+			}
+			.wrap_cont_btn button{
+				display:block;
+				width: 8rem;
+				line-height: 1rem;
+				background: #886DEE;
+				color: white;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			新建地址
+			<span class="back" onclick="javascript:history.back(-1);"></span>
+		</header>
+		<!-- 中间内容 -->
+		<div class="count">
+			<ul class="wrap_cont_list">
+				<li>
+					<span>收货人姓名：</span><input id="shouhuoname" name="shouhuoname" value="" type="text" placeholder="请输入收货人姓名" />
+				</li>
+				<li>
+					<span>联系方式：</span><input  id="shouhuophone" name="shouhuophone" value="" type="text" placeholder="请输入手机号" />
+				</li>
+				<li>
+					<span>省/市：</span><input id="shouhuopace" name="shouhuopace" onclick="showPick()" class="changeaddress" readonly="readonly" value="" type="text" placeholder="请选择省、市" />
+				</li>
+				<li>
+					<span>详细地址：</span><input id="shouhuoinfo" name="shouhuoinfo" value="" type="text" placeholder="如道路、门牌号、小区等" />
+				</li>
+			</ul>
+			<p class="change_btn"><span id="is_default" class="change_btnBG"></span>设置为默认地址</p>
+			<div class="wrap_cont_btn">
+				<button>保存</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		$('.wrap_cont_btn button').click(function() {
+			var bol = $('#is_default').hasClass('change_btnBG');
+			if (bol){
+				var is_default=1;
+			}else {
+				var is_default=0;
+			}
+			var shouhuoname=$('#shouhuoname').val();
+			var shouhuophone=$('#shouhuophone').val();
+			var shouhuopace=$('#shouhuopace').val();
+			var shouhuoinfo=$('#shouhuoinfo').val();
+			//获取文本框的值
+			$.ajax({
+				url: '/Home/Shop/ajaxaddress',
+				data: {
+					shouhuoname:shouhuoname,
+					shouhuophone:shouhuophone,
+					is_default:is_default,
+					shouhuopace:shouhuopace,
+					shouhuoinfo:shouhuoinfo,
+
+				},
+				dataType: 'json',
+				type: 'post',
+				success: function(data) {
+					if(data.status == 1) {
+						mui.alert(data.message, function() {
+							location.href = "/Home/Mymessage/personal_address";
+						});
+					} if (data.status == 0){
+						mui.alert(data.message);
+					}
+				}
+			});
+		});
+		
+		$(".change_btn").on("click",function  () {
+			var className=$(this).children("span").attr("class");
+			if (className=="change_btnBG") {
+				$(this).children("span").removeClass('change_btnBG');
+			} else{
+				$(this).children("span").addClass("change_btnBG");
+			}
+		});
+		
+		function showPick(){
+			var adressStr ='';
+			var picker = new mui.PopPicker({
+				//三级联动
+			    layer: 3
+			});
+			picker.setData(cityData3);
+			//设置默认选择地址
+			picker.pickers[0].setSelectedIndex(2);
+			picker.pickers[1].setSelectedIndex(1);
+			picker.pickers[2].setSelectedIndex(0);
+			picker.show(function(SelectedItem) {
+			  //将选择的省、市、区显示到屏幕上
+			    for (var i = 0; i < SelectedItem.length; i++) {
+			       adressStr +=" "+SelectedItem[i].text;
+			    }
+			    console.log(adressStr);
+			    $('.changeaddress').val(adressStr);
+			});
+		}
+	</script>
+</html>

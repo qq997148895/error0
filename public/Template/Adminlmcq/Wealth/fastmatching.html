@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/jquery.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Home/laydate/laydate.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".click").click(function () {
+                    $(".tip").fadeIn(200);
+                });
+
+                $(".tiptop a").click(function () {
+                    $(".tip").fadeOut(200);
+                });
+
+                $(".sure").click(function () {
+                    $(".tip").fadeOut(100);
+                });
+
+                $(".cancel").click(function () {
+                    $(".tip").fadeOut(100);
+                });
+
+            });
+        </script>
+          <style>
+                .pages a,.pages span {
+                    display:inline-block;
+                    padding:2px 5px;
+                    margin:0 1px;
+                    border:1px solid #f0f0f0;
+                    -webkit-border-radius:3px;
+                    -moz-border-radius:3px;
+                    border-radius:3px;
+                }
+                .pages a,.pages li {
+                    display:inline-block;
+                    list-style: none;
+                    text-decoration:none; color:#58A0D3;
+                }
+                .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                    margin:0;
+                }
+                .pages a:hover{
+                    border-color:#50A8E6;
+                }
+                .pages span.current{
+                    background:#50A8E6;
+                    color:#FFF;
+                    font-weight:700;
+                    border-color:#50A8E6;
+                }
+                .flexBetween{
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: space-between;
+                }
+                .times{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 10px;
+                    position: relative;
+                }
+                .times span{
+                    display: inline-block;
+                }
+              .times input{
+                  border: 1px solid #ccc;
+                  height:25px;
+                  padding: 0 10px;
+              }
+                .times button{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 25px;
+                    width: 60px;
+                    background-color: #18b3ff;
+                    color: #fff;
+                    line-height: 25px;
+                }
+            </style>
+    </head>
+    <body>
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">订单管理</a></li>
+                <li><a href="#">手动快速匹配</a></li>
+            </ul>
+        </div>
+        <div class="rightinfo">
+            <div class="tools">
+                <a href="/Adminlmcq/Wealth/fastmatching" style="color: blue;font-size: 14px;">预付款</a>
+                &nbsp;&nbsp;
+                <a href="/Adminlmcq/Wealth/fastmatching/type/1" style="color: blue;font-size: 14px;">非预付款</a>
+            </div>
+            <div class="flexBetween">
+                <div style="width: 45%;">
+                    <div class="times">
+                        <span>时间：</span>
+                        <input type="text" id="time1" placeholder="请选择时间段" readonly>
+                        <button id="sou1">搜索</button>
+                    </div>
+                    <span style="color:#000000; float: left; width: 50%;">未匹配总金额:{$buymoney}</span>
+                    <span style="color:#000000; text-align: right; margin-right: 5%;" id="yxje">选择总金额:{$check_money}</span>
+
+                    <input name="arrzs" id="arrzs" type="hidden" value="{$check_money}" />
+                    <table class="tablelist">
+                        <thead>
+                            <tr>
+                                <th style="width:20%">姓名</th>
+                                <th style="width:25%">用户</th>
+                                <th style="width:15%">金额</th>
+                                <th style="width:15%">类别</th>
+                                <th style="width:15%">时间(小时)</th>
+                                <th style="width:10%"><input name="quanxuan" type="checkbox" class="buy"/>匹配操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="buylist">
+                            <foreach name='list' item='v'>
+                                <tr>
+                                    <td>{$v.user_truename}</td>
+                                    <td>{$v.user_phone}</td>
+                                    <td>{$v.amount}</td>
+                                    <td>
+                                        <if condition="$v.order_type eq 1">预付款</if>
+                                        <if condition="$v.order_type eq 2">非预付款</if>
+                                    </td>
+                                    <td>{$v.hourse}</td>
+                                    <td>
+                                        <label><input name="id" type="checkbox" data-value="{$v.amount}" class="buylist" value="{$v.id}" <php> if(in_array($v['id'],$check_array)) echo "checked";</php> /></label>
+                                    </td>
+                                </tr> 
+                            </foreach>
+                        </tbody>
+                    </table>
+                    <div class="pages" style="width: 100%;"><br />
+                        <div align="right">{$page}</div>
+                    </div>
+                </div>
+  				<input name="arrid" id="arrid" type="hidden" value="{$check_id}" />
+                <div style="width: 10%;position: relative;height: 700px">
+                      <input name="" type="submit" class="btn" value="确认匹配" style="position: absolute;top: 50%;left: 10%" />
+                </div>
+  				<input name="arrid2" id="arrid2" type="hidden" value="{$check_id2}" />
+                <div style="width: 45%;">
+                    <div class="times">
+                        <span>时间：</span>
+                        <input type="text" id="time2" placeholder="请选择时间段" readonly>
+                        <button id="sou2">搜索</button>
+                    </div>
+                    <span style="color:#000000; float: left; width: 50%;">未匹配总金额:{$salemoney}</span>
+                    <span style="color:#000000; text-align: right; margin-right: 5%;" id="yxje2">选择总金额:{$check_money2}</span>
+                    
+                    <input name="arrzs2" id="arrzs2" type="hidden" value="{$check_money2}" />
+                    <table class="tablelist">
+                        <thead>
+                            <tr>
+                                <th style="width:20%">姓名</th>
+                                <th style="width:25%">用户</th>
+                                <th style="width:15%">金额</th>
+                                <th style="width:15%">类别</th>
+                                <th style="width:15%">时间(小时)</th>
+                                <th style="width:10%"><input name="quanxuan" type="checkbox" class="sell"/>匹配操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salelist">
+                            <foreach name='listone' item='val'>
+                                <tr>
+                                    <td>{$val.user_truename}</td>
+                                    <td>{$val.user_phone}</td>
+                                    <td>{$val.amount}</td>
+                                    <td>得到订单</td>
+                                    <td>{$val.hoursee}</td>
+                                    <td>
+                                        <label><input name="id" type="checkbox" data-value="{$val.amount}" class="salelist" value="{$val.id}" <php> if(in_array($val['id'],$check_array2)) echo "checked";</php> /></label>
+                                    </td>
+                                </tr> 
+                            </foreach>
+                        </tbody>
+                    </table>
+                    <div class="pages" style="width: 100%;"><br />
+                        <div align="right">{$page2}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        //
+        //日期范围1
+        laydate.render({
+            elem: '#time1'
+            ,range: true
+        });
+        //日期范围2
+        laydate.render({
+            elem: '#time2'
+            ,range: true
+        });
+        $('#sou1').click(function(){
+            var time = $('#time1').val();
+            console.log(time);
+            $.ajax({
+                url:'/Adminlmcq/Wealth/search',
+                data:{time:time,search:1},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    var html = '';
+                    $.each(data.data, function (k, v) {
+                        html += '<tr>' +
+                            '<td style="width: 2.4rem">'+v.user_truename+'</td>' +
+                            '<td>'+v.user_phone+'</td>' +
+                            '<td>'+v.amount+'</td>' +
+                            '<td>'+'得到订单'+'</td>' +
+                            '<td>'+v.hourse+'</td>'+
+                            '<td>'+'<label><input name="id" type="checkbox" data-value=' + v.amount + '" class="buylist" value=' + v.id + '</label>'+
+                            '</tr>';
+                    });
+                    $("#buylist").html(html);
+                    // $("#totalpro").html(data.totalpro);
+                    // $(".lod_box").hide();
+                }
+            });
+        });
+        $('#sou2').click(function(){
+            var time = $('#time2').val();
+            console.log(time);
+            $.ajax({
+                url:'/Adminlmcq/Wealth/search',
+                data:{time:time,search:2},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    var html = '';
+                    $.each(data.data, function (k, v) {
+                        html += '<tr>' +
+                            '<td style="width: 2.4rem">'+v.user_truename+'</td>' +
+                            '<td>'+v.user_phone+'</td>' +
+                            '<td>'+v.amount+'</td>' +
+                            '<td>'+v.order_type+'</td>' +
+                            '<td>'+v.hourse+'</td>'+
+                            '<td>'+'<label><input name="id" type="checkbox" data-value=' + v.amount + '" class="buylist" value=' + v.id + '</label>'+
+                            '</tr>';
+                    });
+                    $("#salelist").html(html);
+                    $("#totalpro").html(data.totalpro);
+                    $(".lod_box").hide();
+                }
+            });
+        });
+		$("input[name=quanxuan]").click(function(){
+			var bol = $(this).attr("checked");
+			var classname = $(this).attr('class');
+			//console.log(classname);
+			$(this).parents("table").find("tbody input[type=checkbox]").attr("checked",bol); 
+			var total = 0;
+			var str ='';
+			if(classname=='buy'){
+				$('#arrid').val(',');
+				$("#arrzs").val(0);
+				$("#yxje").html('已选金额和=0');
+			}else{
+				$('#arrid2').val(',');
+				$("#arrzs2").val(0);
+				$("#yxje2").html('已选金额和=0');
+			}
+			if (bol) {
+				$(this).parents("table").find("tbody input[type=checkbox]").each(function(){
+					if ($(this).attr('checked')) {
+						var id = $(this).val();
+						var val = parseInt($(this).attr('data-value'));
+						var num = $(this).val()*1;
+						total+=num
+						if(classname=='buy'){
+							str = $('#arrid').val();
+							var b = parseInt($("#arrzs").val());
+							$('#arrid').val(str+id+',');
+							$("#arrzs").val((b+val));
+							console.log($('#arrid').val());
+							console.log($('#arrzs').val());
+							//console.log($("#arrid").val()+"&money="+$("#arrzs").val());
+						}else{
+							str = $('#arrid2').val();
+							var b = parseInt($("#arrzs2").val());
+							$('#arrid2').val(str+id+',');
+							$("#arrzs2").val((b+val));
+							console.log($('#arrid2').val());
+							console.log($('#arrzs2').val());
+							//console.log($("#arrid2").val()+"&money="+$("#arrzs2").val());
+						}
+					}
+				});
+				if(classname=='buy'){
+					$("#yxje").html('已选金额和='+$('#arrzs').val());
+				}else{
+					$("#yxje2").html('已选金额和='+$('#arrzs2').val());
+				}
+			} else{
+				if(classname=='buy'){
+					$('#arrid').val(',');
+					$("#arrzs").val(0);
+					$("#yxje").html('已选金额和=0');
+				}else{
+					$('#arrid2').val(',');
+					$("#arrzs2").val(0);
+					$("#yxje2").html('已选金额和=0');
+				}
+				console.log($('#arrid').val());
+				console.log($('#arrzs').val());
+				console.log($("#arrid").val()+"&money="+$("#arrzs").val());
+				console.log($('#arrid2').val());
+				console.log($('#arrzs2').val());
+				console.log($("#arrid2").val()+"&money="+$("#arrzs2").val());
+			}
+			
+		})
+      	$(".btn").click(function(){
+            // var ob = $(this);
+            // ob.attr("disabled", true);
+            // var i = 6;
+            // var intval = setInterval(function() {
+            //     ob.val(i+"s后重新匹配");
+            //     i--;
+            //     if (i < 0) {
+            //         ob.removeAttr("disabled");
+            //         ob.val("确认匹配");
+            //         clearInterval(intval);
+            //     }
+            // }, 1000);
+            $(".btn").attr('disabled',true);
+            var arrid=$(this).parent().siblings("input[name='arrid']").val();
+            var arrid2=$(this).parent().siblings("input[name='arrid2']").val();
+            $.ajax({
+                url:'/Adminlmcq/Wealth/fastmatchone',
+                data:{arrid:arrid,arrid2:arrid2},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    if (data.status==0) {
+                        alert(data.message);
+                        window.location.reload(true);
+                    }else{
+                        alert(data.message);
+                        window.location.reload(true);
+                    }
+                }
+            });
+        });
+        $(".buylist").change(function(){
+            //var total = "{$tgbzuser.amount}";//用户买入总金额  <form action="/Adminlmcq/Wealth/fastmatchone"  name="fastmatch" id="fastmatch" method="post"></form>
+            $("#buylist .buylist").each(function () {
+                var dis = $(this).attr('checked');
+                var id = $(this).val();
+                var val = parseInt($(this).attr('data-value'));
+                var str = $('#arrid').val();
+                var b = parseInt($("#arrzs").val());
+                console.log(val,b);
+                if(dis){
+                    // if((b+val)>total){
+                    //     alert("总金额"+(b+val)+"超出"+total);
+                    //     $(this).attr('checked',false);
+                    //     return;
+                    // }
+                    $('#arrid').val(str+id+',');
+                    $("#arrzs").val((b+val));
+                    $("#yxje").html('已选金额和='+(b+val));
+                    //alert($("#arrzs").val());
+                    //alert($('#arrid').val());
+                }else{
+                    reg = new RegExp(id+',','g');
+                    $('#arrid').val(str.replace(reg,''));
+                    $("#arrzs").val((b-val));
+                    $("#yxje").html('已选金额和='+(b-val));
+                    //alert($("#arrzs").val());
+                    //alert($('#arrid').val());
+                }
+            })
+            $.get("{:U('set_cookie')}?id="+$("#arrid").val()+"&money="+$("#arrzs").val(),function(){});
+        });
+        $(".salelist").change(function(){
+            //var total = "{$tgbzuser.amount}";//用户买入总金额
+            var dis = $(this).attr('checked');
+            var id = $(this).val();
+            var val = parseInt($(this).attr('data-value'));
+            var str = $('#arrid2').val();
+            var b = parseInt($("#arrzs2").val());
+            if(dis){
+                // if((b+val)>total){
+                //     alert("总金额"+(b+val)+"超出"+total);
+                //     $(this).attr('checked',false);
+                //     return;
+                // }
+                $('#arrid2').val(str+id+',');
+                $("#arrzs2").val((b+val));
+                $("#yxje2").html('已选金额和='+(b+val));
+                // alert($("#arrzs2").val());
+                // alert($('#arrid2').val());
+            }else{
+                reg = new RegExp(id+',','g');
+                $('#arrid2').val(str.replace(reg,''));
+                $("#arrzs2").val((b-val));
+                $("#yxje2").html('已选金额和='+(b-val));
+                // alert($("#arrzs2").val());
+                // alert($('#arrid2').val());
+            }
+            $.get("{:U('set_cookie2')}?id="+$("#arrid2").val()+"&money="+$("#arrzs2").val(),function(){});
+        });
+    </script>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>会员列表</title>
+        <link href="__PUBLIC__/Admin/sncss/css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Admin/layer/2.4/layer.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Admin/h-ui/js/H-ui.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Admin/h-ui.admin/js/H-ui.admin.page.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".click").click(function () {
+                    $(".tip").fadeIn(200);
+                });
+
+                $(".tiptop a").click(function () {
+                    $(".tip").fadeOut(200);
+                });
+
+                $(".sure").click(function () {
+                    $(".tip").fadeOut(100);
+                });
+
+                $(".cancel").click(function () {
+                    $(".tip").fadeOut(100);
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">会员管理</a></li>
+                <li><a href="#">会员列表</a></li>
+            </ul>
+        </div>
+        <div class="rightinfo">
+
+            <div class="tools">
+
+                <form id="form1" name="form1" method="post" action="/Adminlmcq/User/userlist">
+
+                    <input name="user_name" placeholder="请输入用户手机号" type="text" class="dfinput" id="user" />
+                    <input name="" type="submit" class="btn" value="确认搜索"/>
+                </form>
+
+            </div>
+
+            <div class="tools">
+                <span style="padding-top: 10px;">总股权数量：{$sumstock}&nbsp&nbsp&nbsp&nbsp&nbsp总积分数量：{$sumjifen}&nbsp&nbsp&nbsp&nbsp&nbsp总冻结股权数量：{$freeze}</span>
+<!--                <span style="padding-top: 10px;">总股权数量：{$sumstock}&nbsp&nbsp&nbsp&nbsp&nbsp总积分数量：{$sumjifen}</span>-->
+            </div>
+
+            <table class="tablelist">
+                <thead>
+                    <tr>
+                        <th>编号<i class="sort"><img src="__PUBLIC__/Admin/sncss/images/px.gif" /></i></th>
+                        <th>用户名</th>
+                        <th>真实姓名</th>
+                        <th>手机号</th>
+<!--                        <th>VIP等级</th>-->
+<!--                        <th>信誉值</th>-->
+                        <th>介绍人昵称</th>
+                        <th>股权钱包</th>
+                        <th>积分钱包</th>
+                        <th>股权增值权</th>
+                        <th>激活状态</th>
+                        <th>用户状态</th>
+                        <th>冻结原因</th>
+                        <th>注册时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name='list' item='v'>
+                        <tr>
+                            <td>{$v.user_id}</td>
+                            <td>{$v.user_name}</td>
+                            <td>{$v.user_truename}</td>
+                            <td>{$v.user_phone}</td>
+<!--                            <td>{$v.user_level}级</td>-->
+<!--                            <td>{$v.user_reputation}</td>-->
+                            <td>{$v.user_parent}</td>
+                            <td>{$v.static_amount}</td>
+                            <td>{$v.change_amount}</td>
+                            <td>{$v.order_byte}</td>
+                            <if condition="$v.is_active eq 0" >
+                                <td>
+                                    <a href="/Adminlmcq/User/toactive/id/{$v.user_id}" onClick="javascript:if (!confirm('确定激活？')) return  false;" style="text-decoration:none; color: red;">未激活</a>
+                                </td>
+                            </if>
+                            <if condition="$v.is_active eq 1" >
+                                <td>已激活</td>
+                            </if>
+                            <if condition="$v.user_status eq 0" >
+                                <td>已封号</td>
+                            </if>
+                            <if condition="$v.user_status eq 1" >
+                                <td>正常</td>
+                            </if>
+                            <if condition="$v.user_status eq 0" >
+                                <td>{$v.cold_resone}</td>
+                            </if>
+                            <if condition="$v.user_status eq 1" >
+                                <td>正常</td>
+                            </if>
+                            <td><?php echo date("Y-m-d H:i:s",$v['user_add_time'])?></td>
+                            <td style="white-space:nowrap;">
+                                <!-- <a href="javascript:;" onclick="unuserpay('兑换钱包扣除','/Adminlmcq/User/unuserpay/id/{$v['user_id']}','450','310')" class="ml-5" style="text-decoration:none">
+                                   扣除         
+                                </a>&nbsp;
+                                <a href="javascript:;" onclick="userpay('兑换钱包赠送','/Adminlmcq/User/userpay/id/{$v['user_id']}','450','310')" class="ml-5" style="text-decoration:none">
+                                   赠送         
+                                </a>&nbsp; -->
+                                <a href="/Adminlmcq/User/getTreetow/user1/{$v.user_phone}" class="tablelink" style="text-decoration:none">团队</a>&nbsp;
+                                <a href="/Adminlmcq/User/useredit/user/{$v.user_id}" class="tablelink">修改</a>&nbsp;
+                                <a href="/Adminlmcq/User/userCold/user/{$v.user_id}" onClick="javascript:if (!confirm('确定封号？'))
+                                            return  false;" >
+                                    <if condition="$v.user_status eq 0" ><a style="color:red">已封号</a>
+                                       <elseif condition="$v.user_status eq 1" />封号
+                                    </if>
+                                </a>&nbsp;
+                                <a href="/Adminlmcq/User/uncold/user/{$v.user_id}" onClick="javascript:if (!confirm('确定解封？'))
+                                            return  false;" >解封
+                                </a>&nbsp;
+                                <a onClick="javascript:if (!confirm('确定删除此会员？'))
+                                            return  false;" href="/Adminlmcq/User/userdel/id/{$v.user_id}" >删除
+                                </a> &nbsp; 
+                                <a href="/Adminlmcq/Login/AdminLogin/user_phone/{$v.user_phone}/user_pwd/{$v.user_password}" target="_blank">登入
+                                </a>&nbsp;
+                                <!-- <if condition="$v.change_is_freeze eq 0" >
+                                    <a href="/Adminlmcq/User/refreezeChange/user_id/{$v.user_id}" class="tablelink" >冻结动态钱包</a>
+                                </if>
+                                <if condition="$v.change_is_freeze eq 1" >
+                                    <a href="/Adminlmcq/User/unrefreezeChange/user_id/{$v.user_id}" class="tablelink" >解封动态钱包</a>
+                                </if> -->
+                            </td>
+                        </tr> 
+                    </foreach>
+                </tbody>
+            </table>
+            <style>.pages a,.pages span {
+                    display:inline-block;
+                    padding:2px 5px;
+                    margin:0 1px;
+                    border:1px solid #f0f0f0;
+                    -webkit-border-radius:3px;
+                    -moz-border-radius:3px;
+                    border-radius:3px;
+                }
+                .pages a,.pages li {
+                    display:inline-block;
+                    list-style: none;
+                    text-decoration:none; color:#58A0D3;
+                }
+                .pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+                    margin:0;
+                }
+                .pages a:hover{
+                    border-color:#50A8E6;
+                }
+                .pages span.current{
+                    background:#50A8E6;
+                    color:#FFF;
+                    font-weight:700;
+                    border-color:#50A8E6;
+                }</style>
+
+            <div class="pages"><br />
+                <div align="right">{$page}
+                </div>
+            </div>
+
+
+            <!-- <div class="tip">
+                <div class="tiptop"><span>提示信息</span><a></a></div>
+
+                <div class="tipinfo">
+                    <span><img src="images/ticon.png" /></span>
+                    <div class="tipright">
+                        <p>是否确认对信息的修改 ？</p>
+                        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+                    </div>
+                </div>
+
+                <div class="tipbtn">
+                    <input name="" type="button"  class="sure" value="确定" />&nbsp;
+                    <input name="" type="button"  class="cancel" value="取消" />
+                </div>
+
+            </div>
+ -->
+
+
+
+        </div>
+
+        <script type="text/javascript">
+            // $('.tablelist tbody tr:odd').addClass('odd');
+            // function coin($id){
+            //     if($id==''){
+            //         alert('用户id为空');
+            //         return false;
+            //     }
+            //     var judge = prompt("请输入赠送数量");
+            //     if (judge) {
+            //         var re = /^[0-9]*[1-9][0-9]*$/;
+            //         if(!re.test(judge)){
+            //             alert('数量只能是整数');
+            //             return false;
+            //         }
+            //         $.post("{:U('User/coin')}",{user_id:$id,num:judge},function(e){
+            //             if(e.status>0){
+            //                 alert(e.msg);
+            //                 return false;
+            //             }else{
+            //                 alert(e.msg);
+            //             }
+            //         })
+            //         //document.write("输入的内容为："+judge+"。");
+            //     } else {
+            //         alert('已取消');
+            //         return false;
+            //     }
+            // }
+            function unuserpay(title, url, w, h) {
+                layer_show(title, url, w, h);
+            }
+
+            function userpay(title, url, w, h) {
+                layer_show(title, url, w, h);
+            }
+        </script>
+
+    </body>
+
+</html>

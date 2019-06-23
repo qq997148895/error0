@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.personal}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			header{
+				height: 44px;
+				background-color: #886dee;
+				color: white;
+				font-size:0.4rem;line-height: 44px;text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+			}
+			header .back{
+				display: block;
+				width: 44px;
+				height: 44px;
+				background: url("__PUBLIC__/Home/img/icon/fanhui@2x.png") no-repeat;
+				background-size:0.4rem;
+				background-position:center center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			/* 底部导航 */
+			.index_bottom{
+				background-color: white;
+				z-index: 99;
+			}
+			/* 循环列表 */
+			.count{
+				padding: 44px 0.25rem 0;
+			}
+			.count_head{
+				position: relative;
+				height: 40px;
+				padding-left: 40px;
+				/* font-size: 0; */
+				margin: 0.2rem 0;
+			}
+			.count_head_left img{
+				position: absolute;
+				top: 5px;
+				left: 0;
+				width: 30px;
+				height: 30px;
+			}
+			.count_head_left p{
+				font-size: 0.3rem;
+				line-height: 19px;
+			}
+			.count_head_left span{
+				font-size: 0.4rem;
+				font-weight: 600;
+				line-height: 19px;
+			}
+			.count_list{
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+			}
+			.count_list li{
+				display: inline-block;
+				width:4.6rem;
+				margin-bottom: 0.25rem;
+				position: relative;
+				border: 1px solid #EEEEEE;
+			}
+			.count_list li img{
+				width: 100%;
+				height: 4.6rem;
+			}
+			.count_list li p{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				color: #000000;
+			}
+			.count_list .price{
+				margin-top: 0.2rem;
+			}
+			.count_list .price span:nth-child(1){
+				color: red;
+				font-size:0.42rem;
+			}
+			.count_list .price span:nth-child(2){
+				color: #9C9C9C;
+				text-decoration: line-through;
+				display: inline-block;
+				margin-left: 0.2rem;
+			}
+			.count_list .number{
+				position: absolute;
+				right: 2px;
+				bottom: 0;
+				font-size: 0.3rem;
+				color: #C0C0C0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			商品列表
+			<span class="back" onclick="window.location.href='/Home/Mall/shop'"></span>
+		</header>
+		<div class="count">
+			<div class="count_head">
+				<div class="count_head_left">
+					<img src="__PUBLIC__/Home/img/icon/img_toux@2x.png" alt="">
+					<span>{$mall.merchant_name}</span>
+					<p>{$mall.merchant_id}</p>
+				</div>
+			</div>
+			<ul class="count_list">
+				<foreach name="goods" item="v">
+					<li>
+						<img src="{$v.imagepath1}" alt="" onclick="window.location.href='/Home/Mall/shop_details/id/{$v.id}'">
+						<p>{$v.goods_name}</p>
+						<div class="price">
+							<span>{$v.goods_price}</span>
+<!--							<span>￥198</span>-->
+						</div>
+						<div class="number">
+							已售{$v.goods_sell}件
+						</div>
+					</li>
+				</foreach>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+	</script>
+</html>

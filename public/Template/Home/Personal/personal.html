@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.personal}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/personal.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<!--
+        	作者：18291958857@163.com
+        	时间：2018-12-12
+        	描述：底部切换
+        -->
+		<div class="index_bottom">
+			<ul>
+				<li>
+					<a href="/Home/Index/index">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_homepage01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mall/shop">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_Shopping01@2x.png" alt="" />
+					</a>
+				</li>
+				<li>
+					<a href="/Home/Mymessage/myinfo">
+						<img src="__PUBLIC__/Home/img/icon/tab_icon_my02@2x.png" alt="" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<header class="head-bar mui-bar-nav">
+			<!--<a href="/Home/Index/index" class="mui-icon mui-icon-left-nav mui-pull-left" style="position:relative;z-index:100000"></a>-->
+			<h1 class="mui-title" style="border-bottom: 1px solid #fff;">我的</h1>
+			<!--<ul class="language">
+				<li class="selectLanguage">{$Think.lang.choselang}</li>
+				<li class="languageIn" style="position: relative;z-index: 100">
+					<a>简体中文</a>
+					<a>繁体中文</a>
+					<a>English</a>
+				</li>
+			</ul>-->
+			<div class="headerImg">	
+				<div class="userImg">
+					<if condition="$data.user_headimg neq null">					
+						<img id="preview-img" style="border-radius:50%; overflow:hidden;" src="{$data.user_headimg}">
+					<else />
+						<img id="preview-img" style="border-radius:50%; overflow:hidden;" src="__PUBLIC__/Home/img/icon/touxiang@2x.png">
+					</if>
+					<input type="file" value="" id="FILE1" onchange="sc(this.id)" />
+					<input type="hidden" name="erweima" id="erweima" value="">
+				</div>
+				<span id="nickname" onclick="savename()">用户名：{$data.user_name}</span>
+				<if condition="$userinfo['is_active'] eq 0">
+					<p style="color: #fff;font-size: .4rem;padding: .1rem 0 .3rem;">未激活</p>
+				</if>
+				<if condition="$userinfo['is_active'] eq 1">
+					<p style="color: #fff;font-size: .4rem;padding: .1rem 0 .3rem;">已激活</p>
+				</if>
+			</div>
+			<!--<div class="flexBetween headBottom">
+				<p>{$Think.lang.vip}：{$userinfo.user_level}</p>
+				<p>
+					<span>{$Think.lang.reputation}：</span>
+					<span>{$data.user_reputation}</span>
+				</p>
+			</div>-->
+		</header>
+
+		<ul class="personal">
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/personalData">
+					<div class="flexStar">
+						<p>
+							<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_ziliao@2x.png" />
+						</p>
+						<span style="color: #666666;">个人资料</span>
+					</div>
+				</a>
+			</li>
+			<!--<li class="flexStar">
+				<p>
+					<img style="width:0.4rem;height:0.61rem;" src="__PUBLIC__/Home/img/icon/shouji@2x.png" />
+				</p>
+				<span>{$Think.lang.phonenum}:{$data.user_phone}</span>
+			</li>-->
+			
+			<!--<li class="flexBetween">
+				<a class="flexStar" href="/Home/Transfer/transfer">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_paidan@2x.png" />
+					</p>
+					<span style="color: #666666;">商城订单</span>
+
+				</div>
+				</a>
+			</li>-->
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mall/shop_order">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_paidan@2x.png" />
+					</p>
+					<span style="color: #666666;">商城订单</span>
+
+				</div>
+				</a>
+			</li>
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mall/shop_cart">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/shop_cartPink.png" />
+					</p>
+					<span style="color: #666666;">购物车</span>
+			
+				</div>
+				</a>
+			</li>
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/personal_address">
+				<div class="flexStar">
+					<p>
+						<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_dizhi@2x.png" />
+					</p>
+					<span style="color: #666666;">收货地址</span>
+			
+				</div>
+				</a>
+			</li>
+			
+			<!--<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/cdkey">
+				<div class="flexStar">					
+					<p>
+						<img style="width:0.56rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_jihuo@2x.png" />
+					</p>
+					<span style="color: #666666;">激活码</span>
+
+				</div>
+				</a>
+			</li>-->
+			<li class="flexBetween">
+				<a class="flexStar" href="/Home/Mymessage/changepassword">
+				<div class="flexStar">					
+					<p>
+						<img style="width:0.5rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_mima@2x.png" />
+					</p>
+					<span style="color: #666666;">更改密码</span>
+
+				</div>
+				</a>
+			</li>
+
+		</ul>
+
+		<div class="personalBottom">
+			<div id="aboutus" class="flexStar">
+				<p>
+					<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/guanyu@2x.png" />
+				</p>
+				<span style="color: #333333;">关于我们</span>
+			</div>
+			<div class="flexStar" onclick="window.location.href='/Home/Index/Feedback'">
+				<p>
+					<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/icon_yijian@2x.png" />
+				</p>
+				<a href=""><span style="color: #333333;">意见反馈</span></a>
+			</div>
+			<div class="flexStar" onclick="window.location.href='/Home/Login/logout'">
+				<p>
+					<img style="width:0.55rem;height:auto;" src="__PUBLIC__/Home/img/icon/tuichu@2x.png" />
+				</p>
+				<a href=""><span style="color: #333333;">切换账号</span></a>
+			</div>
+		</div>
+		<script type="text/javascript">
+
+			//语言切换
+			var langI = localStorage.getItem('langIndex');
+			langGet(langI);
+
+			function langGet(langI) {
+				$('.selectLanguage').text($('.languageIn a').eq(langI).text());
+				switch(langI) {
+					case 0:
+						location.href = "/Home/Mymessage/myinfo?l=zh-cn";
+						break;
+					case 1:
+						location.href = "/Home/Mymessage/myinfo?l=ft-cn";
+						break;
+					case 2:
+						location.href = "/Home/Mymessage/myinfo?l=en-us";
+						break;
+				}
+			}
+			$('.selectLanguage').on('tap', function() {
+				$('.languageIn').css('display', 'block');
+			})
+			$('.languageIn a').on('tap', function() {
+				var _index = $(this).index();
+				localStorage.setItem('langIndex', _index);
+				$('.languageIn').css('display', 'none');
+				var langIndex = localStorage.getItem('langIndex');
+				langGet(_index);
+			})
+
+			$('#aboutus').on('tap',function(){
+				location.href="/Home/Mymessage/response";
+			})
+			//选择语言
+			$('.selectLanguage').on('tap', function() {
+				$('.languageIn').css('display', 'block');
+			})
+			$('.languageIn div').on('tap', function() {
+				var _index = $(this).index();
+				$('.selectLanguage').text($('.languageIn div').eq(_index).text());
+				$('.languageIn').css('display', 'none');
+			})
+
+			function jihuo(){
+				var btnArray = ['{$Think.lang.no}', '{$Think.lang.yes}'];
+		        mui.confirm('{$Think.lang.consume}', '{$Think.lang.tips}', btnArray, function(e) {
+		          if (e.index == 1) {
+		             /*确定激活*/
+		             $.ajax({
+			         url: "/Home/Index/Activation",
+			         dataType: "json",
+			         type: "POST",
+			         success: function(str){
+			             alert(str.message);
+			             window.location.reload();
+			          },
+			          error:function(err){
+			            // console.log(err.statusText);
+			            // console.log('异常');
+			          }
+		        });
+		          } else {
+		              /*取消*/
+		          }
+		        })	
+			}
+			//修改昵称
+			function savename(){
+				//e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+		        var btnArray = ['{$Think.lang.no}', '{$Think.lang.yes}'];
+		        mui.prompt('{$Think.lang.up_nickname}：', '{$Think.lang.enter_nickname}', '{$Think.lang.tips}', btnArray, function(e) {
+		          if (e.index == 1) {
+		            console.log(e.value);
+		            var nickname = e.value;
+			            $.ajax({
+				         url: "/Home/Index/savename",
+				         dataType: "json",
+				         type: "POST",
+				         data:{
+				         	nickname:nickname
+				         },
+				         success: function(str){
+				             if(str.status == 1){
+				             	alert(str.message);
+				             	window.location.reload();
+				             }
+				          },
+				          error:function(err){
+				            // console.log(err.statusText);
+				            // console.log('异常');
+				          }
+				     	})
+		          } else {
+		             /*取消*/
+		          }
+		        })
+			}
+			//上传头像
+			function sc(id){
+			var fileObj = document.getElementById(id).files[0]; // 获取文件对象
+			console.log(fileObj)
+			var FileController = "{:U('Mymessage/upfile')}";                    // 接收上传文件的后台地址 
+			// FormData 对象
+			var form = new FormData();    //存储需要传递的参数
+			// form.append("author", "竹叶科技");       //自定义数据
+			// form.append("id",id);                       // 可以增加表单数据
+			form.append(id, fileObj);                           // 文件对象
+			// XMLHttpRequest 对象
+			var xhr = new XMLHttpRequest();
+			xhr.open("post", FileController, true);
+			xhr.onload = function () {
+			    var posit=this.responseText;
+			    console.log(posit)
+			    document.getElementById('erweima').value=posit;
+			    var show=document.getElementById('preview-img');
+			    show.src=posit;
+			    $.ajax({
+		         url: "{:U('Mymessage/upload')}",
+		         dataType: "json",
+		         type: "POST",
+		         data:{
+		         	file:posit,
+		         },
+		         success: function(str){
+		             if(str.status == 1){
+		             	alert(str.message);
+		             	window.location.reload();
+		             }
+		          },
+		          error:function(err){
+		            // console.log(err.statusText);
+		            // console.log('异常');
+		          }
+		        });
+			};
+			xhr.send(form);
+			var file = $('#FILE1').val();
+			console.log(file);
+		};
+      // document.getElementById("nickname").addEventListener('tap', function(e) {
+      //   e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+      //   var btnArray = ['取消', '确定'];
+      //   mui.prompt('修改昵称：', '输入昵称', '提示', btnArray, function(e) {
+      //     if (e.index == 1) {
+      //       console.log(e.value);
+      //     } else {
+      //        /*取消*/
+      //     }
+      //   })
+      // });
+		</script>
+	</body>
+
+</html>

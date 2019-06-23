@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang.ordercr}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/order-details.css" />
+		<script src="__PUBLIC__/Home/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/Home/js/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<link href="__PUBLIC__/Admin/sncss/css/baguetteBox.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady() {
+				// 设置系统状态栏背景为红色
+				plus.navigator.setStatusBarBackground('#409BFE');
+                plus.navigator.setStatusBarStyle('light');
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<style type="text/css">
+			.gallery:after {content: '';display: block;height: 2px;margin: .5em 0 1.4em;}
+			.gallery a {width: 100%;display: inline-block;overflow: hidden;}
+			.ribbon > img {position: absolute;top: 0;right: 0;border: 0;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="/Home/OrderCenter/saleinfoing/id/{$list.sale_order_id}" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">{$Think.lang.orderdetails}</h1>
+		</header>
+		<div class="conD">
+			<input type="hidden" name="matchid" id="matchid" value="{$list.id}">
+			<ul class="backgroundGreenD">
+				<li class="flexBetween">
+					<span>股权数量:{$list.amount}</span>
+					<if condition="$list.status eq 1"><span>{$Think.lang.tobeconfirm}</span></if>
+					<if condition="$list.status eq 2"><span>{$Think.lang.confirmed}</span></if>
+				</li>
+				<li>
+					<span>股权价值:{$money}</span>
+				</li>
+				<!-- <li><span>已匹配:{$list.amount}￥</span></li> -->
+				<li class="flexBetween">
+					<span>{$Think.lang.ordernumber}：{$list.saleordernum}</span>
+					<img class="flag" src="__PUBLIC__/Home/img/icon/guoqi@2x.png" />
+				</li>
+				<li>
+					<span>{$Think.lang.time}:</span>
+					<span>{$list.saleorderbuy}</span>
+				</li>
+
+				<if condition="$list.status eq 1">
+					<li>
+						<span>{$Think.lang.countdownofr}:</span>
+						<span style="color: red;font-weight: bold;" id="t_h"></span>{$Think.lang.shi}
+						<span  style="color: red;font-weight: bold;" id="t_m"></span>{$Think.lang.fen}
+						<span  style="color: red;font-weight: bold;" id="t_s"></span>{$Think.lang.miao}
+					</li>
+				</if>
+				<if condition="$list.status eq 2">
+					<li>
+						<span>{$Think.lang.collectiontime}:</span>
+						<span>{$list.receive_time}</span>
+					</li>
+				</if>
+				<li>
+					<span>{$Think.lang.username}:</span>
+					<span>{$buyuserinfo.user_truename}</span>
+				</li>
+				<li>
+					<span>{$Think.lang.telephone}:</span>
+					<span>{$buyuserinfo.user_phone}</span>
+				</li>
+
+				<li>
+					<span>打款截图预览</span>
+				</li>
+				<li>
+					<div class="baguetteBoxOne gallery">
+						<a href="{$list['pay_img']}" target="_bank">
+							<img class="cerImg" src="{$list['pay_img']}"/>
+						</a>
+					</div>
+				</li>
+				<li class="flexCenter">
+					<button class="payBtn" style="background-color: red;color: #fff" id="complaint">{$Think.lang.complaint}</button>
+					<button class="payBtn" id="tobeok">{$Think.lang.confirmreceipt}</button></li>
+
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="__HOME__/layer/layer.js"></script>
+	<script type="text/javascript">
+		if({$list.status}===1){
+			console.log({$list.endtime});
+			var timer = setInterval(function(){
+	            var t = {$list.endtime} - new Date().getTime();
+				console.log(new Date().getTime());
+				console.log(t);
+	            //console.log(date);
+	            //console.log(NowTime.getTime());
+	            var h = 0;
+	            var m = 0;
+	            var s = 0;
+	            if(t >= 0) {
+	            	h = Math.floor(t / 1000 / 60 / 60);
+	              	m = Math.floor(t / 1000 / 60 % 60);
+	              	s = Math.floor(t / 1000 % 60);
+	              	if(h <= 9) h = '0' + h;
+				    if(m <= 9) m = '0' + m;
+				    if(s <= 9) s = '0' + s;
+		            document.getElementById("t_h").innerHTML = h;
+		            document.getElementById("t_m").innerHTML = m;
+		            document.getElementById("t_s").innerHTML = s;
+	            }else{
+	            	document.getElementById("t_h").innerHTML = h;
+		            document.getElementById("t_m").innerHTML = m;
+		            document.getElementById("t_s").innerHTML = s;
+		            clearInterval(timer);
+					location.href="/Home/OrderCenter/fenghao";
+	            }
+			},1000)
+		}
+		//确认打款
+		$("#tobeok").click(function(){
+			var matchid=$('input[name=matchid]').val();
+			layer.confirm('{$Think.lang.confirmreceipt}?',{title:['{$Think.lang.prompt}'],
+			btn:['{$Think.lang.Determine}','{$Think.lang.cancel}'],
+			},function(){
+				$.ajax({
+					url:'/Home/OrderCenter/besuregeted',
+					data:{matchid:matchid},
+					dataType:'json',
+					type:'post',
+					success:function(data){
+						if (data.status==0) {
+							layer.msg(data.message,{icon:5,time:3000});
+						}else{
+							layer.msg(data.message,{icon:6,time:3000},function(){
+								//window.location.reload(true);
+								location.href="/Home/OrderCenter/buy_matching_list";
+							});
+						}
+					}
+				});
+			});
+		});
+		//投诉
+		$("#complaint").click(function(){
+			var matchid=$('input[name=matchid]').val();
+			layer.confirm('{$Think.lang.cocafp}?',{title:['{$Think.lang.prompt}'],
+			btn:['{$Think.lang.Determine}','{$Think.lang.cancel}'],
+			},function(){
+				$.ajax({
+					url:'/Home/OrderCenter/salecomplaint',
+					data:{matchid:matchid},
+					dataType:'json',
+					type:'post',
+					success:function(data){
+						if (data.status==0) {
+							layer.msg(data.message,{icon:5,time:3000});
+						}else{
+							layer.msg(data.message,{icon:6,time:3000},function(){
+								//window.location.reload(true);
+								location.href="/Home/OrderCenter/buy_matching_list";
+							});
+						}
+					}
+				});
+			});
+		});
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/sncss/js/baguetteBox.js"></script>
+	<script>
+		window.onload = function() {
+			baguetteBox.run('.baguetteBoxOne');
+			baguetteBox.run('.baguetteBoxTwo');
+			baguetteBox.run('.baguetteBoxThree', {
+				animation: 'fadeIn',
+				noScrollbars: true
+			});
+			baguetteBox.run('.baguetteBoxFour', {
+				buttons: false
+			});
+			baguetteBox.run('.baguetteBoxFive', {
+				captions: function(element) {
+					return element.getElementsByTagName('img')[0].alt;
+				}
+			});
+			if (typeof oldIE === 'undefined' && Object.keys) {
+				hljs.initHighlighting();
+			}
+		};
+	</script>
+</html>
