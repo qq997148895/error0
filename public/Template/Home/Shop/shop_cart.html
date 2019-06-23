@@ -223,19 +223,11 @@
                     <li key='{$v.goods_id}' val="{$v.id}" class="active" price='{$v.goods_price}' number='{$v.goods_num}'>
                         <img src="{$v.imagepath1}" alt="">
                         <div class="item_info">
-                            <h4 class="title">{$v.goods_name}</h4>
-                            <p class="text">{$v.goods_details}</p>
-                            <p class="text">订单类型：
-                                <if condition="$v.type eq 1">
-                                    注册单
-                                </if>
-                                <if condition="$v.type eq 2">
-                                    复购单
-                                </if>
-                            </p>
+                            <h4 class="title">商品名称：{$v.goods_name}</h4>
+                            <p class="text">描述：{$v.goods_details}</p>
                             <div class="price">
                                 <span>￥{$v.goods_price}</span>
-                                <span>￥{$v.goods_oldprice}</span>
+<!--                                <span>￥{$v.goods_oldprice}</span>-->
                             </div>
                             <div class="quantityAdjusted">
                                 <span class="jian">-</span><span class="number" maxnum='{$v.goods_number}'>{$v.goods_num}</span><span

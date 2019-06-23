@@ -209,12 +209,15 @@
 				<div class="number">
 					<span>销量：{$goods.goods_sell}</span><span class="fr">库存：{$goods.goods_number}</span>
 				</div>
-				<if condition="$goods['goods_price'] egt 1000">
-					<div class="chose">
-						<label for=""><input type="radio" name="type" value="1" checked class="t_romm_ip" />注册单(80%现金+20%股权)</label>
-						<label for=""><input type="radio" name="type" value="2" class="t_romm_ip" />复购单(积分购买)</label>
-					</div>
-				</if>
+				<div class="number">
+					<span>描述：{$goods.goods_details}</span>
+				</div>
+<!--				<if condition="$goods['goods_price'] egt 1000">-->
+<!--					<div class="chose">-->
+<!--						<label for=""><input type="radio" name="type" value="1" checked class="t_romm_ip" />注册单(80%现金+20%股权)</label>-->
+<!--						<label for=""><input type="radio" name="type" value="2" class="t_romm_ip" />复购单(积分购买)</label>-->
+<!--					</div>-->
+<!--				</if>-->
 			</div>
 			<div class="imgTextDetails">
 				<div class="imgTextDetails_title">
